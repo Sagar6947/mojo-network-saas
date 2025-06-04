@@ -53,7 +53,7 @@ export async function createNewsPortal(data: CreatePortalRequest): Promise<Creat
 
 export async function mockCreatePortal(data: CreatePortalRequest): Promise<CreatePortalResponse> {
   try {
-    const response = await fetch("http://localhost/mojo-network-api/api/create-portal", {
+    const response = await fetch("https://mojoapi.seagullventure.com/api/create-portal/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
