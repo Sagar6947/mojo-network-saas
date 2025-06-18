@@ -26,23 +26,36 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
   const [domainSuggestions, setDomainSuggestions] = useState<string[]>([])
   const [domainStatuses, setDomainStatuses] = useState<Map<string, DomainStatus>>(new Map())
   const [checkingDomains, setCheckingDomains] = useState(false)
-  const platformDomain = "seagullventure.com"
+  const platformDomain = "mojonetwork.in"
 
-  useEffect(() => {
-    if (portalName) {
-      generateDomainSuggestions(portalName)
-    } else {
-      setDomainSuggestions([])
-      setSelectedDomain("")
-      setDomainStatuses(new Map())
-    }
-  }, [portalName])
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
+
+useEffect(() => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+
+  if (!portalName.trim()) {
+    setDomainSuggestions([])
+    setSelectedDomain("")
+    setDomainStatuses(new Map())
+    return
+  }
+
+  const timer = setTimeout(() => {
+    generateDomainSuggestions(portalName)
+  }, 600) // debounce delay
+
+  setDebounceTimer(timer)
+
+  return () => {
+    clearTimeout(timer)
+  }
+}, [portalName])
 
   const generateDomainSuggestions = async (name: string) => {
     const cleanName = name.toLowerCase().trim()
 
     const suggestions = [
-      cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
+      // cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
       cleanName.replace(/\s+/g, "-") + `.${platformDomain}`,
       cleanName.replace(/\s+/g, "") + "news." + `${platformDomain}`,
       "daily" + cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
@@ -80,6 +93,9 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
     }
 
     setCheckingDomains(false)
+
+    
+
   }
 
   const handleDomainSelect = (domain: string) => {

@@ -59,7 +59,7 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
+    })  
 
     if (!response.ok) {
       throw new Error("Failed to create portal")
