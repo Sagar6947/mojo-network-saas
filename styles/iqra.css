@@ -1,0 +1,17 @@
+.btn-red {
+    background-color: #ca0013;
+}
+
+.gradient-text {
+    background-image: linear-gradient(to right, #dc2626, #dc2626, #dc26269c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-black {
+    color: #000;
+}
+
+.mt-81 {
+    margin-top: -71px;
+}

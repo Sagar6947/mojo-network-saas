@@ -1,86 +1,108 @@
-import { Newspaper, Video, Share2, DollarSign, FileText, Mic, Users, Shield, Languages } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+// import {
+//   Newspaper,
+//   Video,
+//   Share2,
+//   DollarSign,
+//   FileText,
+//   Mic,
+//   Users,
+//   Shield,
+//   Languages,
+// } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const features = [
   {
-    icon: <Newspaper className="h-10 w-10 text-primary" />,
-    title: "AI-Powered Content Engine",
+    icon: "/images/solutions/1.png",
+    title: "Your Brand",
     description:
-      "Get ready-made news feeds—national, regional, weather, astrology, cricket, and more. Save time, reduce effort, and focus on local reporting.",
+      "Your Brand. Be the face of your news—not just a name buried inside a portal. Mojo Network gives you your own branded channel that puts you in front.",
   },
   {
-    icon: <Video className="h-10 w-10 text-primary" />,
-    title: "Auto Bulletin Creator",
+    icon: "/images/solutions/2.png",
+    title: "Automatic Fame Engine",
     description:
-      "Your daily news gets compiled into a polished bulletin every evening at 8:30 PM. No manual effort needed—just review and publish.",
+      "Whatever you publish turns into a daily bulletin, social media push, and mass visibility—no extra work, only more recognition.",
   },
   {
-    icon: <Share2 className="h-10 w-10 text-primary" />,
+    icon: "/images/solutions/3.png",
     title: "Automated Sharing Tools",
-    description: "Instant sharing to YouTube, WhatsApp, Facebook, and Instagram. Expand your reach with zero effort.",
-  },
-  {
-    icon: <DollarSign className="h-10 w-10 text-primary" />,
-    title: "Ad Monetization Engine",
     description:
-      "Use your dedicated ad panel to sell local ads or plug into Google Ads. Track ad impressions and revenue easily.",
+      "Our engine gives you daily national, local, political, cricket, and even astrology content—so you never run dry.",
   },
   {
-    icon: <FileText className="h-10 w-10 text-primary" />,
-    title: "Multi-format Content Support",
+    icon: "/images/solutions/4.png",
+    title: "Built‑in Ads + Sponsor Tools",
     description:
-      "Support for text, video, and audio inputs. Use our AI Assistant to turn raw recordings into structured articles.",
+      " No pitching, no chasing. We connect you to local advertisers and help you monetize every view and click.",
   },
   {
-    icon: <Mic className="h-10 w-10 text-primary" />,
-    title: "AI Writing Assistant",
+    icon: "/images/solutions/5.png",
+    title: "Prestige + Power Among Peers",
     description:
-      "Upload a voice note or video clip—our system will transcribe and generate engaging news with AI assistance.",
+      " While others run websites, you run a channel. That makes you the journalist they look up to",
   },
   {
-    icon: <Users className="h-10 w-10 text-primary" />,
-    title: "Multi-User & Author System",
+    icon: "/images/solutions/6.png",
+    title: "Only One Job",
     description:
-      "Assign different logins to sub-reporters, contributors, or editors. Control access levels and content rights.",
+      "Do Journalism. Everything else—tech, promotion, publishing, billing—is taken care of. You focus on breaking the story; we’ll break the barriers.",
   },
-  {
-    icon: <Shield className="h-10 w-10 text-primary" />,
-    title: "Secure & Scalable",
-    description:
-      "Separate hosting for each client, SSL certificates, Google Analytics, search console integration, and spam filters for security and visibility.",
-  },
-  {
-    icon: <Languages className="h-10 w-10 text-primary" />,
-    title: "Multilingual Capabilities",
-    description: "Create content in Hindi, English, or any regional language with local UI and tagging.",
-  },
-]
+];
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-16 md:py-24">
-      <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">Powerful Features for Your News Portal</h2>
-          <p className="text-lg text-gray-600">
-            Everything you need to create, manage, and grow your digital news presence
-          </p>
-        </div>
+    <section
+      id="features"
+      className="relative py-16 bg-contain bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/pricing.webp')" }}
+    >
+      {/* Pink overlay */}
+      <div className="absolute inset-0 bg-pink-100/40 pointer-events-none"></div>
+
+      {/* Content */}
+      <div className="relative container z-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
+          <span className="gradient-text">Mojo Network</span> is the Solution
+          You’ve Been Waiting For
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="border hover:shadow-lg transition-shadow">
+            <Card
+              key={index}
+              className="border transition-shadow"
+              style={{ boxShadow: "rgba(0, 0, 0, 0.04) 0px 3px 5px" }}
+            >
               <CardHeader>
-                <div className="mb-4">{feature.icon}</div>
-                <CardTitle>{feature.title}</CardTitle>
+                <div className="mb-4 flex justify-center">
+                  <img
+                    src={feature.icon}
+                    alt={feature.title}
+                    className="w-16 h-16 object-contain"
+                  />
+                </div>
+                <CardTitle>
+                  <h3 className="text-lg font-semibold text-center">
+                    {feature.title}
+                  </h3>
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base">{feature.description}</CardDescription>
+                <CardDescription className="text-base text-center">
+                  {feature.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
