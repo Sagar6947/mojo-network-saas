@@ -1,56 +1,68 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import "@/styles/iqra.css";
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Features", href: "/#features" },
   { name: "Pricing", href: "/#pricing" },
   { name: "FAQ", href: "/#faq" },
   { name: "Contact", href: "/#contact" },
-]
+];
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
+    <header className="sticky top-0 pt-3 z-50 w-full bg-white/95 backdrop-blur-sm border-b">
+      <div className="container flex h-20 items-center justify-between">
+        <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold gradient-text">MojoNetwork</span>
+            <img
+              src="/images/logo.png"
+              alt="MojoNetwork Logo"
+              className="h-20 w-auto bottom-4"
+            />
           </Link>
-          <nav className="hidden md:flex gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
         </div>
+
+        <nav className="hidden md:flex gap-16">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-md font-medium text-gray-700 hover:text-primary transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex items-center gap-4">
           <Link href="/login">
-            <Button variant="outline" className="hidden sm:flex">
+            <button className="px-10 py-3 font-md rounded-md border border-red-600 text-red-600 font-semibold hover:bg-red-50 transition duration-200">
               Login
-            </Button>
+            </button>
           </Link>
+
           <Link href="/create-portal">
-            <Button>Create Portal</Button>
+            <button className="px-10 py-3 rounded-md bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200">
+              Create Portal
+            </button>
           </Link>
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b">
           <div className="container py-4 flex flex-col gap-4">
@@ -73,5 +85,5 @@ export function Header() {
         </div>
       )}
     </header>
-  )
+  );
 }

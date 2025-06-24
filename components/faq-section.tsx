@@ -1,73 +1,103 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const faqs = [
   {
-    question: "What is MoJo Network?",
+    question: "What is Mojo Network?",
     answer:
-      "MoJo Network is a News Portal as a Service (NPSaaS) platform that helps Indian reporters, NGOs, and community leaders launch and manage their own branded digital news portals—without needing technical skills.",
+      "Mojo Network is a mobile journalism platform that enables reporters to create and manage their own hyperlocal news channels directly from their smartphones.",
   },
   {
-    question: "Do I need to know coding to start my own news portal?",
+    question: "How does the content engine support hyperlocal news?",
     answer:
-      "No! MoJo Network is completely no-code. You just choose your domain, design your homepage using our wizard, and start uploading content.",
+      "The content engine provides daily, ready-to-publish updates including national, state, cricket, weather, and hyperlocal news—helping reporters maintain a steady stream of relevant content.",
   },
   {
-    question: "Is there a mobile app for uploading content?",
+    question: "Can I earn money through my hyperlocal news channel on Mojo Network?",
     answer:
-      "Yes. We offer a free Content Uploader App (APK) that allows reporters to create news using text, audio, or video, and manage content directly from their phones.",
+      "Yes! Mojo Network offers easy-to-use tools to monetize your mobile journalism efforts with local advertisements, sponsored stories, and Google Ads",
   },
   {
-    question: "What AI features does MoJo Network provide?",
+    question: "Do I need expensive equipment to practice mobile journalism on Mojo Network?",
     answer:
-      "We provide an AI content engine for auto-curated national and regional news, an AI writing assistant that turns voice or video notes into polished news stories, daily auto-generated bulletins, and smart tagging and summary generation.",
+      "No special or expensive equipment is needed. Reporters can run their full news channel and publish hyperlocal news using just a smartphone.",
   },
   {
-    question: "How do I make money with my news portal?",
+    question: "How does AI technology help with mobile journalism on Mojo Network?",
     answer:
-      "You can sell ad space directly to local businesses, enable Google Ads integration, share your content to YouTube/Facebook and monetize, and offer sponsored stories or event coverage. You keep 70% of all ad revenue.",
+      "AI tools turn your voice notes and videos into publish-ready news articles, automatically create daily bulletins, and share your hyperlocal news content on social media—saving you time and effort.",
   },
   {
-    question: "Can I see how my portal is performing?",
+    question: "Is Mojo Network available in regional languages for hyperlocal audiences?",
     answer:
-      "Yes. Each portal comes with a dashboard for visitor analytics, ad revenue tracking, social media performance, and content engagement metrics.",
+      "Yes, Mojo supports Hindi, Bundeli, Bagheli, and other regional languages, helping reporters connect deeply with their hyperlocal audience.",
   },
   {
-    question: "Can I publish in Hindi or my local language?",
+    question: "What Is The Revenue Stream For Web Publishers?",
     answer:
-      "Absolutely. MoJo Network supports multi-language portals including English, Hindi, and other regional Indian languages.",
+      "Ad placements, sponsored posts, affiliate marketing, subscription models, and syndication services are common revenue sources.",
   },
   {
-    question: "Is my portal secure and compliant?",
+    question: "How Can I Find The Best News Portal Development Company In India?",
     answer:
-      "Yes. All portals are SSL-secured, hosted separately, integrated with Google Search Console and Analytics, and protected by a spam filter on news and comments.",
+      "Look for a company with proven experience, full-featured offerings, client support, and a strong portfolio in digital news publishing.",
   },
   {
-    question: "What's included in the free plan?",
+    question: "Which Is The Top News Portal Development Company In India?",
     answer:
-      "The Basic Plan (free) includes basic CMS, 1 sub-domain (e.g., yourname.mojonetwork.in), and limited storage. Perfect for students or first-time users.",
+      "MoJo Network is among the top choices, known for AI-powered content engines, mobile-first design, and seamless publishing tools.",
   },
   {
-    question: "Can I upgrade to a custom domain and premium tools?",
+    question: "Why Should I Work With Your Company?",
     answer:
-      "Yes. Paid plans offer your own domain (e.g., yourportal.in), advanced analytics, multi-user access, government ad registration assistance, and priority support.",
+      "We offer full support, AI tools, scalable infrastructure, compliance assistance, and affordable plans tailored for Indian publishers.",
+  },
+  {
+    question: "What's Your Payment Process?",
+    answer:
+      "We support yearly and custom payment plans via bank transfer, UPI, or credit card. Invoicing and GST billing available for businesses.",
+  },
+  {
+    question: "How Can I Schedule A Consultation With The Experts On The News Portal?",
+    answer:
+      "Simply use the 'Contact Us' form on our website or call our support number to schedule a free consultation.",
   },
 ]
 
+// Split into two columns
+const leftFaqs = faqs.slice(0, Math.ceil(faqs.length / 2))
+const rightFaqs = faqs.slice(Math.ceil(faqs.length / 2))
+
 export function FaqSection() {
   return (
-    <section id="faq" className="py-16 md:py-24">
-      <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-gray-600">Find answers to common questions about MoJo Network</p>
+    <section id="faq" className="py-12 bg-white">
+      <div className="container max-w-[1200px] mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+          <p className="text-lg text-gray-600">Have questions before reaching out? We’ve got everything covered here</p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          {/* Left Column */}
+          <Accordion type="multiple" className="w-full space-y-4">
+            {leftFaqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-left-${index}`}>
+                <AccordionTrigger className="text-left font-medium text-base">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-sm mt-1">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+          {/* Right Column */}
+          <Accordion type="multiple" className="w-full space-y-4">
+            {rightFaqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-right-${index}`}>
+                <AccordionTrigger className="text-left font-medium text-base">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-sm mt-1">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

@@ -1,9 +1,10 @@
 import type React from "react"
-import { Inter } from "next/font/google"
+// import { Inter } from "next/font/google"
+import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Roboto({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Mojo Network - Launch Your Own News Portal in Minutes",
