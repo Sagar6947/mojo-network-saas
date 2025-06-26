@@ -158,7 +158,7 @@ export function TemplateStep({ onBack, onNext }: TemplateStepProps) {
               <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-[#cb0015]">
                       {template.icon}
                     </div>
                     <div>

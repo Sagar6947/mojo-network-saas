@@ -18,8 +18,8 @@ export function StepContainer({ children, subtitle }: StepContainerProps) {
       className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
     >
       {subtitle && (
-        <div className="px-6 py-4 bg-gray-50 border-b">
-          <p className="text-gray-600">{subtitle}</p>
+        <div className="px-6 py-4 border-b bg-[#ca0013]">
+          <p className="text-white text-center">{subtitle}</p>
         </div>
       )}
       <div className="p-6 md:p-8">{children}</div>

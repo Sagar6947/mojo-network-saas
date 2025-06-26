@@ -221,7 +221,7 @@ export default function CreatePortalPage() {
       case 9:
         return (
           <div className="text-center space-y-6">
-            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto ">
               <span className="text-3xl">🚀</span>
             </div>
             <div>
@@ -231,7 +231,7 @@ export default function CreatePortalPage() {
               </p>
               <button
                 onClick={handleCreatePortal}
-                className="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors text-lg font-semibold"
+                className="bg-[#cb0015] text-white px-8 py-3 rounded-lg hover:bg-[#cb0015] transition-colors text-lg font-semibold"
               >
                 🚀 Launch My Portal
               </button>
