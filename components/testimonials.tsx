@@ -1,4 +1,5 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CheckCircle, Star } from "lucide-react";
@@ -99,7 +100,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-gray-700 text-sm">{item.message}</p>
+                <p className="text-gray-700 text-sm text-justify">{item.message}</p>
               </div>
             </SwiperSlide>
           ))}
