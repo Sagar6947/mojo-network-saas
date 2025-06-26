@@ -42,7 +42,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link href="/login">
+          <Link href="">
             <button className="px-10 py-2 font-md rounded-md border border-red-600 text-red-600 font-semibold hover:bg-red-50 transition duration-200 hidden md:flex">
               Login
             </button>
@@ -76,7 +76,7 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="outline" className="w-full">
                 Login
               </Button>
