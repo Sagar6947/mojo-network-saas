@@ -1,4 +1,4 @@
-import { CheckCircle } from "lucide-react";
+"use client";
 
 export function AboutSection() {
   const features = [
@@ -25,11 +25,11 @@ export function AboutSection() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white md:pt-10">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
           The Problem{" "}
-          <span className="gradient-text">What Every Journalist Feels</span> But
+          <span className="gradient-text leading-tight">What Every Journalist <br /> Feels</span> But
           Won’t Admit
         </h2>
 
@@ -53,14 +53,14 @@ export function AboutSection() {
                 </div>
                 <div>
                   <h3
-                    className={`text-xl font-bold ${
+                    className={`text-xl font-bold md:pb-3 ${
                       idx % 2 === 0 ? "text-white" : "text-gray-900"
                     }`}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className={`mt-1 ${
+                    className={`mt-1 text-sm md:-text-xs ${
                       idx % 2 === 0 ? "text-white/90" : "text-gray-600"
                     }`}
                   >

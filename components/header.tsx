@@ -18,23 +18,23 @@ export function Header() {
 
   return (
     <header className="sticky top-0 pt-3 z-50 w-full bg-white/95 backdrop-blur-sm border-b">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between pl-0 md:pl-4">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <img
               src="/images/logo.png"
               alt="MojoNetwork Logo"
-              className="h-20 w-auto bottom-4"
+              className="w-auto bottom-4 h-12 md:h-20"
             />
           </Link>
         </div>
 
-        <nav className="hidden md:flex gap-16">
+        <nav className="hidden md:flex gap-10">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-md font-medium text-gray-700 hover:text-primary transition-colors"
+              className="text-md font-medium text-black hover:text-red transition-colors"
             >
               {item.name}
             </Link>
@@ -43,13 +43,13 @@ export function Header() {
 
         <div className="flex items-center gap-4">
           <Link href="/login">
-            <button className="px-10 py-3 font-md rounded-md border border-red-600 text-red-600 font-semibold hover:bg-red-50 transition duration-200">
+            <button className="px-10 py-2 font-md rounded-md border border-red-600 text-red-600 font-semibold hover:bg-red-50 transition duration-200 hidden md:flex">
               Login
             </button>
           </Link>
 
           <Link href="/create-portal">
-            <button className="px-10 py-3 rounded-md bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200">
+            <button className="px-10 py-3 rounded-md bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200 hidden md:flex">
               Create Portal
             </button>
           </Link>

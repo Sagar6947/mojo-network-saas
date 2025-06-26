@@ -1,3 +1,5 @@
+"use client";
+
 // import {
 //   Newspaper,
 //   Video,
@@ -63,10 +65,7 @@ export function FeaturesSection() {
       className="relative py-16 bg-contain bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/pricing.webp')" }}
     >
-      {/* Pink overlay */}
       <div className="absolute inset-0 bg-pink-100/40 pointer-events-none"></div>
-
-      {/* Content */}
       <div className="relative container z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
           <span className="gradient-text">Mojo Network</span> is the Solution
@@ -95,7 +94,7 @@ export function FeaturesSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base text-center">
+                <CardDescription className="text-xs sm:text-sm md:text-base text-center">
                   {feature.description}
                 </CardDescription>
               </CardContent>

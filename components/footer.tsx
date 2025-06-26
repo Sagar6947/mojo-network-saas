@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t bg-[#252525] pt-5">
+    <footer className="bg-[#252525] pt-5">
       <div className="container py-5">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -18,16 +21,16 @@ export function Footer() {
               journalists and media entrepreneurs.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-white hover:text-primary">
+              <Link href="#" className="text-white hover:text-red-600">
                 <Facebook size={20} />
               </Link>
-              <Link href="#" className="text-white hover:text-primary">
+              <Link href="#" className="text-white hover:text-red-600">
                 <Twitter size={20} />
               </Link>
-              <Link href="#" className="text-white hover:text-primary">
+              <Link href="#" className="text-white hover:text-red-600">
                 <Instagram size={20} />
               </Link>
-              <Link href="#" className="text-white hover:text-primary">
+              <Link href="#" className="text-white hover:text-red-600">
                 <Youtube size={20} />
               </Link>
             </div>
@@ -39,14 +42,14 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-white hover:text-primary">
+                <Link href="/" className="text-white hover:text-red-600">
                   Home
                 </Link>
               </li>
               <li>
                 <Link
                   href="/#features"
-                  className="text-white hover:text-primary"
+                  className="text-white hover:text-red-600"
                 >
                   Features
                 </Link>
@@ -54,13 +57,13 @@ export function Footer() {
               <li>
                 <Link
                   href="/#pricing"
-                  className="text-white hover:text-primary"
+                  className="text-white hover:text-red-600"
                 >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className="text-white hover:text-primary">
+                <Link href="/#faq" className="text-white hover:text-red-600">
                   FAQ
                 </Link>
               </li>
@@ -71,22 +74,22 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-4 text-white">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-white hover:text-primary">
+                <Link href="#" className="text-white hover:text-red-600">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-white hover:text-primary">
+                <Link href="#" className="text-white hover:text-red-600">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-white hover:text-primary">
+                <Link href="#" className="text-white hover:text-red-600">
                   Tutorials
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-white hover:text-primary">
+                <Link href="#" className="text-white hover:text-red-600">
                   Support
                 </Link>
               </li>
@@ -96,9 +99,15 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-lg mb-4 text-white">Contact</h4>
             <ul className="space-y-2">
-              <li className="text-white">Email: info@mojonetwork.in</li>
-              <li className="text-white">Phone: +91 XXXX XXXX XX</li>
-              <li className="text-white">Address: New Delhi, India</li>
+              <li className="text-white flex items-center gap-2">
+                <Mail size={16} /> Email: info@mojonetwork.in
+              </li>
+              <li className="text-white flex items-center gap-2">
+                <Phone size={16} /> Phone: +91 XXXX XXXX XX
+              </li>
+              <li className="text-white flex items-center gap-2">
+                <MapPin size={16} /> Address: New Delhi, India
+              </li>
             </ul>
           </div>
         </div>

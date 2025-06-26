@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -7,7 +9,6 @@ export function CtaSection() {
       id="contact"
       className="py-16 md:py-24 bg-[url('/images/cta/1.png')] bg-cover bg-center text-white relative"
     >
-      {/* <div className="absolute inset-0 bg-black/20 z-0"></div>{" "} */}
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl md:text-4xl font-bold text-black">
@@ -21,8 +22,7 @@ export function CtaSection() {
             <Link href="/create-portal">
               <Button
                 size="lg"
-                variant="secondary"
-                className="text-white font-semibold text-lg px-8 btn-red"
+                className="text-white font-semibold text-lg px-8 btn-red hover:bg-gray-900"
               >
                 Create Your Portal
               </Button>
@@ -31,7 +31,7 @@ export function CtaSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-black border-white hover:bg-white/10 text-lg px-8"
+                className="text-[#ca0013] border-[#dc26263d] hover:bg-white/10 text-lg px-8"
               >
                 Book a Demo
               </Button>
