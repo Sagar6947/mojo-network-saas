@@ -29,12 +29,14 @@ export function AboutSection() {
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
           The Problem{" "}
-          <span className="gradient-text leading-tight">What Every Journalist <br /> Feels</span> But
-          Won’t Admit
+          <span className="gradient-text leading-tight">
+            What Every Journalist <br /> Feels
+          </span>{" "}
+          But Won’t Admit
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 order-2 lg:order-1">
             {features.map((item, idx) => (
               <div
                 key={idx}
@@ -71,11 +73,11 @@ export function AboutSection() {
             ))}
           </div>
 
-          <div className="hidden lg:block absolute right-0 h-full mt-[100px]">
+          <div className="order-1 md:order-2 overflow-hidden lg:block relative lg:absolute lg:right-0 h-full mt-0 lg:mt-[100px]">
             <img
               src="/images/problem-main.png"
               alt="Phone Preview"
-              className="h-[80%] object-contain"
+              className="h-[100%] lg:h-[80%] object-contain"
             />
           </div>
         </div>
