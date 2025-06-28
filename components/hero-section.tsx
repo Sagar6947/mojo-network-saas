@@ -79,7 +79,7 @@ export function HeroSection() {
         </div>
         <div className="order-1 md:order-2 overflow-hidden mt-0 md:-mt-10 lg:-mt-16">
           <video
-            src="/images/mojo.mp4"
+            src="/images/mojo-1.mp4"
             autoPlay
             loop
             muted

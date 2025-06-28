@@ -22,7 +22,7 @@ export function WizardLayout({
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 bg-[url('/images/banner-steps.png')] bg-cover bg-contain bg-no-repeat">
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 bg-login-banner bg-cover bg-contain bg-no-repeat">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b pt-3">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
