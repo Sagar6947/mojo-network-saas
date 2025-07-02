@@ -7,7 +7,7 @@ import Link from "next/link";
 const plans = [
   {
     name: "Mojo Firstpost",
-    price: "₹10,000",
+    price: "",
     description: "Perfect for beginners launching their first news platform.",
     features: [
       "Domain setup",
@@ -20,13 +20,13 @@ const plans = [
       "Server Integration",
       "Extensive backend support",
     ],
-    cta: "Get Started",
+    cta: "Free Plan Available",
     popular: false,
     badgeColor: "bg-orange-100",
   },
   {
     name: "Mojo Newsroom",
-    price: "₹20,000",
+    price: "",
     description: "Smart tools and automation for your growing newsroom.",
     features: [
       "Everything in MoJo Firstpost",
@@ -39,13 +39,13 @@ const plans = [
       "Social media integration",
       "Extra website sections (gold rates, weather, govt jobs)",
     ],
-    cta: "Popular Plan",
+    cta: "Get Started",
     popular: true,
     badgeColor: "bg-red-100",
   },
   {
     name: "Mojo Editor’s Club",
-    price: "₹35,000",
+    price: "",
     description: "Advanced features & tools for editorial leadership.",
     features: [
       "Everything in MoJo Newsroom",
@@ -57,13 +57,13 @@ const plans = [
       "Exclusive tips on revenue generation",
       "Government registration",
     ],
-    cta: "Join Club",
+    cta: "Get Started",
     popular: false,
     badgeColor: "bg-blue-100",
   },
   {
     name: "Mojo Media Bureau",
-    price: "₹60,000+",
+    price: "",
     description: "Enterprise-ready suite with powerful AI & analytics.",
     features: [
       "Everything in MoJo Editor’s Club",
@@ -71,7 +71,7 @@ const plans = [
       "Exclusive AI features",
       "Data scrapping support",
     ],
-    cta: "Contact Sales",
+    cta: "Get Started",
     popular: false,
     badgeColor: "bg-gray-100",
   },
@@ -82,16 +82,14 @@ export function PricingSection() {
     <section
       id="pricing"
       className="pt-10 pb-10 bg-cover bg-center bg-no-repeat relative mt-10"
-      style={{ backgroundImage: "url('/images/banner/5.png')" }}>
-      <div className="absolute inset-0"></div>{" "}
+      style={{ backgroundImage: "url('/images/banner/5.png')" }}
+    >
+      <div className="absolute inset-0"></div>
       <div className="relative max-w-[1600px] mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold mb-4">
-            Simple, Transparent Pricing
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
           <p className="text-lg text-gray-600">
-            Choose the plan that fits your needs and start building your news
-            portal today
+            Choose the plan that fits your needs and start building your news portal today
           </p>
         </div>
 
@@ -114,20 +112,12 @@ export function PricingSection() {
                   {plan.name}
                 </h3>
                 <p className="text-sm text-gray-700 mt-2">{plan.description}</p>
-                <div className="mt-6">
-                  <span className="text-4xl font-black text-gray-800">
-                    {plan.price}
-                  </span>
-                </div>
               </div>
 
               <div className="px-4 py-4 flex flex-col justify-between flex-grow">
                 <ul className="space-y-4 border-t pt-5 flex-grow">
                   {plan.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center text-sm text-gray-700"
-                    >
+                    <li key={idx} className="flex items-center text-sm text-gray-700">
                       <Check className="h-4 w-4 text-green-500 mr-2" />
                       {feature}
                     </li>
@@ -135,7 +125,7 @@ export function PricingSection() {
                 </ul>
 
                 <div className="mt-6">
-                  <Link href="/create-portal">
+                  <Link href={index === 0 ? "/create-portal" : "/contact"}>
                     <Button
                       className={`w-full ${
                         plan.popular

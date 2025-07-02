@@ -7,17 +7,18 @@ import { Menu, X } from "lucide-react";
 import "@/styles/iqra.css";
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "Features", href: "/#features" },
-  { name: "Pricing", href: "/#pricing" },
-  { name: "FAQ", href: "/#faq" },
-  { name: "Contact", href: "/#contact" },
+  { name: "About", href: "/about" },
+  { name: "Features", href: "/feature" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 pt-3 z-50 w-full bg-white/95 backdrop-blur-sm border-b">
+    <header className="sticky top-0  z-50 w-full bg-white/95 backdrop-blur-sm border-b">
       <div className="container flex h-20 items-center justify-between pl-0 md:pl-4">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">

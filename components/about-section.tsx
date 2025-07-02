@@ -73,11 +73,11 @@ export function AboutSection() {
             ))}
           </div>
 
-          <div className="order-1 md:order-2 overflow-hidden lg:block relative lg:absolute lg:right-0 h-full mt-0 lg:mt-[100px]">
+          <div className="order-1 md:order-2 overflow-hidden block relative lg:absolute lg:right-0 h-full mt-0 lg:mt-[100px]">
             <img
               src="/images/problem-main.png"
               alt="Phone Preview"
-              className="h-[100%] lg:h-[80%] object-contain"
+              className="h-full lg:h-[80%] object-contain"
             />
           </div>
         </div>
