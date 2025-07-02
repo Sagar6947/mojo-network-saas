@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,3 +75,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.pages-banner-other{
+  background-image: url('/images/pages-banner.png');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+

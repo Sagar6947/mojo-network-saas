@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
+
 export const metadata = {
   title: "Mojo Network - Launch Your Own News Portal in Minutes",
   description:

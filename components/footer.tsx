@@ -47,50 +47,39 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/#features"
-                  className="text-white hover:text-red-600"
-                >
+                <Link href="/about" className="text-white hover:text-red-600">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/feature" className="text-white hover:text-red-600">
                   Features
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/#pricing"
-                  className="text-white hover:text-red-600"
-                >
+                <Link href="/pricing" className="text-white hover:text-red-600">
                   Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className="text-white hover:text-red-600">
-                  FAQ
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white">Resources</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white">Usefull Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-white hover:text-red-600">
-                  Blog
+                <Link href="/faq" className="text-white hover:text-red-600">
+                  FAQ
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-white hover:text-red-600">
-                  Documentation
+                <Link href="/contact" className="text-white hover:text-red-600">
+                  contact 
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-white hover:text-red-600">
-                  Tutorials
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-white hover:text-red-600">
-                  Support
+                <Link href="/create-portal" className="text-white hover:text-red-600">
+                  Create Portal
                 </Link>
               </li>
             </ul>
@@ -117,10 +106,10 @@ export function Footer() {
             © {new Date().getFullYear()} MojoNetwork. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="#" className="text-white hover:text-primary text-sm">
+            <Link href="/privacy-policy" className="text-white hover:text-red-600 text-sm">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-white hover:text-primary text-sm">
+            <Link href="/terms-condition" className="text-white hover:text-red-600 text-sm">
               Terms of Service
             </Link>
           </div>
