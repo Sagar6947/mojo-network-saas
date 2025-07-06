@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Check, Globe, AlertCircle, X, Loader2 } from "lucide-react"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { mockCheckDomainAvailability } from "@/lib/api"
 
 interface PortalNameStepProps {
   onBack: () => void
@@ -16,7 +15,7 @@ interface PortalNameStepProps {
 
 interface DomainStatus {
   domain: string
-  available: boolean | null // null means checking
+  available: boolean | null
   suggestions?: string[]
 }
 
@@ -26,90 +25,91 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
   const [domainSuggestions, setDomainSuggestions] = useState<string[]>([])
   const [domainStatuses, setDomainStatuses] = useState<Map<string, DomainStatus>>(new Map())
   const [checkingDomains, setCheckingDomains] = useState(false)
+
   const platformDomain = "mojonetwork.in"
 
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
+  useEffect(() => {
+    if (!portalName.trim()) {
+      setDomainSuggestions([])
+      setSelectedDomain("")
+      setDomainStatuses(new Map())
+      return
+    }
 
-useEffect(() => {
-  if (debounceTimer) clearTimeout(debounceTimer)
+    const handler = setTimeout(() => {
+      checkDomainAvailability(portalName)
+    }, 600)
 
-  if (!portalName.trim()) {
-    setDomainSuggestions([])
-    setSelectedDomain("")
-    setDomainStatuses(new Map())
-    return
-  }
+    return () => clearTimeout(handler)
+  }, [portalName])
 
-  const timer = setTimeout(() => {
-    generateDomainSuggestions(portalName)
-  }, 600) // debounce delay
+  const checkDomainAvailability = async (name: string) => {
+    const cleanName = name.toLowerCase().trim().replace(/\s+/g, "-")
+    const domain = `${cleanName}.${platformDomain}`
 
-  setDebounceTimer(timer)
-
-  return () => {
-    clearTimeout(timer)
-  }
-}, [portalName])
-
-  const generateDomainSuggestions = async (name: string) => {
-    const cleanName = name.toLowerCase().trim()
-
-    const suggestions = [
-      // cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
-      cleanName.replace(/\s+/g, "-") + `.${platformDomain}`,
-      cleanName.replace(/\s+/g, "") + "news." + `${platformDomain}`,
-      "daily" + cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
-      cleanName.replace(/\s+/g, "") + "today" + `.${platformDomain}`,
-      "the" + cleanName.replace(/\s+/g, "") + `.${platformDomain}`,
-    ]
-
-    setDomainSuggestions(suggestions)
-
-    // Check availability for all suggestions
     setCheckingDomains(true)
-    const newStatuses = new Map<string, DomainStatus>()
 
-    // Initialize all domains as checking
-    suggestions.forEach((domain) => {
-      newStatuses.set(domain, { domain, available: null })
-    })
-    setDomainStatuses(new Map(newStatuses))
+    const portalId = localStorage.getItem("portal_id") || ""
+    const token: string = localStorage.getItem("portal_token") || ""
 
-    // Check each domain availability
-    for (const domain of suggestions) {
-      try {
-        const result = await mockCheckDomainAvailability(domain)
-        newStatuses.set(domain, {
-          domain,
-          available: result.available,
-          suggestions: result.suggestions,
-        })
-        setDomainStatuses(new Map(newStatuses))
-      } catch (error) {
-        console.error(`Error checking domain ${domain}:`, error)
-        newStatuses.set(domain, { domain, available: false })
-        setDomainStatuses(new Map(newStatuses))
+    try {
+      const formData = new FormData()
+      formData.append("domain_name", cleanName) 
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkDomainAvailability`, {
+        method: "POST",
+        headers: {
+          Authorization: token,
+        },
+        body: formData,
+      });
+
+      const result = await response.json()
+
+      if (!response.ok || result.status !== 200) {
+        throw new Error(result.message || "Domain check failed")
       }
+
+      const available = result.data.is_domain_available
+      const suggestions = result.data.domain_suggestion?.filter((s: string | null) => s !== null) || []
+
+      const statuses = new Map<string, DomainStatus>()
+
+      // Main domain status
+      statuses.set(domain, { domain, available, suggestions })
+
+      // Add suggestion domains with available = true
+      suggestions.forEach((suggested) => {
+        statuses.set(suggested, { domain: suggested, available: true })
+      })
+
+      setDomainSuggestions([domain, ...suggestions])
+      setDomainStatuses(statuses)
+
+      if (available) {
+        setSelectedDomain(domain)
+      } else {
+        setSelectedDomain("")
+      }
+
+    } catch (error) {
+      console.error("Domain check error:", error)
     }
 
     setCheckingDomains(false)
-
-    
-
   }
 
   const handleDomainSelect = (domain: string) => {
     const status = domainStatuses.get(domain)
-    if (status?.available === true) {
+    if (status?.available) {
       setSelectedDomain(domain)
     }
   }
 
   const handleNext = () => {
     if (!portalName || !selectedDomain) return
-
-    const domainStatus = domainStatuses.get(selectedDomain)
-    if (!domainStatus?.available) {
+    const status = domainStatuses.get(selectedDomain)
+    if (!status?.available) {
       alert("Please select an available domain")
       return
     }
@@ -119,26 +119,15 @@ useEffect(() => {
 
   const getDomainStatusIcon = (domain: string) => {
     const status = domainStatuses.get(domain)
-
-    if (status?.available === null) {
-      return <Loader2 className="h-4 w-4 text-gray-400 animate-spin" />
-    } else if (status?.available === true) {
-      return <Check className="h-4 w-4 text-green-500" />
-    } else {
-      return <X className="h-4 w-4 text-red-500" />
-    }
+    if (status?.available === null) return <Loader2 className="h-4 w-4 text-gray-400 animate-spin" />
+    if (status?.available === true) return <Check className="h-4 w-4 text-green-500" />
+    return <X className="h-4 w-4 text-red-500" />
   }
 
   const getDomainStatusText = (domain: string) => {
     const status = domainStatuses.get(domain)
-
-    if (status?.available === null) {
-      return "Checking..."
-    } else if (status?.available === true) {
-      return "Available"
-    } else {
-      return "Not Available"
-    }
+    if (status?.available === null) return "Checking..."
+    return status?.available ? "Available" : "Not Available"
   }
 
   const getDomainCardClass = (domain: string) => {
@@ -158,11 +147,10 @@ useEffect(() => {
 
   return (
     <StepContainer subtitle="Choose a memorable name and domain for your news portal">
+      
       <div className="space-y-8">
         <div className="space-y-2">
-          <Label htmlFor="portalName" className="text-sm font-medium">
-            Portal Name
-          </Label>
+          <Label htmlFor="portalName">Portal Name</Label>
           <Input
             id="portalName"
             placeholder="e.g., Daily News Hub"
@@ -170,7 +158,7 @@ useEffect(() => {
             onChange={(e) => setPortalName(e.target.value)}
             className="h-12"
           />
-          <p className="text-xs text-gray-500">This will be the name of your news portal shown to visitors</p>
+          <p className="text-xs text-gray-500">This will be shown to visitors</p>
         </div>
 
         {domainSuggestions.length > 0 && (
@@ -180,8 +168,7 @@ useEffect(() => {
               <Label className="text-sm font-medium">Choose Your Domain</Label>
               {checkingDomains && (
                 <span className="text-xs text-gray-500 flex items-center gap-1">
-                  <Loader2 className="h-3 w-3 animate-spin" />
-                  Checking availability...
+                  <Loader2 className="h-3 w-3 animate-spin" /> Checking...
                 </span>
               )}
             </div>
@@ -199,25 +186,12 @@ useEffect(() => {
                       className={`flex items-center space-x-3 border rounded-lg p-3 transition-all ${getDomainCardClass(domain)}`}
                       onClick={() => isAvailable && handleDomainSelect(domain)}
                     >
-                      <RadioGroupItem
-                        value={domain}
-                        id={`domain-${index}`}
-                        className="sr-only"
-                        disabled={!isAvailable}
-                      />
+                      <RadioGroupItem value={domain} id={`domain-${index}`} className="sr-only" disabled={!isAvailable} />
                       <div className="flex-1 min-w-0">
                         <p className={`font-medium truncate ${!isAvailable ? "text-gray-500" : ""}`}>{domain}</p>
                         <div className="flex items-center gap-2 mt-1">
                           {getDomainStatusIcon(domain)}
-                          <span
-                            className={`text-xs ${
-                              status?.available === true
-                                ? "text-green-600"
-                                : status?.available === false
-                                  ? "text-red-600"
-                                  : "text-gray-500"
-                            }`}
-                          >
+                          <span className={`text-xs ${isAvailable ? "text-green-600" : "text-red-600"}`}>
                             {getDomainStatusText(domain)}
                           </span>
                         </div>
@@ -229,7 +203,6 @@ useEffect(() => {
               </div>
             </RadioGroup>
 
-            {/* Show alternative suggestions if selected domain is not available */}
             {selectedDomain && domainStatuses.get(selectedDomain)?.available === false && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <div className="flex items-start gap-3">
@@ -239,22 +212,17 @@ useEffect(() => {
                     <p className="text-sm text-yellow-800 mt-1">
                       The domain "{selectedDomain}" is already taken. Here are some alternatives:
                     </p>
-                    {domainStatuses.get(selectedDomain)?.suggestions && (
-                      <div className="mt-3 space-y-2">
-                        {domainStatuses
-                          .get(selectedDomain)
-                          ?.suggestions?.slice(0, 3)
-                          .map((suggestion, idx) => (
-                            <button
-                              key={idx}
-                              onClick={() => handleDomainSelect(suggestion)}
-                              className="block w-full text-left text-sm text-yellow-800 hover:text-yellow-900 underline"
-                            >
-                              {suggestion}
-                            </button>
-                          ))}
-                      </div>
-                    )}
+                    <div className="mt-3 space-y-2">
+                      {domainStatuses.get(selectedDomain)?.suggestions?.slice(0, 3).map((s, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleDomainSelect(s)}
+                          className="block w-full text-left text-sm text-yellow-800 hover:text-yellow-900 underline"
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

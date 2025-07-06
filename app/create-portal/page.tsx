@@ -127,6 +127,7 @@ export default function CreatePortalPage() {
       }
 
       // Call API to create portal
+      console.log("Create Portal Data:", portalData)
       const response = await mockCreatePortal(portalData)
 
       if (response.success) {
@@ -202,6 +203,8 @@ export default function CreatePortalPage() {
           <OtpStep
             onBack={previousStep}
             onNext={nextStep}
+            personName={`Sagar Thakur`}
+            emailId={userSelections.email}
             phoneNumber={userSelections.phone}
             onEditPhone={() => goToStep(1)}
           />

@@ -27,7 +27,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
   const [croppedImage, setCroppedImage] = useState<string | null>(null)
   const [cropperOpen, setCropperOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState("generated")
+  const [activeTab, setActiveTab] = useState("upload")
 
   const initials = portalName
     .split(" ")
@@ -98,15 +98,16 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   return (
     <StepContainer subtitle="Your logo will appear on your news portal header and all branding materials">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-3 mb-6">
-          <TabsTrigger value="generated" className="flex items-center gap-2">
+        <TabsList className="grid grid-cols-1 mb-6">
+        {/* <TabsList className="grid grid-cols-3 mb-6"> */}
+          {/* <TabsTrigger value="generated" className="flex items-center gap-2">
             <Smile size={16} />
             <span>Generated</span>
           </TabsTrigger>
           <TabsTrigger value="text" className="flex items-center gap-2">
             <span className="font-bold">A</span>
             <span>Text</span>
-          </TabsTrigger>
+          </TabsTrigger> */}
           <TabsTrigger value="upload" className="flex items-center gap-2">
             <ImageIcon size={16} />
             <span>Upload</span>

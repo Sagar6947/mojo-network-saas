@@ -23,11 +23,11 @@ export function LoginStep({ onNext }: LoginStepProps) {
   }
 
   const validatePhone = (phone: string) => {
-    const re = /^[\d\-+$$$$\s]+$/
+    const re = /^[\d\-+ \s]+$/
     return re.test(phone) && phone.replace(/\D/g, "").length >= 10
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const newErrors = { email: "", phone: "" }
     let isValid = true
 
@@ -49,13 +49,45 @@ export function LoginStep({ onNext }: LoginStepProps) {
 
     setErrors(newErrors)
 
-    if (isValid) {
-      setLoading(true)
-      // Simulate API call
-      setTimeout(() => {
-        onNext({ email, phone })
+    if (!isValid) return
+
+    setLoading(true)
+
+    try {
+      const formData = new FormData()
+      formData.append("contact_no", phone)
+      formData.append("email_id", email)
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkUserForRegistration`, {
+        method: "POST",
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      // Handle API error
+      if (!response.ok || result.status === 400) {
+        const serverErrors = { email: "", phone: "" }
+
+        if (result.message?.email_id) {
+          serverErrors.email = result.message.email_id
+        }
+        if (result.message?.contact_no) {
+          serverErrors.phone = result.message.contact_no
+        }
+
+        setErrors(serverErrors)
         setLoading(false)
-      }, 1000)
+        return
+      }
+
+      // Success: proceed to next step
+      onNext({ email, phone })
+    } catch (error) {
+      console.error("Error creating portal:", error)
+      alert("Something went wrong. Please try again later.")
+    } finally {
+      setLoading(false)
     }
   }
 
