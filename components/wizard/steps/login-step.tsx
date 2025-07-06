@@ -23,8 +23,20 @@ export function LoginStep({ onNext }: LoginStepProps) {
   }
 
   const validatePhone = (phone: string) => {
-    const re = /^[\d\-+ \s]+$/
-    return re.test(phone) && phone.replace(/\D/g, "").length >= 10
+    const digits = phone.replace(/\D/g, "")
+    return digits.length === 10
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    // Allow only digits, +, -, and spaces
+    const sanitizedValue = value.replace(/[^0-9+\-\s]/g, "")
+    // Count digits in the sanitized value
+    const digitCount = sanitizedValue.replace(/\D/g, "").length
+    // Only update state if digit count is 10 or less
+    if (digitCount <= 10) {
+      setPhone(sanitizedValue)
+    }
   }
 
   const handleNext = async () => {
@@ -43,7 +55,7 @@ export function LoginStep({ onNext }: LoginStepProps) {
       newErrors.phone = "Phone number is required"
       isValid = false
     } else if (!validatePhone(phone)) {
-      newErrors.phone = "Please enter a valid phone number"
+      newErrors.phone = "Phone number must contain exactly 10 digits"
       isValid = false
     }
 
@@ -123,7 +135,7 @@ export function LoginStep({ onNext }: LoginStepProps) {
               type="tel"
               placeholder="+91 98765 43210"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               className={`pl-10 h-12 ${errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}`}
             />
           </div>

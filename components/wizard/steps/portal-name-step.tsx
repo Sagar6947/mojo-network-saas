@@ -44,8 +44,12 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
   }, [portalName])
 
   const checkDomainAvailability = async (name: string) => {
-    const cleanName = name.toLowerCase().trim().replace(/\s+/g, "-")
-    const domain = `${cleanName}.${platformDomain}`
+    const cleanName = name
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+    const domain = `${cleanName}.mojonetwork.in`
 
     setCheckingDomains(true)
 
@@ -54,7 +58,7 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
 
     try {
       const formData = new FormData()
-      formData.append("domain_name", cleanName) 
+      formData.append("domain_name", cleanName) // Send only the subdomain part
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkDomainAvailability`, {
         method: "POST",
@@ -62,7 +66,7 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
           Authorization: token,
         },
         body: formData,
-      });
+      })
 
       const result = await response.json()
 
@@ -79,11 +83,12 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
       statuses.set(domain, { domain, available, suggestions })
 
       // Add suggestion domains with available = true
-      suggestions.forEach((suggested) => {
-        statuses.set(suggested, { domain: suggested, available: true })
+      suggestions.forEach((suggested: string) => {
+        const fullSuggested = suggested.includes(".") ? suggested : `${suggested}.mojonetwork.in`
+        statuses.set(fullSuggested, { domain: fullSuggested, available: true })
       })
 
-      setDomainSuggestions([domain, ...suggestions])
+      setDomainSuggestions([domain, ...suggestions.map((s: string) => (s.includes(".") ? s : `${s}.mojonetwork.in`))])
       setDomainStatuses(statuses)
 
       if (available) {
@@ -91,9 +96,11 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
       } else {
         setSelectedDomain("")
       }
-
     } catch (error) {
       console.error("Domain check error:", error)
+      // Show user-friendly error
+      setDomainSuggestions([])
+      setDomainStatuses(new Map())
     }
 
     setCheckingDomains(false)
@@ -147,7 +154,6 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
 
   return (
     <StepContainer subtitle="Choose a memorable name and domain for your news portal">
-      
       <div className="space-y-8">
         <div className="space-y-2">
           <Label htmlFor="portalName">Portal Name</Label>
@@ -186,7 +192,12 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
                       className={`flex items-center space-x-3 border rounded-lg p-3 transition-all ${getDomainCardClass(domain)}`}
                       onClick={() => isAvailable && handleDomainSelect(domain)}
                     >
-                      <RadioGroupItem value={domain} id={`domain-${index}`} className="sr-only" disabled={!isAvailable} />
+                      <RadioGroupItem
+                        value={domain}
+                        id={`domain-${index}`}
+                        className="sr-only"
+                        disabled={!isAvailable}
+                      />
                       <div className="flex-1 min-w-0">
                         <p className={`font-medium truncate ${!isAvailable ? "text-gray-500" : ""}`}>{domain}</p>
                         <div className="flex items-center gap-2 mt-1">
@@ -213,15 +224,18 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
                       The domain "{selectedDomain}" is already taken. Here are some alternatives:
                     </p>
                     <div className="mt-3 space-y-2">
-                      {domainStatuses.get(selectedDomain)?.suggestions?.slice(0, 3).map((s, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleDomainSelect(s)}
-                          className="block w-full text-left text-sm text-yellow-800 hover:text-yellow-900 underline"
-                        >
-                          {s}
-                        </button>
-                      ))}
+                      {domainStatuses
+                        .get(selectedDomain)
+                        ?.suggestions?.slice(0, 3)
+                        .map((s, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleDomainSelect(s)}
+                            className="block w-full text-left text-sm text-yellow-800 hover:text-yellow-900 underline"
+                          >
+                            {s}
+                          </button>
+                        ))}
                     </div>
                   </div>
                 </div>

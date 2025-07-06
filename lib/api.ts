@@ -17,6 +17,7 @@ interface CreatePortalRequest {
 interface CreatePortalResponse {
   success: boolean
   portalUrl: string
+  portalAdminUrl: string
   portalId: string
   message: string
 }
@@ -53,21 +54,85 @@ export async function createNewsPortal(data: CreatePortalRequest): Promise<Creat
 
 export async function mockCreatePortal(data: CreatePortalRequest): Promise<CreatePortalResponse> {
   try {
-    const response = await fetch("https://mojoapi.seagullventure.com/api/create-portal/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })  
+    const token = localStorage.getItem("portal_token") || ""
 
-    if (!response.ok) {
-      throw new Error("Failed to create portal")
+    if (!token) {
+      throw new Error("Authorization token not found")
     }
 
+    // Create FormData for file upload
+    const formData = new FormData()
+
+    // Add required fields based on your API
+    formData.append("name", data.portalName)
+    formData.append("domain_type", "1") // Assuming subdomain type, adjust as needed
+    formData.append("domain_name", data.selectedDomain.replace(".mojonetwork.in", "").replace("https://", ""))
+
+    // Map theme to color_theme_id (you may need to adjust these mappings)
+    const themeMapping: { [key: string]: string } = {
+      red: "1",
+      blue: "2",
+      green: "3",
+      orange: "4",
+      purple: "5",
+      dark: "6",
+      warm: "7",
+      cyan: "8",
+    }
+    formData.append("color_theme_id", themeMapping[data.selectedTheme] || "1")
+
+    // Map template to theme_layout_id
+    const templateMapping: { [key: string]: string } = {
+      modern: "1",
+      classic: "2",
+      magazine: "3",
+      minimal: "4",
+    }
+    formData.append("theme_layout_id", templateMapping[data.selectedTemplate || "modern"] || "1")
+
+    // Convert categories array to comma-separated string
+    formData.append("news_category", data.selectedCategories?.join(",") || "")
+
+    // Add default state and city (you may want to collect these in your form)
+    formData.append("state", "Delhi") // Default or collect from user
+    formData.append("city", "New Delhi") // Default or collect from user
+
+    // Handle logo upload if it's a file
+    if (data.selectedLogo && data.selectedLogo.type === "upload" && data.selectedLogo.content) {
+      // Convert base64 to blob for file upload
+      const base64Data = data.selectedLogo.content.split(",")[1]
+      const byteCharacters = atob(base64Data)
+      const byteNumbers = new Array(byteCharacters.length)
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i)
+      }
+      const byteArray = new Uint8Array(byteNumbers)
+      const blob = new Blob([byteArray], { type: "image/png" })
+      formData.append("website_logo", blob, "logo.png")
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/userProfileComplete`, {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+      body: formData,
+    })
+
     const result = await response.json()
-    console.log("api portal creation response:", result)
-    return result
+
+    if (!response.ok || result.status !== 200) {
+      throw new Error(result.message || "Portal creation failed")
+    }
+
+    // Return response in expected format
+    return {
+      success: true,
+      portalUrl: result.data.portal_site_url,
+      portalAdminUrl: result.data.portal_admin_url,
+      portalId: result.data.portal_id,
+      message: result.message,
+    }
   } catch (error) {
     console.error("Error creating portal:", error)
     throw error
@@ -78,7 +143,7 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
 export async function old_mockCreatePortal(data: CreatePortalRequest): Promise<CreatePortalResponse> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 3000))
-  console.log("Mocking portal creation...", data) 
+  console.log("Mocking portal creation...", data)
 
   // Ensure the domain has the proper format - always use https://
   let portalUrl = data.selectedDomain
