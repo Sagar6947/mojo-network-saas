@@ -5,9 +5,8 @@ import type React from "react"
 import { useState } from "react"
 import { StepContainer } from "../step-container"
 import { NavigationButtons } from "../navigation-buttons"
-import { GridLogoCropper } from "../grid-logo-cropper"
 import { Card } from "@/components/ui/card"
-import { Upload, ImageIcon, Smile, Crop } from "lucide-react"
+import { Upload, ImageIcon, Smile } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface LogoOption {
@@ -24,10 +23,7 @@ interface LogoStepProps {
 
 export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   const [selectedLogo, setSelectedLogo] = useState<LogoOption | null>(null)
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
-  const [croppedImage, setCroppedImage] = useState<string | null>(null)
-  const [cropperOpen, setCropperOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState("generated")
+  const [activeTab, setActiveTab] = useState("upload")
 
   const initials = portalName
     .split(" ")
@@ -71,22 +67,11 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
       const reader = new FileReader()
       reader.onload = (event) => {
         const result = event.target?.result as string
-        setUploadedImage(result)
-        setCropperOpen(true)
+        setSelectedLogo({ type: "upload", content: result })
         setActiveTab("upload")
       }
       reader.readAsDataURL(file)
     }
-  }
-
-  const handleCropComplete = (croppedImageUrl: string) => {
-    setCroppedImage(croppedImageUrl)
-    setSelectedLogo({ type: "upload", content: croppedImageUrl })
-    setCropperOpen(false)
-  }
-
-  const handleCropCancel = () => {
-    setCropperOpen(false)
   }
 
   const handleNext = () => {
@@ -98,15 +83,15 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   return (
     <StepContainer subtitle="Your logo will appear on your news portal header and all branding materials">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-3 mb-6">
-          <TabsTrigger value="generated" className="flex items-center gap-2">
+        <TabsList className="grid grid-cols-1 mb-6">
+          {/* <TabsTrigger value="generated" className="flex items-center gap-2">
             <Smile size={16} />
             <span>Generated</span>
           </TabsTrigger>
           <TabsTrigger value="text" className="flex items-center gap-2">
             <span className="font-bold">A</span>
             <span>Text</span>
-          </TabsTrigger>
+          </TabsTrigger> */}
           <TabsTrigger value="upload" className="flex items-center gap-2">
             <ImageIcon size={16} />
             <span>Upload</span>
@@ -157,28 +142,22 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
 
         <TabsContent value="upload" className="mt-0">
           <div className="space-y-4">
-            {croppedImage ? (
+            {selectedLogo?.type === "upload" ? (
               <div className="flex flex-col items-center gap-4">
                 <div className="w-32 h-32 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
                   <img
-                    src={croppedImage || "/placeholder.svg"}
-                    alt="Cropped logo"
+                    src={selectedLogo.content || "/placeholder.svg"}
+                    alt="Uploaded logo"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setCropperOpen(true)}
-                    className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800 underline"
-                  >
-                    <Crop className="h-4 w-4" />
-                    Adjust crop
-                  </button>
-                  <button
                     onClick={() => {
-                      setCroppedImage(null)
                       setSelectedLogo(null)
-                      setUploadedImage(null)
+                      // Reset file input
+                      const fileInput = document.getElementById("logo-upload") as HTMLInputElement
+                      if (fileInput) fileInput.value = ""
                     }}
                     className="text-sm text-gray-600 hover:text-gray-800 underline"
                   >
@@ -214,15 +193,6 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
           </div>
         </TabsContent>
       </Tabs>
-
-      {uploadedImage && (
-        <GridLogoCropper
-          imageUrl={uploadedImage}
-          onCropComplete={handleCropComplete}
-          onCancel={handleCropCancel}
-          open={cropperOpen}
-        />
-      )}
 
       <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={!selectedLogo} />
     </StepContainer>

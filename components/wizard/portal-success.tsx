@@ -9,21 +9,19 @@ import { ExternalLink, Copy, CheckCircle, Smartphone, Download, Play, Globe } fr
 interface PortalSuccessProps {
   portalName: string
   portalUrl: string
+  portalAdminUrl: string
   portalId: string
   selectedLogo?: any
   selectedDomain?: string
 }
 
-export function PortalSuccess({ portalName, portalUrl, portalId, selectedLogo, selectedDomain }: PortalSuccessProps) {
+export function PortalSuccess({ portalName, portalUrl, portalAdminUrl, portalId, selectedLogo, selectedDomain }: PortalSuccessProps) {
   const [copied, setCopied] = useState(false)
+  const [copiedAdmin, setCopiedAdmin] = useState(false)
 
-  // Ensure we have a valid URL - fallback to selectedDomain if portalUrl is incomplete
-  const displayUrl =
-    portalUrl && portalUrl !== "https://"
-      ? portalUrl
-      : selectedDomain
-        ? `https://${selectedDomain}`
-        : "https://your-portal.seagullventure.com"
+  // Ensure we have a valid URL from API response
+  const displayUrl = portalUrl || (selectedDomain ? `https://${selectedDomain}` : "https://your-portal.mojonetwork.in")
+  const displayAdminUrl = portalAdminUrl || `${displayUrl}/admin`
 
   const handleCopyUrl = async () => {
     try {
@@ -32,6 +30,16 @@ export function PortalSuccess({ portalName, portalUrl, portalId, selectedLogo, s
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
       console.error("Failed to copy URL:", err)
+    }
+  }
+
+  const handleCopyAdminUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(displayAdminUrl)
+      setCopiedAdmin(true)
+      setTimeout(() => setCopiedAdmin(false), 2000)
+    } catch (err) {
+      console.error("Failed to copy Admin URL:", err)
     }
   }
 
@@ -63,8 +71,15 @@ export function PortalSuccess({ portalName, portalUrl, portalId, selectedLogo, s
               <p className="text-sm font-medium text-gray-700 mb-2">Your Portal URL:</p>
               <div className="flex items-center justify-center gap-2 bg-white rounded-lg p-3 border">
                 <span className="font-mono text-lg text-purple-600 break-all">{displayUrl}</span>
-                <Button variant="outline" size="sm" onClick={handleCopyUrl} className="flex-shrink-0">
+                <Button variant="outline" size="sm" onClick={handleCopyUrl} className="flex-shrink-0 bg-transparent">
                   {copied ? <CheckCircle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                </Button>
+              </div>
+              <p className="mt-3 text-sm font-medium text-gray-700 mb-2">Admin URL:</p>
+              <div className="flex items-center justify-center gap-2 bg-white rounded-lg p-3 border">
+                <span className="font-mono text-lg text-purple-600 break-all">{displayAdminUrl}</span>
+                <Button variant="outline" size="sm" onClick={handleCopyAdminUrl} className="flex-shrink-0 bg-transparent">
+                  {copiedAdmin ? <CheckCircle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
               </div>
             </div>
@@ -164,7 +179,7 @@ export function PortalSuccess({ portalName, portalUrl, portalId, selectedLogo, s
                 <p className="text-sm text-gray-600 mb-4">
                   Learn how to add content, customize your portal, and start earning revenue.
                 </p>
-                <Button variant="outline" size="sm" className="flex items-center gap-1">
+                <Button variant="outline" size="sm" className="flex items-center gap-1 bg-transparent">
                   <Play className="h-3 w-3" />
                   Watch Now
                 </Button>
@@ -207,7 +222,11 @@ export function PortalSuccess({ portalName, portalUrl, portalId, selectedLogo, s
               <p className="text-sm text-orange-800 mb-4">
                 Get your own custom domain, advanced analytics, and premium features starting at ₹15,000/year.
               </p>
-              <Button variant="outline" size="sm" className="border-orange-300 text-orange-700 hover:bg-orange-100">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-orange-300 text-orange-700 hover:bg-orange-100 bg-transparent"
+              >
                 View Plans
               </Button>
             </div>

@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { StepContainer } from "../step-container"
 import { NavigationButtons } from "../navigation-buttons"
@@ -12,12 +11,14 @@ import { Clock, Edit2, Phone } from "lucide-react"
 interface OtpStepProps {
   onBack: () => void
   onNext: () => void
+  personName: string
+  emailId: string
   phoneNumber: string
   onEditPhone: () => void
 }
 
-export function OtpStep({ onBack, onNext, phoneNumber, onEditPhone }: OtpStepProps) {
-  const [otp, setOtp] = useState(["", "", "", ""])
+export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber, onEditPhone }: OtpStepProps) {
+  const [otp, setOtp] = useState(["", "", "", "", ""])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [countdown, setCountdown] = useState(30)
@@ -26,13 +27,12 @@ export function OtpStep({ onBack, onNext, phoneNumber, onEditPhone }: OtpStepPro
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
+    useRef<HTMLInputElement>(null),
   ]
 
   useEffect(() => {
     // Focus the first input on mount
-    if (inputRefs[0].current) {
-      inputRefs[0].current.focus()
-    }
+    inputRefs[0]?.current?.focus()
 
     // Start countdown
     const timer = setInterval(() => {
@@ -43,7 +43,6 @@ export function OtpStep({ onBack, onNext, phoneNumber, onEditPhone }: OtpStepPro
   }, [])
 
   const formatPhoneNumber = (phone: string) => {
-    // Format phone number for display (e.g., +91 98765 43210)
     const cleaned = phone.replace(/\D/g, "")
     if (cleaned.length >= 10) {
       const countryCode = cleaned.startsWith("91") ? "+91" : "+91"
@@ -63,51 +62,74 @@ export function OtpStep({ onBack, onNext, phoneNumber, onEditPhone }: OtpStepPro
     setOtp(newOtp)
     setError("")
 
-    // Auto-focus next input
-    if (value && index < 3 && inputRefs[index + 1].current) {
+    if (value && index < 4 && inputRefs[index + 1].current) {
       inputRefs[index + 1].current?.focus()
     }
   }
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    // Handle backspace
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       inputRefs[index - 1].current?.focus()
     }
   }
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     const enteredOtp = otp.join("")
 
-    if (enteredOtp.length !== 4) {
+    if (enteredOtp.length !== 5) {
       setError("Please enter the complete OTP")
       return
     }
 
     setLoading(true)
+    setError("")
 
-    // For demo purposes, we'll accept "1234" as the valid OTP
-    setTimeout(() => {
-      if (enteredOtp === "1234") {
-        onNext()
-      } else {
-        setError("Invalid OTP. For testing, use 1234.")
+    try {
+      const formData = new FormData()
+      formData.append("otp", enteredOtp)
+      formData.append("contact_no", phoneNumber)
+      formData.append("email_id", emailId)
+      formData.append("name", personName)
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/userRegisterOTPVerify`, {
+        method: "POST",
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || result.status !== 200) {
+        throw new Error(result.message || "OTP verification failed")
       }
+
+      // Store token and portal_id in sessionStorage
+      const portalId = result.data?.portal_id
+      const token = result.data?.token
+
+      if (portalId && token) {
+        localStorage.setItem('portal_id', portalId)
+        localStorage.setItem("portal_token", token)
+      }
+
+      console.log("OTP verified successfully:", result)
+      onNext()
+    } catch (err: any) {
+      console.error("OTP verification failed:", err)
+      setError(err.message || "An unexpected error occurred")
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   const handleResendOtp = () => {
     setCountdown(30)
-    setOtp(["", "", "", ""])
+    setOtp(["", "", "", "", ""])
     setError("")
-    // Focus first input after resend
-    if (inputRefs[0].current) {
-      inputRefs[0].current.focus()
-    }
-    // Simulate OTP resend
+    inputRefs[0]?.current?.focus()
+
+    // Simulate resend
     setTimeout(() => {
-      alert("New OTP sent! For testing, use 1234.")
+      alert("New OTP sent! For testing, use 12345.")
     }, 500)
   }
 
@@ -134,7 +156,7 @@ export function OtpStep({ onBack, onNext, phoneNumber, onEditPhone }: OtpStepPro
         </div>
 
         <div className="text-center">
-          <p className="text-gray-600 mb-6">Enter the 4-digit code we sent to your phone</p>
+          <p className="text-gray-600 mb-6">Enter the 5-digit code we sent to your phone</p>
 
           <div className="flex justify-center gap-3 mb-6">
             {otp.map((digit, index) => (

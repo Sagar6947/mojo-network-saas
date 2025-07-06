@@ -23,11 +23,23 @@ export function LoginStep({ onNext }: LoginStepProps) {
   }
 
   const validatePhone = (phone: string) => {
-    const re = /^[\d\-+$$$$\s]+$/
-    return re.test(phone) && phone.replace(/\D/g, "").length >= 10
+    const digits = phone.replace(/\D/g, "")
+    return digits.length === 10
   }
 
-  const handleNext = () => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    // Allow only digits, +, -, and spaces
+    const sanitizedValue = value.replace(/[^0-9+\-\s]/g, "")
+    // Count digits in the sanitized value
+    const digitCount = sanitizedValue.replace(/\D/g, "").length
+    // Only update state if digit count is 10 or less
+    if (digitCount <= 10) {
+      setPhone(sanitizedValue)
+    }
+  }
+
+  const handleNext = async () => {
     const newErrors = { email: "", phone: "" }
     let isValid = true
 
@@ -43,19 +55,51 @@ export function LoginStep({ onNext }: LoginStepProps) {
       newErrors.phone = "Phone number is required"
       isValid = false
     } else if (!validatePhone(phone)) {
-      newErrors.phone = "Please enter a valid phone number"
+      newErrors.phone = "Phone number must contain exactly 10 digits"
       isValid = false
     }
 
     setErrors(newErrors)
 
-    if (isValid) {
-      setLoading(true)
-      // Simulate API call
-      setTimeout(() => {
-        onNext({ email, phone })
+    if (!isValid) return
+
+    setLoading(true)
+
+    try {
+      const formData = new FormData()
+      formData.append("contact_no", phone)
+      formData.append("email_id", email)
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkUserForRegistration`, {
+        method: "POST",
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      // Handle API error
+      if (!response.ok || result.status === 400) {
+        const serverErrors = { email: "", phone: "" }
+
+        if (result.message?.email_id) {
+          serverErrors.email = result.message.email_id
+        }
+        if (result.message?.contact_no) {
+          serverErrors.phone = result.message.contact_no
+        }
+
+        setErrors(serverErrors)
         setLoading(false)
-      }, 1000)
+        return
+      }
+
+      // Success: proceed to next step
+      onNext({ email, phone })
+    } catch (error) {
+      console.error("Error creating portal:", error)
+      alert("Something went wrong. Please try again later.")
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -91,7 +135,7 @@ export function LoginStep({ onNext }: LoginStepProps) {
               type="tel"
               placeholder="+91 98765 43210"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
               className={`pl-10 h-12 ${errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}`}
             />
           </div>

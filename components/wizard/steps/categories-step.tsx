@@ -23,18 +23,18 @@ export function CategoriesStep({ onBack, onNext }: CategoriesStepProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
   const categories: Category[] = [
-    { id: "politics", name: "Politics", description: "Government, elections, policy news", icon: "🏛️" },
-    { id: "business", name: "Business", description: "Economy, markets, corporate news", icon: "💼" },
-    { id: "technology", name: "Technology", description: "Tech innovations, gadgets, digital trends", icon: "💻" },
-    { id: "sports", name: "Sports", description: "Cricket, football, Olympics, local sports", icon: "⚽" },
-    { id: "entertainment", name: "Entertainment", description: "Movies, music, celebrities, culture", icon: "🎬" },
-    { id: "health", name: "Health", description: "Medical news, wellness, healthcare", icon: "🏥" },
-    { id: "education", name: "Education", description: "Schools, universities, academic news", icon: "📚" },
-    { id: "crime", name: "Crime", description: "Law enforcement, court cases, safety", icon: "🚔" },
-    { id: "weather", name: "Weather", description: "Local weather, climate, natural disasters", icon: "🌤️" },
-    { id: "lifestyle", name: "Lifestyle", description: "Fashion, food, travel, relationships", icon: "✨" },
-    { id: "local", name: "Local News", description: "Community events, local government", icon: "🏘️" },
-    { id: "international", name: "International", description: "World news, global events", icon: "🌍" },
+    { id: "1", name: "Politics", description: "Government, elections, policy news", icon: "🏛️" },
+    { id: "2", name: "Business", description: "Economy, markets, corporate news", icon: "💼" },
+    { id: "3", name: "Technology", description: "Tech innovations, gadgets, digital trends", icon: "💻" },
+    { id: "4", name: "Sports", description: "Cricket, football, Olympics, local sports", icon: "⚽" },
+    { id: "5", name: "Entertainment", description: "Movies, music, celebrities, culture", icon: "🎬" },
+    { id: "6", name: "Health", description: "Medical news, wellness, healthcare", icon: "🏥" },
+    { id: "7", name: "Education", description: "Schools, universities, academic news", icon: "📚" },
+    { id: "8", name: "Crime", description: "Law enforcement, court cases, safety", icon: "🚔" },
+    { id: "9", name: "Weather", description: "Local weather, climate, natural disasters", icon: "🌤️" },
+    { id: "10", name: "Lifestyle", description: "Fashion, food, travel, relationships", icon: "✨" },
+    { id: "11", name: "Local News", description: "Community events, local government", icon: "🏘️" },
+    { id: "12", name: "International", description: "World news, global events", icon: "🌍" },
   ]
 
   const handleCategoryToggle = (categoryId: string) => {
@@ -44,6 +44,11 @@ export function CategoriesStep({ onBack, onNext }: CategoriesStepProps) {
   }
 
   const handleNext = () => {
+    // Ensure we have the required minimum categories
+    if (selectedCategories.length < 3) {
+      return
+    }
+
     onNext({ selectedCategories })
   }
 

@@ -122,9 +122,11 @@ export default function CreatePortalPage() {
         selectedDomain: userSelections.selectedDomain,
         selectedLogo: userSelections.selectedLogo,
         selectedTheme: userSelections.selectedTheme,
-        selectedTemplate: userSelections.selectedTemplate || "default",
+        selectedTemplate: userSelections.selectedTemplate || "modern",
         selectedCategories: userSelections.selectedCategories || [],
       }
+
+      console.log("Creating Portal with data:", portalData)
 
       // Call API to create portal
       const response = await mockCreatePortal(portalData)
@@ -143,9 +145,23 @@ export default function CreatePortalPage() {
       } else {
         throw new Error(response.message || "Failed to create portal")
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Portal creation failed:", error)
-      setError(error instanceof Error ? error.message : "An unexpected error occurred")
+
+      // Handle specific error cases
+      let errorMessage = "An unexpected error occurred"
+
+      if (error.message) {
+        errorMessage = error.message
+      }
+
+      // Handle validation errors from API
+      if (typeof error.message === "object") {
+        const validationErrors = Object.values(error.message).join(", ")
+        errorMessage = `Validation errors: ${validationErrors}`
+      }
+
+      setError(errorMessage)
       setWizardState("error")
     }
   }
@@ -160,12 +176,10 @@ export default function CreatePortalPage() {
         <PortalSuccess
           portalName={portalData.portalName || userSelections.portalName}
           portalUrl={portalData.portalUrl}
+          portalAdminUrl={portalData.portalAdminUrl}
           portalId={portalData.portalId}
           selectedLogo={userSelections.selectedLogo}
           selectedDomain={portalData.selectedDomain || userSelections.selectedDomain}
-          selectedTheme={userSelections.selectedTheme}
-          selectedTemplate={userSelections.selectedTemplate}
-          selectedCategories={userSelections.selectedCategories}
         />
       )
     }
@@ -202,6 +216,8 @@ export default function CreatePortalPage() {
           <OtpStep
             onBack={previousStep}
             onNext={nextStep}
+            personName={`Sagar Thakur`}
+            emailId={userSelections.email}
             phoneNumber={userSelections.phone}
             onEditPhone={() => goToStep(1)}
           />
