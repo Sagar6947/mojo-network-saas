@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { WizardLayout } from "@/components/wizard/wizard-layout"
 import { LoginStep } from "@/components/wizard/steps/login-step"
 import { OtpStep } from "@/components/wizard/steps/otp-step"
@@ -12,7 +12,7 @@ import { CategoriesStep } from "@/components/wizard/steps/categories-step"
 import { PreviewStep } from "@/components/wizard/steps/preview-step"
 import { PortalCreationLoading } from "@/components/wizard/portal-creation-loading"
 import { PortalSuccess } from "@/components/wizard/portal-success"
-import { mockCreatePortal } from "@/lib/api"
+import { mockCreatePortal, fetchCommonData, type CommonApiResponse } from "@/lib/api"
 
 interface UserSelections {
   email: string
@@ -20,6 +20,7 @@ interface UserSelections {
   portalName: string
   selectedDomain: string
   selectedLogo: any
+  selectedFavicon?: any
   selectedTheme: string
   selectedTemplate: string
   selectedCategories: string[]
@@ -32,16 +33,37 @@ export default function CreatePortalPage() {
   const [wizardState, setWizardState] = useState<WizardState>("form")
   const [portalData, setPortalData] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
+  const [commonData, setCommonData] = useState<CommonApiResponse | null>(null)
+  const [isLoadingData, setIsLoadingData] = useState(true)
   const [userSelections, setUserSelections] = useState<UserSelections>({
     email: "",
     phone: "",
     portalName: "",
     selectedDomain: "",
     selectedLogo: null,
+    selectedFavicon: null,
     selectedTheme: "",
     selectedTemplate: "",
     selectedCategories: [],
   })
+
+  // Fetch common data on component mount
+  useEffect(() => {
+    const loadCommonData = async () => {
+      try {
+        setIsLoadingData(true)
+        const data = await fetchCommonData()
+        setCommonData(data)
+      } catch (error) {
+        console.error("Failed to load common data:", error)
+        setError("Failed to load application data. Please refresh the page.")
+      } finally {
+        setIsLoadingData(false)
+      }
+    }
+
+    loadCommonData()
+  }, [])
 
   const totalSteps = 9
 
@@ -86,7 +108,7 @@ export default function CreatePortalPage() {
     nextStep()
   }
 
-  const handleLogoNext = (data: { selectedLogo: any }) => {
+  const handleLogoNext = (data: { selectedLogo: any; selectedFavicon?: any }) => {
     setUserSelections((prev) => ({ ...prev, ...data }))
     nextStep()
   }
@@ -114,21 +136,20 @@ export default function CreatePortalPage() {
     setWizardState("creating")
 
     try {
-      // Prepare data for API
       const portalData = {
         email: userSelections.email,
         phone: userSelections.phone,
         portalName: userSelections.portalName,
         selectedDomain: userSelections.selectedDomain,
         selectedLogo: userSelections.selectedLogo,
+        selectedFavicon: userSelections.selectedFavicon,
         selectedTheme: userSelections.selectedTheme,
-        selectedTemplate: userSelections.selectedTemplate || "modern",
+        selectedTemplate: userSelections.selectedTemplate || "1",
         selectedCategories: userSelections.selectedCategories || [],
       }
 
       console.log("Creating Portal with data:", portalData)
 
-      // Call API to create portal
       const response = await mockCreatePortal(portalData)
 
       if (response.success) {
@@ -137,6 +158,7 @@ export default function CreatePortalPage() {
           portalName: userSelections.portalName,
           selectedDomain: userSelections.selectedDomain,
           selectedLogo: userSelections.selectedLogo,
+          selectedFavicon: userSelections.selectedFavicon,
           selectedTheme: userSelections.selectedTheme,
           selectedTemplate: userSelections.selectedTemplate,
           selectedCategories: userSelections.selectedCategories,
@@ -147,26 +169,51 @@ export default function CreatePortalPage() {
       }
     } catch (error: any) {
       console.error("Portal creation failed:", error)
-
-      // Handle specific error cases
       let errorMessage = "An unexpected error occurred"
-
       if (error.message) {
         errorMessage = error.message
       }
-
-      // Handle validation errors from API
-      if (typeof error.message === "object") {
-        const validationErrors = Object.values(error.message).join(", ")
-        errorMessage = `Validation errors: ${validationErrors}`
-      }
-
       setError(errorMessage)
       setWizardState("error")
     }
   }
 
   const renderContent = () => {
+    if (isLoadingData) {
+      return (
+        <div className="text-center space-y-6">
+          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto animate-spin">
+            <span className="text-3xl">⏳</span>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Loading...</h2>
+            <p className="text-gray-600">Fetching application data...</p>
+          </div>
+        </div>
+      )
+    }
+
+    if (!commonData) {
+      return (
+        <div className="text-center space-y-6">
+          <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+            <span className="text-3xl">❌</span>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to Load Data</h2>
+            <p className="text-gray-600 mb-4">Unable to fetch application data. Please try again.</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Refresh Page
+            </button>
+          </div>
+        </div>
+      )
+    }
+
+    // Rest of the existing renderContent logic...
     if (wizardState === "creating") {
       return <PortalCreationLoading portalName={userSelections.portalName} domain={userSelections.selectedDomain} />
     }
@@ -207,7 +254,7 @@ export default function CreatePortalPage() {
       )
     }
 
-    // Render form steps
+    // Render form steps with common data
     switch (currentStep) {
       case 1:
         return <LoginStep onNext={handleLoginNext} />
@@ -227,13 +274,41 @@ export default function CreatePortalPage() {
       case 4:
         return <LogoStep onBack={previousStep} onNext={handleLogoNext} portalName={userSelections.portalName} />
       case 5:
-        return <ThemeStep onBack={previousStep} onNext={handleThemeNext} />
+        return (
+          <ThemeStep
+            onBack={previousStep}
+            onNext={handleThemeNext}
+            themes={commonData.data.color_theme}
+            imagePath={commonData.data.image_path}
+          />
+        )
       case 6:
-        return <TemplateStep onBack={previousStep} onNext={handleTemplateNext} />
+        return (
+          <TemplateStep
+            onBack={previousStep}
+            onNext={handleTemplateNext}
+            templates={commonData.data.theme_layout}
+            imagePath={commonData.data.image_path}
+          />
+        )
       case 7:
-        return <CategoriesStep onBack={previousStep} onNext={handleCategoriesNext} />
+        return (
+          <CategoriesStep
+            onBack={previousStep}
+            onNext={handleCategoriesNext}
+            categories={commonData.data.news_category}
+            imagePath={commonData.data.image_path}
+          />
+        )
       case 8:
-        return <PreviewStep onBack={previousStep} onNext={handlePreviewNext} userSelections={userSelections} />
+        return (
+          <PreviewStep
+            onBack={previousStep}
+            onNext={handlePreviewNext}
+            userSelections={userSelections}
+            commonData={commonData}
+          />
+        )
       case 9:
         return (
           <div className="text-center space-y-6">

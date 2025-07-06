@@ -1,3 +1,79 @@
+// Add these interfaces at the top
+interface ColorTheme {
+  id: number
+  theme_name: string
+  theme_value: string
+  gradient: string
+  text_color: string
+  status: number
+}
+
+interface ThemeLayout {
+  id: number
+  layout_id: string
+  layout_name: string
+  description: string
+  layout_image: string
+  preview: string
+  status: number
+}
+
+interface NewsCategory {
+  id: number
+  category_name: string
+  description: string
+  category_image: string
+  status: number
+}
+
+interface LogoCategory {
+  id: number
+  category_name: string
+  category_logo: string
+  status: number
+}
+
+interface CommonApiResponse {
+  status: number
+  message: string
+  data: {
+    logo_category: LogoCategory[]
+    color_theme: ColorTheme[]
+    theme_layout: ThemeLayout[]
+    news_category: NewsCategory[]
+    image_path: string
+  }
+}
+
+// Add this function to fetch common data
+export async function fetchCommonData(): Promise<CommonApiResponse> {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://api.mojonetwork.in"}/commonApi`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "force-cache", // Cache for performance
+      next: { revalidate: 3600 }, // Revalidate every hour
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const result = await response.json()
+
+    if (result.status !== 200) {
+      throw new Error(result.message || "Failed to fetch common data")
+    }
+
+    return result
+  } catch (error) {
+    console.error("Error fetching common data:", error)
+    throw error
+  }
+}
+
 interface CreatePortalRequest {
   email: string
   phone: string
@@ -7,6 +83,10 @@ interface CreatePortalRequest {
     type: string
     content: string
     style?: string
+  }
+  selectedFavicon?: {
+    type: string
+    content: string
   }
   selectedTheme: string
   selectedTemplate?: string
@@ -60,55 +140,34 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
       throw new Error("Authorization token not found")
     }
 
-    // Create FormData for file upload
     const formData = new FormData()
 
-    // Add required fields based on your API
     formData.append("name", data.portalName)
-    formData.append("domain_type", "1") // Assuming subdomain type, adjust as needed
+    formData.append("domain_type", "1")
     formData.append("domain_name", data.selectedDomain.replace(".mojonetwork.in", "").replace("https://", ""))
 
-    // Map theme to color_theme_id (you may need to adjust these mappings)
-    const themeMapping: { [key: string]: string } = {
-      red: "1",
-      blue: "2",
-      green: "3",
-      orange: "4",
-      purple: "5",
-      dark: "6",
-      warm: "7",
-      cyan: "8",
-    }
-    formData.append("color_theme_id", themeMapping[data.selectedTheme] || "1")
+    // Use the actual theme ID from API
+    formData.append("color_theme_id", data.selectedTheme)
 
-    // Map template to theme_layout_id
-    const templateMapping: { [key: string]: string } = {
-      modern: "1",
-      classic: "2",
-      magazine: "3",
-      minimal: "4",
-    }
-    formData.append("theme_layout_id", templateMapping[data.selectedTemplate || "modern"] || "1")
+    // Use the actual template ID from API
+    formData.append("theme_layout_id", data.selectedTemplate || "1")
 
-    // Convert categories array to comma-separated string
+    // Convert categories array to comma-separated string of IDs
     formData.append("news_category", data.selectedCategories?.join(",") || "")
 
-    // Add default state and city (you may want to collect these in your form)
-    formData.append("state", "Delhi") // Default or collect from user
-    formData.append("city", "New Delhi") // Default or collect from user
+    formData.append("state", "Delhi")
+    formData.append("city", "New Delhi")
 
-    // Handle logo upload if it's a file
+    // Handle logo upload
     if (data.selectedLogo && data.selectedLogo.type === "upload" && data.selectedLogo.content) {
-      // Convert base64 to blob for file upload
-      const base64Data = data.selectedLogo.content.split(",")[1]
-      const byteCharacters = atob(base64Data)
-      const byteNumbers = new Array(byteCharacters.length)
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i)
-      }
-      const byteArray = new Uint8Array(byteNumbers)
-      const blob = new Blob([byteArray], { type: "image/png" })
-      formData.append("website_logo", blob, "logo.png")
+      const logoBlob = base64ToBlob(data.selectedLogo.content)
+      formData.append("website_logo", logoBlob, "logo.png")
+    }
+
+    // Handle favicon upload
+    if (data.selectedFavicon && data.selectedFavicon.type === "upload" && data.selectedFavicon.content) {
+      const faviconBlob = base64ToBlob(data.selectedFavicon.content)
+      formData.append("website_favicon", faviconBlob, "favicon.ico")
     }
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/userProfileComplete`, {
@@ -125,7 +184,6 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
       throw new Error(result.message || "Portal creation failed")
     }
 
-    // Return response in expected format
     return {
       success: true,
       portalUrl: result.data.portal_site_url,
@@ -137,6 +195,18 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
     console.error("Error creating portal:", error)
     throw error
   }
+}
+
+// Helper function to convert base64 to blob
+function base64ToBlob(base64Data: string): Blob {
+  const base64 = base64Data.split(",")[1]
+  const byteCharacters = atob(base64)
+  const byteNumbers = new Array(byteCharacters.length)
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i)
+  }
+  const byteArray = new Uint8Array(byteNumbers)
+  return new Blob([byteArray], { type: "image/png" })
 }
 
 // Update the mockCreatePortal function
