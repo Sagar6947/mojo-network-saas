@@ -6,7 +6,7 @@ import { useState } from "react"
 import { StepContainer } from "../step-container"
 import { NavigationButtons } from "../navigation-buttons"
 import { Card } from "@/components/ui/card"
-import { Upload, ImageIcon, Smile } from "lucide-react"
+import { Upload, ImageIcon } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface LogoOption {
@@ -17,12 +17,13 @@ interface LogoOption {
 
 interface LogoStepProps {
   onBack: () => void
-  onNext: (data: { selectedLogo: LogoOption }) => void
+  onNext: (data: { selectedLogo: LogoOption; selectedFavicon?: LogoOption }) => void
   portalName: string
 }
 
 export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   const [selectedLogo, setSelectedLogo] = useState<LogoOption | null>(null)
+  const [selectedFavicon, setSelectedFavicon] = useState<LogoOption | null>(null)
   const [activeTab, setActiveTab] = useState("upload")
 
   const initials = portalName
@@ -49,7 +50,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
     setSelectedLogo(logo)
   }
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "favicon") => {
     const file = e.target.files?.[0]
     if (file) {
       // Check file size (max 5MB)
@@ -67,8 +68,13 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
       const reader = new FileReader()
       reader.onload = (event) => {
         const result = event.target?.result as string
-        setSelectedLogo({ type: "upload", content: result })
-        setActiveTab("upload")
+        const logoOption = { type: "upload", content: result }
+
+        if (type === "logo") {
+          setSelectedLogo(logoOption)
+        } else {
+          setSelectedFavicon(logoOption)
+        }
       }
       reader.readAsDataURL(file)
     }
@@ -76,87 +82,93 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
 
   const handleNext = () => {
     if (selectedLogo) {
-      onNext({ selectedLogo })
+      onNext({ selectedLogo, selectedFavicon: selectedFavicon || undefined })
     }
   }
 
   return (
     <StepContainer subtitle="Your logo will appear on your news portal header and all branding materials">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-1 mb-6">
-          {/* <TabsTrigger value="generated" className="flex items-center gap-2">
-            <Smile size={16} />
-            <span>Generated</span>
-          </TabsTrigger>
-          <TabsTrigger value="text" className="flex items-center gap-2">
-            <span className="font-bold">A</span>
-            <span>Text</span>
-          </TabsTrigger> */}
-          <TabsTrigger value="upload" className="flex items-center gap-2">
-            <ImageIcon size={16} />
-            <span>Upload</span>
-          </TabsTrigger>
-        </TabsList>
+      <div className="space-y-8">
+        {/* Logo Section */}
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Website Logo</h3>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid grid-cols-1 mb-6">
+              <TabsTrigger value="upload" className="flex items-center gap-2">
+                <ImageIcon size={16} />
+                <span>Upload Logo</span>
+              </TabsTrigger>
+            </TabsList>
 
-        <TabsContent value="generated" className="mt-0">
-          <div className="grid grid-cols-4 gap-4">
-            {emojiOptions.map((emoji, index) => (
-              <Card
-                key={index}
-                className={`aspect-square flex items-center justify-center text-4xl cursor-pointer transition-all hover:shadow-md ${
-                  selectedLogo?.type === "emoji" && selectedLogo.content === emoji
-                    ? "ring-2 ring-purple-500 ring-offset-2"
-                    : ""
-                }`}
-                onClick={() => handleLogoSelect({ type: "emoji", content: emoji })}
-              >
-                {emoji}
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
+            <TabsContent value="upload" className="mt-0">
+              <div className="space-y-4">
+                {selectedLogo?.type === "upload" ? (
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-32 h-32 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
+                      <img
+                        src={selectedLogo.content || "/placeholder.svg"}
+                        alt="Uploaded logo"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedLogo(null)
+                          const fileInput = document.getElementById("logo-upload") as HTMLInputElement
+                          if (fileInput) fileInput.value = ""
+                        }}
+                        className="text-sm text-gray-600 hover:text-gray-800 underline"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <Card
+                    className="border-dashed border-2 p-8 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 hover:bg-purple-50/50 transition-colors"
+                    onClick={() => document.getElementById("logo-upload")?.click()}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                      <Upload className="w-8 h-8 text-purple-500" />
+                    </div>
+                    <p className="text-gray-600 mb-2 font-medium">Click to upload your logo</p>
+                    <p className="text-sm text-gray-500 mb-2">or drag and drop here</p>
+                    <p className="text-xs text-gray-400">PNG, JPG or SVG (max 5MB)</p>
+                    <input
+                      type="file"
+                      id="logo-upload"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleFileUpload(e, "logo")}
+                    />
+                  </Card>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
 
-        <TabsContent value="text" className="mt-0">
-          <div className="grid grid-cols-4 gap-4">
-            {textOptions.map((style, index) => (
-              <Card
-                key={index}
-                className={`aspect-square flex items-center justify-center cursor-pointer transition-all hover:shadow-md ${
-                  selectedLogo?.type === "text" && selectedLogo.style === `${style.bg} ${style.text}`
-                    ? "ring-2 ring-purple-500 ring-offset-2"
-                    : ""
-                } ${style.bg} ${style.text}`}
-                onClick={() =>
-                  handleLogoSelect({
-                    type: "text",
-                    content: initials,
-                    style: `${style.bg} ${style.text}`,
-                  })
-                }
-              >
-                <span className="text-3xl font-bold">{initials}</span>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
+        {/* Favicon Section */}
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Favicon (Optional)</h3>
+          <p className="text-sm text-gray-600 mb-4">Small icon that appears in browser tabs and bookmarks</p>
 
-        <TabsContent value="upload" className="mt-0">
           <div className="space-y-4">
-            {selectedLogo?.type === "upload" ? (
+            {selectedFavicon?.type === "upload" ? (
               <div className="flex flex-col items-center gap-4">
-                <div className="w-32 h-32 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
+                <div className="w-16 h-16 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
                   <img
-                    src={selectedLogo.content || "/placeholder.svg"}
-                    alt="Uploaded logo"
+                    src={selectedFavicon.content || "/placeholder.svg"}
+                    alt="Uploaded favicon"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => {
-                      setSelectedLogo(null)
-                      // Reset file input
-                      const fileInput = document.getElementById("logo-upload") as HTMLInputElement
+                      setSelectedFavicon(null)
+                      const fileInput = document.getElementById("favicon-upload") as HTMLInputElement
                       if (fileInput) fileInput.value = ""
                     }}
                     className="text-sm text-gray-600 hover:text-gray-800 underline"
@@ -167,34 +179,39 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
               </div>
             ) : (
               <Card
-                className="border-dashed border-2 p-8 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 hover:bg-purple-50/50 transition-colors"
-                onClick={() => document.getElementById("logo-upload")?.click()}
+                className="border-dashed border-2 p-6 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 hover:bg-purple-50/50 transition-colors"
+                onClick={() => document.getElementById("favicon-upload")?.click()}
               >
-                <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-4">
-                  <Upload className="w-8 h-8 text-purple-500" />
+                <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-3">
+                  <Upload className="w-6 h-6 text-purple-500" />
                 </div>
-                <p className="text-gray-600 mb-2 font-medium">Click to upload your logo</p>
-                <p className="text-sm text-gray-500 mb-2">or drag and drop here</p>
-                <p className="text-xs text-gray-400">PNG, JPG or SVG (max 5MB)</p>
-                <input type="file" id="logo-upload" accept="image/*" className="hidden" onChange={handleFileUpload} />
+                <p className="text-gray-600 mb-1 font-medium">Upload Favicon</p>
+                <p className="text-xs text-gray-400">16x16 or 32x32 pixels recommended</p>
+                <input
+                  type="file"
+                  id="favicon-upload"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => handleFileUpload(e, "favicon")}
+                />
               </Card>
             )}
-
-            {/* Upload tips */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h4 className="font-medium text-blue-900 mb-2">Logo Tips:</h4>
-              <ul className="text-sm text-blue-800 space-y-1">
-                <li>• Use high-resolution images for best quality</li>
-                <li>• Square images work best for logos</li>
-                <li>• Transparent backgrounds (PNG) are recommended</li>
-                <li>• Simple designs scale better across different sizes</li>
-              </ul>
-            </div>
           </div>
-        </TabsContent>
-      </Tabs>
+        </div>
 
-      <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={!selectedLogo} />
+        {/* Upload tips */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h4 className="font-medium text-blue-900 mb-2">Upload Tips:</h4>
+          <ul className="text-sm text-blue-800 space-y-1">
+            <li>• Use high-resolution images for best quality</li>
+            <li>• Square images work best for logos</li>
+            <li>• Transparent backgrounds (PNG) are recommended</li>
+            <li>• Favicon should be small and simple for clarity</li>
+          </ul>
+        </div>
+
+        <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={!selectedLogo} />
+      </div>
     </StepContainer>
   )
 }

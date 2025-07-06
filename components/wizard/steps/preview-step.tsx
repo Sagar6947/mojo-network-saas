@@ -5,6 +5,7 @@ import { NavigationButtons } from "../navigation-buttons"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Globe, Palette, Tags, ImageIcon } from "lucide-react"
+import type { CommonApiResponse } from "@/lib/api"
 
 interface PreviewStepProps {
   onBack: () => void
@@ -13,53 +14,106 @@ interface PreviewStepProps {
     portalName: string
     selectedDomain: string
     selectedLogo: any
+    selectedFavicon?: any
     selectedTheme: string
     selectedTemplate: string
     selectedCategories: string[]
   }
+  commonData?: CommonApiResponse
 }
 
-export function PreviewStep({ onBack, onNext, userSelections }: PreviewStepProps) {
+export function PreviewStep({ onBack, onNext, userSelections, commonData }: PreviewStepProps) {
+  // Get theme name from API data with fallback
   const getThemeName = (themeValue: string) => {
-    const themes: Record<string, string> = {
-      red: "Red Fire",
-      blue: "Ocean Blue",
-      green: "Forest Green",
-      orange: "Sunset Orange",
-      purple: "Royal Purple",
-      dark: "Midnight Dark",
-      warm: "Warm Sunset",
-      cyan: "Ocean Breeze",
+    if (!commonData?.data?.color_theme) {
+      // Fallback to hardcoded themes if API data is not available
+      const themes: Record<string, string> = {
+        red: "Red Fire",
+        blue: "Ocean Blue",
+        green: "Forest Green",
+        orange: "Sunset Orange",
+        purple: "Royal Purple",
+        dark: "Midnight Dark",
+        warm: "Warm Sunset",
+        cyan: "Ocean Breeze",
+      }
+      return themes[themeValue] || themeValue
     }
-    return themes[themeValue] || themeValue
+
+    const theme = commonData.data.color_theme.find(
+      (t) => t.theme_value === themeValue || t.id.toString() === themeValue,
+    )
+    return theme ? theme.theme_name : themeValue
   }
 
+  // Get template name from API data with fallback
   const getTemplateName = (templateValue: string) => {
-    const templates: Record<string, string> = {
-      modern: "Modern News",
-      classic: "Classic Newspaper",
-      magazine: "Magazine Style",
-      minimal: "Minimal Clean",
+    if (!commonData?.data?.theme_layout) {
+      // Fallback to hardcoded templates if API data is not available
+      const templates: Record<string, string> = {
+        modern: "Modern News",
+        classic: "Classic Newspaper",
+        magazine: "Magazine Style",
+        minimal: "Minimal Clean",
+      }
+      return templates[templateValue] || templateValue
     }
-    return templates[templateValue] || templateValue
+
+    const template = commonData.data.theme_layout.find(
+      (t) => t.layout_id === templateValue || t.id.toString() === templateValue,
+    )
+    return template ? template.layout_name : templateValue
   }
 
+  // Get category names from API data with fallback
   const getCategoryNames = (categoryIds: string[]) => {
-    const categoryMap: Record<string, { name: string; icon: string }> = {
-      politics: { name: "Politics", icon: "🏛️" },
-      business: { name: "Business", icon: "💼" },
-      technology: { name: "Technology", icon: "💻" },
-      sports: { name: "Sports", icon: "⚽" },
-      entertainment: { name: "Entertainment", icon: "🎬" },
-      health: { name: "Health", icon: "🏥" },
-      education: { name: "Education", icon: "📚" },
-      crime: { name: "Crime", icon: "🚔" },
-      weather: { name: "Weather", icon: "🌤️" },
-      lifestyle: { name: "Lifestyle", icon: "✨" },
-      local: { name: "Local News", icon: "🏘️" },
-      international: { name: "International", icon: "🌍" },
+    if (!commonData?.data?.news_category) {
+      // Fallback to hardcoded categories if API data is not available
+      const categoryMap: Record<string, { name: string; icon: string }> = {
+        politics: { name: "Politics", icon: "🏛️" },
+        business: { name: "Business", icon: "💼" },
+        technology: { name: "Technology", icon: "💻" },
+        sports: { name: "Sports", icon: "⚽" },
+        entertainment: { name: "Entertainment", icon: "🎬" },
+        health: { name: "Health", icon: "🏥" },
+        education: { name: "Education", icon: "📚" },
+        crime: { name: "Crime", icon: "🚔" },
+        weather: { name: "Weather", icon: "🌤️" },
+        lifestyle: { name: "Lifestyle", icon: "✨" },
+        local: { name: "Local News", icon: "🏘️" },
+        international: { name: "International", icon: "🌍" },
+      }
+      return categoryIds.map((id) => categoryMap[id] || { name: id, icon: "📰" })
     }
-    return categoryIds.map((id) => categoryMap[id] || { name: id, icon: "📰" })
+
+    return categoryIds.map((id) => {
+      const category = commonData.data.news_category.find((c) => c.id.toString() === id)
+      return {
+        name: category ? category.category_name : id,
+        icon: getDefaultCategoryIcon(category ? category.category_name : id),
+      }
+    })
+  }
+
+  // Get default category icon based on category name
+  const getDefaultCategoryIcon = (categoryName: string) => {
+    const iconMap: Record<string, string> = {
+      politics: "🏛️",
+      business: "💼",
+      technology: "💻",
+      sports: "⚽",
+      entertainment: "🎬",
+      health: "🏥",
+      education: "📚",
+      crime: "🚔",
+      weather: "🌤️",
+      lifestyle: "✨",
+      local: "🏘️",
+      international: "🌍",
+    }
+
+    const key = categoryName.toLowerCase()
+    return iconMap[key] || "📰"
   }
 
   return (
