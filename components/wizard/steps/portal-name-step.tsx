@@ -156,7 +156,11 @@ export function PortalNameStep({ onBack, onNext }: PortalNameStepProps) {
     <StepContainer subtitle="Choose a memorable name and domain for your news portal">
       <div className="space-y-8">
         <div className="space-y-2">
-          <Label htmlFor="portalName">Portal Name</Label>
+          <Label htmlFor="portalName">Portal Name {checkingDomains && (
+                <span className="ml-1 text-xs text-gray-500 inline-flex items-center gap-1">
+                  <Loader2 className="h-3 w-3 animate-spin" /> Checking...
+                </span>
+              )} </Label>
           <Input
             id="portalName"
             placeholder="e.g., Daily News Hub"

@@ -104,11 +104,11 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
               <div className="space-y-4">
                 {selectedLogo?.type === "upload" ? (
                   <div className="flex flex-col items-center gap-4">
-                    <div className="w-32 h-32 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
+                    <div className="w-64 h-40 rounded-lg overflow-hidden border-4 border-white shadow-lg bg-gray-100">
                       <img
                         src={selectedLogo.content || "/placeholder.svg"}
                         alt="Uploaded logo"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <div className="flex gap-2">
