@@ -75,6 +75,7 @@ export async function fetchCommonData(): Promise<CommonApiResponse> {
 }
 
 interface CreatePortalRequest {
+  name: string
   email: string
   phone: string
   portalName: string
@@ -91,6 +92,8 @@ interface CreatePortalRequest {
   selectedTheme: string
   selectedTemplate?: string
   selectedCategories?: string[]
+  state: string
+  city: string
   portalId?: string // Optional, for existing portals
 }
 
@@ -142,7 +145,7 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
 
     const formData = new FormData()
 
-    formData.append("name", data.portalName)
+    formData.append("name", data.name) // Use actual user name instead of portal name
     formData.append("domain_type", "1")
     formData.append("domain_name", data.selectedDomain.replace(".mojonetwork.in", "").replace("https://", ""))
 
@@ -155,8 +158,9 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
     // Convert categories array to comma-separated string of IDs
     formData.append("news_category", data.selectedCategories?.join(",") || "")
 
-    formData.append("state", "Delhi")
-    formData.append("city", "New Delhi")
+    // Use actual state and city IDs from user selection
+    formData.append("state", data.state)
+    formData.append("city", data.city)
 
     // Handle logo upload
     if (data.selectedLogo && data.selectedLogo.type === "upload" && data.selectedLogo.content) {
