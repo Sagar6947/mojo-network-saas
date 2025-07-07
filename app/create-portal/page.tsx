@@ -15,6 +15,7 @@ import { PortalSuccess } from "@/components/wizard/portal-success"
 import { mockCreatePortal, fetchCommonData, type CommonApiResponse } from "@/lib/api"
 
 interface UserSelections {
+  name: string
   email: string
   phone: string
   portalName: string
@@ -24,6 +25,8 @@ interface UserSelections {
   selectedTheme: string
   selectedTemplate: string
   selectedCategories: string[]
+  state: string
+  city: string
 }
 
 type WizardState = "form" | "creating" | "success" | "error"
@@ -36,6 +39,7 @@ export default function CreatePortalPage() {
   const [commonData, setCommonData] = useState<CommonApiResponse | null>(null)
   const [isLoadingData, setIsLoadingData] = useState(true)
   const [userSelections, setUserSelections] = useState<UserSelections>({
+    name: "",
     email: "",
     phone: "",
     portalName: "",
@@ -45,6 +49,8 @@ export default function CreatePortalPage() {
     selectedTheme: "",
     selectedTemplate: "",
     selectedCategories: [],
+    state: "",
+    city: "",
   })
 
   // Fetch common data on component mount
@@ -98,7 +104,7 @@ export default function CreatePortalPage() {
     window.scrollTo(0, 0)
   }
 
-  const handleLoginNext = (data: { email: string; phone: string }) => {
+  const handleLoginNext = (data: { name: string; email: string; phone: string; state: string; city: string }) => {
     setUserSelections((prev) => ({ ...prev, ...data }))
     nextStep()
   }
@@ -137,6 +143,7 @@ export default function CreatePortalPage() {
 
     try {
       const portalData = {
+        name: userSelections.name,
         email: userSelections.email,
         phone: userSelections.phone,
         portalName: userSelections.portalName,
@@ -146,6 +153,8 @@ export default function CreatePortalPage() {
         selectedTheme: userSelections.selectedTheme,
         selectedTemplate: userSelections.selectedTemplate || "1",
         selectedCategories: userSelections.selectedCategories || [],
+        state: userSelections.state,
+        city: userSelections.city,
       }
 
       console.log("Creating Portal with data:", portalData)
@@ -263,7 +272,7 @@ export default function CreatePortalPage() {
           <OtpStep
             onBack={previousStep}
             onNext={nextStep}
-            personName={`Sagar Thakur`}
+            personName={userSelections.name}
             emailId={userSelections.email}
             phoneNumber={userSelections.phone}
             onEditPhone={() => goToStep(1)}
