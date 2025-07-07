@@ -13,6 +13,7 @@ import { PreviewStep } from "@/components/wizard/steps/preview-step"
 import { PortalCreationLoading } from "@/components/wizard/portal-creation-loading"
 import { PortalSuccess } from "@/components/wizard/portal-success"
 import { mockCreatePortal, fetchCommonData, type CommonApiResponse } from "@/lib/api"
+import "./skeletonLoader.css"
 
 interface UserSelections {
   name: string
@@ -55,6 +56,7 @@ export default function CreatePortalPage() {
 
   // Fetch common data on component mount
   useEffect(() => {
+    let loadingTimeout;
     const loadCommonData = async () => {
       try {
         setIsLoadingData(true)
@@ -64,11 +66,18 @@ export default function CreatePortalPage() {
         console.error("Failed to load common data:", error)
         setError("Failed to load application data. Please refresh the page.")
       } finally {
-        setIsLoadingData(false)
+        loadingTimeout = setTimeout(() => {
+          setIsLoadingData(false)
+        }, 5000);
       }
     }
 
     loadCommonData()
+
+    return () => {
+      // Cleanup function to clear any timeouts if component unmounts
+      clearTimeout(loadingTimeout);
+    }
   }, [])
 
   const totalSteps = 9
@@ -190,15 +199,42 @@ export default function CreatePortalPage() {
   const renderContent = () => {
     if (isLoadingData) {
       return (
-        <div className="text-center space-y-6">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto animate-spin">
-            <span className="text-3xl">⏳</span>
+
+        <div className="space-y-6 bg-white p-4 rounded-lg shadow-md">
+          {/* Full Name Skeleton */}
+          <div className="space-y-2">
+            <div className="h-4 bg-gray-200 rounded w-24 skeleton-animation"></div>
+            <div className="relative h-12 bg-gray-200 rounded-md skeleton-animation"></div>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Loading...</h2>
-            <p className="text-gray-600">Fetching application data...</p>
+
+          {/* Email Address Skeleton */}
+          <div className="space-y-2">
+            <div className="h-4 bg-gray-200 rounded w-32 skeleton-animation"></div>
+            <div className="relative h-12 bg-gray-200 rounded-md skeleton-animation"></div>
           </div>
+
+          {/* Phone Number Skeleton */}
+          <div className="space-y-2">
+            <div className="h-4 bg-gray-200 rounded w-32 skeleton-animation"></div>
+            <div className="relative h-12 bg-gray-200 rounded-md skeleton-animation"></div>
+          </div>
+
+          {/* State and City Skeletons */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-20 skeleton-animation"></div>
+              <div className="relative h-12 bg-gray-200 rounded-md skeleton-animation"></div>
+            </div>
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-20 skeleton-animation"></div>
+              <div className="relative h-12 bg-gray-200 rounded-md skeleton-animation"></div>
+            </div>
+          </div>
+
+          {/* Button Skeleton */}
+          <div className="h-12 bg-gray-200 rounded-full skeleton-animation"></div>
         </div>
+
       )
     }
 
