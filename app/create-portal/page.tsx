@@ -56,7 +56,6 @@ export default function CreatePortalPage() {
 
   // Fetch common data on component mount
   useEffect(() => {
-    let loadingTimeout;
     const loadCommonData = async () => {
       try {
         setIsLoadingData(true)
@@ -66,18 +65,11 @@ export default function CreatePortalPage() {
         console.error("Failed to load common data:", error)
         setError("Failed to load application data. Please refresh the page.")
       } finally {
-        loadingTimeout = setTimeout(() => {
           setIsLoadingData(false)
-        }, 5000);
       }
     }
 
     loadCommonData()
-
-    return () => {
-      // Cleanup function to clear any timeouts if component unmounts
-      clearTimeout(loadingTimeout);
-    }
   }, [])
 
   const totalSteps = 9
