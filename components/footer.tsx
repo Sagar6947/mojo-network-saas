@@ -79,7 +79,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/create-portal" className="text-white hover:text-red-600">
-                  Create Portal
+                  Create Channel
                 </Link>
               </li>
             </ul>

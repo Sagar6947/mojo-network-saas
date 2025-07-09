@@ -12,6 +12,8 @@ interface PreviewStepProps {
   onNext: () => void
   userSelections: {
     portalName: string
+    channelLanguage: string
+    channelName: string
     selectedDomain: string
     selectedLogo: any
     selectedFavicon?: any
@@ -143,7 +145,7 @@ export function PreviewStep({ onBack, onNext, userSelections, commonData }: Prev
                 {userSelections.selectedLogo && userSelections.selectedLogo.type === "upload" ? (
                   <img
                     src={userSelections.selectedLogo.content || "/placeholder.svg"}
-                    alt="Portal Logo"
+                    alt="Channel Logo"
                     className="w-12 h-12 object-contain"
                   />
                 ) : userSelections.selectedLogo && userSelections.selectedLogo.type === "text" ? (
@@ -192,12 +194,16 @@ export function PreviewStep({ onBack, onNext, userSelections, commonData }: Prev
           <Card className="p-6">
             <h4 className="font-semibold mb-4 flex items-center gap-2">
               <Globe className="h-5 w-5 text-purple-600" />
-              Portal Details
+              Channel Details
             </h4>
             <div className="space-y-3">
               <div>
                 <span className="text-sm text-gray-600">Name:</span>
-                <p className="font-medium">{userSelections.portalName}</p>
+                <p className="font-medium">{userSelections.channelName}</p>
+              </div>
+              <div>
+                <span className="text-sm text-gray-600">Language:</span>
+                <p className="font-medium uppercase">{userSelections.channelLanguage}</p>
               </div>
               <div>
                 <span className="text-sm text-gray-600">Domain:</span>

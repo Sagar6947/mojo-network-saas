@@ -6,7 +6,7 @@ import "./globals.css";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Mojo Network - Launch Your Own News Portal in Minutes",
+  title: "Mojo Network - Launch Your Own News Channel in Minutes",
   description:
     "AI-powered, multilingual, and fully customizable news portal platform built for India's local reporters, news entrepreneurs, and digital media pioneers.",
   generator: "v0.dev",

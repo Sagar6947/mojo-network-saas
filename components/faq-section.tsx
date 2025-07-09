@@ -49,12 +49,12 @@ const faqs = [
   },
   {
     question:
-      "How Can I Find The Best News Portal Development Company In India?",
+      "How Can I Find The Best News Channel Development Company In India?",
     answer:
       "Look for a company with proven experience, full-featured offerings, client support, and a strong portfolio in digital news publishing.",
   },
   {
-    question: "Which Is The Top News Portal Development Company In India?",
+    question: "Which Is The Top News Channel Development Company In India?",
     answer:
       "MoJo Network is among the top choices, known for AI-powered content engines, mobile-first design, and seamless publishing tools.",
   },
@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     question:
-      "How Can I Schedule A Consultation With The Experts On The News Portal?",
+      "How Can I Schedule A Consultation With The Experts On The News Channel?",
     answer:
       "Simply use the 'Contact Us' form on our website or call our support number to schedule a free consultation.",
   },

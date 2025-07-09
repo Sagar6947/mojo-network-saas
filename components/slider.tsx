@@ -8,16 +8,16 @@ export default function ImageSlider() {
   const images = [
     { src: "/images/steps/1.png", title: "Welcome to MojoNetwork" },
     { src: "/images/steps/2.png", title: "Verify Your Phone Number" },
-    { src: "/images/steps/3.png", title: "Name Your News Portal" },
-    { src: "/images/steps/4.png", title: "Domain for your news portal" },
+    { src: "/images/steps/3.png", title: "Name Your News Channel" },
+    { src: "/images/steps/4.png", title: "Domain for your news Channel" },
     { src: "/images/steps/13.png", title: "Create Your Brand Identity" },
     // { src: "/images/steps/5.png", title: "Choose Your Color Theme" },
     { src: "/images/steps/6.png", title: "Choose Your Color Theme" },
     { src: "/images/steps/7.png", title: "Select a Layout Template" },
     { src: "/images/steps/8.png", title: "Pick News Categories" },
-    { src: "/images/steps/9.png", title: "Preview Your Portal" },
-    { src: "/images/steps/10.png", title: "Launched Portal" },
-    { src: "/images/steps/11.png", title: "Portal Created Successfully!" },
+    { src: "/images/steps/9.png", title: "Preview Your Channel" },
+    { src: "/images/steps/10.png", title: "Launched Channel" },
+    { src: "/images/steps/11.png", title: "Channel Created Successfully!" },
   ];
 
   return (

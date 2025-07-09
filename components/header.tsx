@@ -51,7 +51,7 @@ export function Header() {
 
           <Link href="/create-portal">
             <button className="px-10 py-3 rounded-md bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-200 hidden md:flex">
-              Create Portal
+              Create Channel
             </button>
           </Link>
 
