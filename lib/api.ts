@@ -18,6 +18,13 @@ interface ThemeLayout {
   status: number
 }
 
+interface NativeLanguage {
+  id: number;
+  language_name: string;
+  language_slug: string;
+  status: number;
+}
+
 interface NewsCategory {
   id: number
   category_name: string
@@ -33,13 +40,14 @@ interface LogoCategory {
   status: number
 }
 
-interface CommonApiResponse {
+export interface CommonApiResponse {
   status: number
   message: string
   data: {
     logo_category: LogoCategory[]
     color_theme: ColorTheme[]
     theme_layout: ThemeLayout[]
+    channel_language: NativeLanguage[]
     news_category: NewsCategory[]
     image_path: string
   }
@@ -79,6 +87,8 @@ interface CreatePortalRequest {
   email: string
   phone: string
   portalName: string
+  channelLanguage: string
+  channelName: string
   selectedDomain: string
   selectedLogo: {
     type: string
@@ -147,6 +157,8 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
 
     formData.append("name", data.name) // Use actual user name instead of portal name
     formData.append("domain_type", "1")
+    formData.append("channel_name", data.channelName || data.portalName)
+    formData.append("channel_language", data.channelLanguage || data.channelLanguage)
     formData.append("domain_name", data.selectedDomain.replace(".mojonetwork.in", "").replace("https://", ""))
 
     // Use the actual theme ID from API
@@ -182,10 +194,10 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
       body: formData,
     })
 
-    const result = await response.json()
+    const result = await response.json();
 
     if (!response.ok || result.status !== 200) {
-      throw new Error(result.message || "Portal creation failed")
+      throw new Error(result.message || "Channel creation failed")
     }
 
     return {

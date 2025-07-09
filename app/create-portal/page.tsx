@@ -20,6 +20,8 @@ interface UserSelections {
   email: string
   phone: string
   portalName: string
+  channelLanguage: string
+  channelName: string
   selectedDomain: string
   selectedLogo: any
   selectedFavicon?: any
@@ -43,6 +45,8 @@ export default function CreatePortalPage() {
     name: "",
     email: "",
     phone: "",
+    channelLanguage: "",
+    channelName: "",
     portalName: "",
     selectedDomain: "",
     selectedLogo: null,
@@ -77,13 +81,13 @@ export default function CreatePortalPage() {
   const stepTitles = [
     "Welcome to MojoNetwork",
     "Verify Your Phone Number",
-    "Name Your News Portal",
+    "Name Your News Channel",
     "Create Your Brand Identity",
     "Choose Your Color Theme",
     "Select a Layout Template",
     "Pick News Categories",
-    "Preview Your Portal",
-    "Launch Your News Portal",
+    "Preview Your Channel",
+    "Launch Your News Channel",
   ]
 
   const nextStep = () => {
@@ -110,7 +114,7 @@ export default function CreatePortalPage() {
     nextStep()
   }
 
-  const handlePortalNameNext = (data: { portalName: string; selectedDomain: string }) => {
+  const handlePortalNameNext = (data: { channelName: string; portalName: string; selectedDomain: string }) => {
     setUserSelections((prev) => ({ ...prev, ...data }))
     nextStep()
   }
@@ -147,6 +151,8 @@ export default function CreatePortalPage() {
         name: userSelections.name,
         email: userSelections.email,
         phone: userSelections.phone,
+        channelLanguage: userSelections.channelLanguage,
+        channelName: userSelections.channelName,
         portalName: userSelections.portalName,
         selectedDomain: userSelections.selectedDomain,
         selectedLogo: userSelections.selectedLogo,
@@ -166,6 +172,8 @@ export default function CreatePortalPage() {
         setPortalData({
           ...response,
           portalName: userSelections.portalName,
+          channelLanguage: userSelections.channelLanguage,
+          channelName: userSelections.channelName,
           selectedDomain: userSelections.selectedDomain,
           selectedLogo: userSelections.selectedLogo,
           selectedFavicon: userSelections.selectedFavicon,
@@ -252,13 +260,13 @@ export default function CreatePortalPage() {
 
     // Rest of the existing renderContent logic...
     if (wizardState === "creating") {
-      return <PortalCreationLoading portalName={userSelections.portalName} domain={userSelections.selectedDomain} />
+      return <PortalCreationLoading portalName={userSelections.channelName} domain={userSelections.selectedDomain} />
     }
 
     if (wizardState === "success" && portalData) {
       return (
         <PortalSuccess
-          portalName={portalData.portalName || userSelections.portalName}
+          portalName={portalData.channelName || userSelections.channelName}
           portalUrl={portalData.portalUrl}
           portalAdminUrl={portalData.portalAdminUrl}
           portalId={portalData.portalId}
@@ -275,7 +283,7 @@ export default function CreatePortalPage() {
             <span className="text-3xl">❌</span>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Portal Creation Failed</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Channel Creation Failed</h2>
             <p className="text-gray-600 mb-4">{error}</p>
             <button
               onClick={() => {
@@ -307,7 +315,7 @@ export default function CreatePortalPage() {
           />
         )
       case 3:
-        return <PortalNameStep onBack={previousStep} onNext={handlePortalNameNext} />
+        return <PortalNameStep onBack={previousStep} onNext={handlePortalNameNext} nativeLanguage={commonData.data.channel_language} />
       case 4:
         return <LogoStep onBack={previousStep} onNext={handleLogoNext} portalName={userSelections.portalName} />
       case 5:
@@ -355,13 +363,13 @@ export default function CreatePortalPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Launch!</h2>
               <p className="text-gray-600 mb-6">
-                Everything looks perfect! Click the button below to create your news portal.
+                Everything looks perfect! Click the button below to create your news channel.
               </p>
               <button
                 onClick={handleCreatePortal}
                 className="bg-[#cb0015] text-white px-8 py-3 rounded-lg hover:bg-[#cb0015] transition-colors text-lg font-semibold"
               >
-                🚀 Launch My Portal
+                🚀 Launch My Channel
               </button>
             </div>
           </div>
@@ -372,9 +380,9 @@ export default function CreatePortalPage() {
   }
 
   const getTitle = () => {
-    if (wizardState === "creating") return "Creating Your News Portal"
-    if (wizardState === "success") return "Portal Created Successfully!"
-    if (wizardState === "error") return "Portal Creation Failed"
+    if (wizardState === "creating") return "Creating Your News Channel"
+    if (wizardState === "success") return "Channel Created Successfully!"
+    if (wizardState === "error") return "Channel Creation Failed"
     return stepTitles[currentStep - 1]
   }
 
