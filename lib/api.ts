@@ -100,11 +100,14 @@ interface CreatePortalRequest {
     content: string
   }
   selectedTheme: string
+  primaryColor?: string
+  secondaryColor?: string
+  textColor?: string
   selectedTemplate?: string
   selectedCategories?: string[]
   state: string
   city: string
-  portalId?: string // Optional, for existing portals
+  portalId?: string
 }
 
 interface CreatePortalResponse {
@@ -155,7 +158,7 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
 
     const formData = new FormData()
 
-    formData.append("name", data.name) // Use actual user name instead of portal name
+    formData.append("name", data.name)
     formData.append("domain_type", "1")
     formData.append("channel_name", data.channelName || data.portalName)
     formData.append("channel_language", data.channelLanguage || data.channelLanguage)
@@ -163,6 +166,9 @@ export async function mockCreatePortal(data: CreatePortalRequest): Promise<Creat
 
     // Use the actual theme ID from API
     formData.append("color_theme_id", data.selectedTheme)
+    formData.append("primary_color", data.primaryColor || "#ca0013")
+    formData.append("secondary_color", data.secondaryColor || "#FFFFFF")
+    formData.append("text_color", data.textColor || "#000000")
 
     // Use the actual template ID from API
     formData.append("theme_layout_id", data.selectedTemplate || "1")

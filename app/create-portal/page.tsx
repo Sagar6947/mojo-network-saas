@@ -26,10 +26,20 @@ interface UserSelections {
   selectedLogo: any
   selectedFavicon?: any
   selectedTheme: string
+  primaryColor: string
+  secondaryColor: string
+  textColor: string
   selectedTemplate: string
   selectedCategories: string[]
   state: string
   city: string
+}
+
+interface ThemeSelectionData {
+  selectedTheme: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  textColor?: string;
 }
 
 type WizardState = "form" | "creating" | "success" | "error"
@@ -52,6 +62,9 @@ export default function CreatePortalPage() {
     selectedLogo: null,
     selectedFavicon: null,
     selectedTheme: "",
+    primaryColor: "",
+    secondaryColor: "",
+    textColor: "",
     selectedTemplate: "",
     selectedCategories: [],
     state: "",
@@ -69,7 +82,7 @@ export default function CreatePortalPage() {
         console.error("Failed to load common data:", error)
         setError("Failed to load application data. Please refresh the page.")
       } finally {
-          setIsLoadingData(false)
+        setIsLoadingData(false)
       }
     }
 
@@ -124,7 +137,7 @@ export default function CreatePortalPage() {
     nextStep()
   }
 
-  const handleThemeNext = (data: { selectedTheme: string }) => {
+  const handleThemeNext = (data: ThemeSelectionData) => {
     setUserSelections((prev) => ({ ...prev, ...data }))
     nextStep()
   }
@@ -157,6 +170,9 @@ export default function CreatePortalPage() {
         selectedDomain: userSelections.selectedDomain,
         selectedLogo: userSelections.selectedLogo,
         selectedFavicon: userSelections.selectedFavicon,
+        primaryColor: userSelections.primaryColor,
+        secondaryColor: userSelections.secondaryColor,
+        textColor: userSelections.textColor,
         selectedTheme: userSelections.selectedTheme,
         selectedTemplate: userSelections.selectedTemplate || "1",
         selectedCategories: userSelections.selectedCategories || [],

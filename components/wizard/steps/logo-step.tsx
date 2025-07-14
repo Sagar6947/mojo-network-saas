@@ -83,6 +83,8 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   const handleNext = () => {
     if (selectedLogo) {
       onNext({ selectedLogo, selectedFavicon: selectedFavicon || undefined })
+    } else{
+      onNext({ selectedLogo, selectedFavicon })
     }
   }
 
@@ -210,7 +212,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
           </ul>
         </div>
 
-        <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={!selectedLogo} />
+        <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={false} />
       </div>
     </StepContainer>
   )
