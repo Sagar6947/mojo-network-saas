@@ -20,7 +20,7 @@ export function PortalSuccess({ portalName, portalUrl, portalAdminUrl, portalId,
   const [copiedAdmin, setCopiedAdmin] = useState(false)
 
   // Ensure we have a valid URL from API response
-  const displayUrl = portalUrl || (selectedDomain ? `https://${selectedDomain}` : "https://your-portal.mojonetwork.in")
+  const displayUrl = portalUrl || (selectedDomain ? `https://${selectedDomain}` : "https://news.mojonetwork.in")
   const displayAdminUrl = portalAdminUrl || `${displayUrl}/admin`
 
   const handleCopyUrl = async () => {
@@ -89,7 +89,10 @@ export function PortalSuccess({ portalName, portalUrl, portalAdminUrl, portalId,
                 <ExternalLink className="h-4 w-4" />
                 Visit Your Portal
               </Button>
-              <Button variant="outline" onClick={() => (window.location.href = "/dashboard")}>
+              <Button
+                variant="outline"
+                onClick={() => window.open(displayAdminUrl, '_blank')}
+              >
                 Go to Dashboard
               </Button>
             </div>

@@ -5,6 +5,7 @@ import { NavigationButtons } from "../navigation-buttons";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { AtSign, Phone, User, MapPin, Building, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface LoginStepProps {
   onNext: (data: {
@@ -110,9 +111,8 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
             filteredOptions.map((option) => (
               <li
                 key={option[valueKey]}
-                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                  value === option[valueKey].toString() ? "bg-gray-200" : ""
-                }`}
+                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${value === option[valueKey].toString() ? "bg-gray-200" : ""
+                  }`}
                 onClick={() => handleSelect(option[valueKey].toString())}
               >
                 {option[labelKey]}
@@ -332,9 +332,8 @@ export function LoginStep({ onNext }: LoginStepProps) {
               placeholder="Enter your full name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`pl-10 h-12 ${
-                errors.name ? "border-red-500 focus-visible:ring-red-500" : ""
-              }`}
+              className={`pl-10 h-12 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : ""
+                }`}
             />
           </div>
           {errors.name && (
@@ -353,9 +352,8 @@ export function LoginStep({ onNext }: LoginStepProps) {
               placeholder="your.email@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`pl-10 h-12 ${
-                errors.email ? "border-red-500 focus-visible:ring-red-500" : ""
-              }`}
+              className={`pl-10 h-12 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""
+                }`}
             />
           </div>
           {errors.email && (
@@ -374,9 +372,8 @@ export function LoginStep({ onNext }: LoginStepProps) {
               placeholder="+91 98765 43210"
               value={phone}
               onChange={handlePhoneChange}
-              className={`pl-10 h-12 ${
-                errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""
-              }`}
+              className={`pl-10 h-12 ${errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""
+                }`}
             />
           </div>
           {errors.phone && (
