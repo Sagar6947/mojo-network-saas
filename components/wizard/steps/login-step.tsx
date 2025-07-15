@@ -52,13 +52,13 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const selectedOption = options.find(option => option[valueKey].toString() === value);
+    const selectedOption = options.find(option => option[labelKey] === value);
     if (selectedOption) {
       setDisplayValue(selectedOption[labelKey]);
     } else {
       setDisplayValue("");
     }
-  }, [value, options, valueKey, labelKey]);
+  }, [value, options, labelKey]);
 
   const filteredOptions = options.filter((option) =>
     option[labelKey].toLowerCase().includes(searchTerm.toLowerCase())
@@ -111,8 +111,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
             filteredOptions.map((option) => (
               <li
                 key={option[valueKey]}
-                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${value === option[valueKey].toString() ? "bg-gray-200" : ""
-                  }`}
+                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${value === option[labelKey] ? "bg-gray-200" : ""}`}
                 onClick={() => handleSelect(option[valueKey].toString())}
               >
                 {option[labelKey]}
@@ -420,22 +419,22 @@ export function LoginStep({ onNext }: LoginStepProps) {
             {
               id: "serviceAgreement",
               label: "SaaS Service Agreement",
-              link: "/service-agreement",
+              link: "policy/saas-service-agreement",
             },
             {
               id: "advertisingPolicy",
               label: "Advertising & Monetization Policy",
-              link: "/advertising-policy",
+              link: "policy/advertising-and-monetization-policy",
             },
             {
               id: "grievanceRedressalPolicy",
               label: "Grievance Redressal Policy (as per IT Rules, 2021)",
-              link: "/grievance-policy",
+              link: "policy/grievance-redressal-policy",
             },
             {
               id: "contentLicensingPolicy",
               label: "Content Responsibility & Licensing Policy",
-              link: "/content-licensing-policy",
+              link: "policy/content-responsibility-and-licensing-policy",
             },
           ].map((policy) => (
             <div key={policy.id} className="flex items-start space-x-2">
