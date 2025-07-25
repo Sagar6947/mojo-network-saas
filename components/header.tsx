@@ -43,7 +43,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link href="">
+          <Link href="/create-portal?login=true">
             <button className="px-10 py-2 font-md rounded-md border border-red-600 text-red-600 font-semibold hover:bg-red-50 transition duration-200 hidden md:flex">
               Login
             </button>

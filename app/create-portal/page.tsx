@@ -44,7 +44,8 @@ interface ThemeSelectionData {
 
 type WizardState = "form" | "creating" | "success" | "error"
 
-export default function CreatePortalPage() {
+export default function CreatePortalPage({ searchParams }: { searchParams: { login?: string } }) {
+  const login = searchParams?.login;
   const [currentStep, setCurrentStep] = useState(1)
   const [wizardState, setWizardState] = useState<WizardState>("form")
   const [portalData, setPortalData] = useState<any>(null)
@@ -318,7 +319,7 @@ export default function CreatePortalPage() {
     // Render form steps with common data
     switch (currentStep) {
       case 1:
-        return <LoginStep onNext={handleLoginNext} />
+        return <LoginStep onNext={handleLoginNext} goToStep={() => goToStep(3)} loginstate={login} />
       case 2:
         return (
           <OtpStep
