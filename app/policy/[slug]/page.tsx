@@ -57,8 +57,8 @@ export default async function PolicyPage({ params }: { params: { slug: string } 
     <>
       <Header />
 
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">{content.title}</h1>
+      <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">{content.title}</h1>
       </section>
 
       <section className="py-16 bg-gray-50">

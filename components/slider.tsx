@@ -25,9 +25,9 @@ export default function ImageSlider() {
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-black">
         In simple steps, you can create{" "}
         <span className="gradient-text">
-          your own news portal <br />
+          your own Saas Portal <br />
         </span>{" "}
-        your own news portal effortlessly.
+        your own Saas Portal effortlessly.
       </h2>
 
       <Swiper
@@ -35,7 +35,7 @@ export default function ImageSlider() {
         slidesPerView={2}
         modules={[Autoplay]}
         autoplay={{
-          delay: 2000,
+          delay: 1500,
           disableOnInteraction: false,
         }}
         breakpoints={{

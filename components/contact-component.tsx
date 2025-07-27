@@ -159,10 +159,12 @@ const Contact = () => {
 
   return (
     <>
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">Contact</h1>
+    <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">
+          Contact
+        </h1>
       </section>
-      <main className="flex items-center justify-center px-2 md:px-4 py-4 md:py-32">
+      <main className="flex items-center justify-center px-2 md:px-4 py-4 md:py-10">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-red-600 font-semibold uppercase mb-2">

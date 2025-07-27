@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import "@/styles/iqra.css";
+
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -16,16 +18,17 @@ const navItems = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0  z-50 w-full bg-white/95 backdrop-blur-sm border-b">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b">
       <div className="container flex h-20 items-center justify-between pl-0 md:pl-4">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <img
               src="/images/logo.png"
               alt="MojoNetwork Logo"
-              className="w-auto bottom-4 h-12 md:h-20"
+              className="w-auto bottom-4 h-11 md:h-20"
             />
           </Link>
         </div>
@@ -35,7 +38,11 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-md font-medium text-black hover:text-red transition-colors"
+              className={`text-md font-medium transition-colors ${
+                pathname === item.href
+                  ? "text-red-600 font-semibold"
+                  : "text-black hover:text-red-600"
+              }`}
             >
               {item.name}
             </Link>
@@ -71,13 +78,20 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-base font-medium text-gray-700 hover:text-primary transition-colors"
+                className={`text-base font-medium transition-colors ${
+                  pathname === item.href
+                    ? "text-red-600 font-semibold"
+                    : "text-gray-700 hover:text-red-600"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <Link href="" onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              href="/create-portal?login=true"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <Button variant="outline" className="w-full">
                 Login
               </Button>

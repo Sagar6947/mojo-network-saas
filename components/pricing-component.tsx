@@ -23,7 +23,7 @@ const plans = [
     ],
     cta: "Free Plan Available",
     popular: false,
-    badgeColor: "bg-orange-100",
+    badgeColor: "bg-[#F39E60]",
   },
   {
     name: "Mojo Newsroom",
@@ -42,7 +42,7 @@ const plans = [
     ],
     cta: "Get Started",
     popular: true,
-    badgeColor: "bg-red-100",
+    badgeColor: "bg-[#E16A54]",
   },
   {
     name: "Mojo Editor’s Club",
@@ -60,7 +60,7 @@ const plans = [
     ],
     cta: "Get Started",
     popular: false,
-    badgeColor: "bg-blue-100",
+    badgeColor: "bg-[#9F5255]",
   },
   {
     name: "Mojo Media Bureau",
@@ -74,14 +74,16 @@ const plans = [
     ],
     cta: "Get Started",
     popular: false,
-    badgeColor: "bg-gray-100",
+    badgeColor: "bg-[#7C444F]",
   },
 ];
 const Pricing = () => {
   return (
     <>
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">Pricing</h1>
+      <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">
+          Pricing
+        </h1>
       </section>
 
       <section
@@ -115,10 +117,10 @@ const Pricing = () => {
                 )}
 
                 <div className={`text-center px-6 py-8 ${plan.badgeColor}`}>
-                  <h3 className="text-2xl font-extrabold text-gray-900">
+                  <h3 className="text-2xl font-extrabold text-white">
                     {plan.name}
                   </h3>
-                  <p className="text-sm text-gray-700 mt-2">
+                  <p className="text-sm text-white mt-2">
                     {plan.description}
                   </p>
                 </div>

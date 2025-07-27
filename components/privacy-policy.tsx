@@ -5,9 +5,9 @@ import React from "react";
 const PrivacyPolicyPage = () => {
   return (
     <>
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">
-          Privacy Policy
+    <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">
+        Privacy Policy
         </h1>
       </section>
       <section className="py-16 bg-gray-50">

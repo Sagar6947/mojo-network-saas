@@ -40,11 +40,11 @@ export function AboutSection() {
             {features.map((item, idx) => (
               <div
                 key={idx}
-                className={`p-8 rounded-xl shadow-md border flex items-start gap-4 ${
+                className={`p-8 rounded-xl shadow-md border flex flex-col sm:flex-row gap-4 ${
                   idx % 2 === 0
                     ? "bg-red-600 text-white"
                     : "bg-white text-gray-800"
-                }`}
+                } items-center sm:items-start text-center sm:text-left`}
               >
                 <div className="w-12 h-12 flex-shrink-0">
                   <img
@@ -62,7 +62,7 @@ export function AboutSection() {
                     {item.title}
                   </h3>
                   <p
-                    className={`mt-1 text-sm md:-text-xs ${
+                    className={`mt-1 text-sm ${
                       idx % 2 === 0 ? "text-white/90" : "text-gray-600"
                     }`}
                   >

@@ -83,8 +83,10 @@ const rightFaqs = faqs.slice(Math.ceil(faqs.length / 2));
 const Faq = () => {
   return (
     <>
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">FAQ's</h1>
+      <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">
+          FAQ's
+        </h1>
       </section>
 
       <section id="faq" className="py-16 bg-white">

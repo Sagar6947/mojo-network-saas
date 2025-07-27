@@ -3,50 +3,67 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { CheckCircle, Star } from "lucide-react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 const testimonials = [
   {
-    name: "Harsh P.",
+    name: "Harsh Patel",
     location: "Delhi, India",
     verified: true,
     message:
-      "Mojo Network completely transformed how I deliver hyperlocal news. With just my phone, I can now report, edit, and publish updates on the go. It’s the perfect platform for anyone who wants to empower their local voice without relying on mainstream media setups.",
+      "Mojo Network changed how I share news. I can now report, edit, and publish updates quickly with just my phone. It’s perfect for people like me who want to cover local news without needing a full media setup.",
     image: "/images/user.jpg",
   },
   {
-    name: "Jane D",
-    location: "Mumbai, India",
+    name: "Jhanvi Deshmukh",
+    location: "Nagpur, India",
     verified: true,
     message:
-      "Simple, clean UI. I started publishing from day one without any learning curve. Mojo Network gives creators like me the tools to broadcast real stories directly from the ground — and the monetization options are truly helpful for independent journalists.",
+      "I started using Mojo Network without any confusion. It’s clean, easy to use, and helps me share real stories. The monetization tools make it easier for creators like me to grow without chasing sponsors every time.",
     image: "/images/user.jpg",
   },
   {
-    name: "Amit R",
+    name: "Amit Raghavan",
     location: "Lucknow, India",
     verified: false,
     message:
-      "This platform is a game-changer for citizen journalism. I used to post updates on social media but now I have a dedicated news space with proper features, layout, and even earnings potential. Highly recommended if you want to start your own portal.",
+      "Posting local updates on social media was easy, but not serious. Mojo Network gave me a real platform to build my own identity. It’s user-friendly, powerful, and lets me publish news my way—anytime, anywhere.",
     image: "/images/user.jpg",
   },
   {
-    name: "Ritika S.",
+    name: "Ritika Sen",
     location: "Kolkata, India",
     verified: true,
     message:
-      "From feature-rich publishing tools to excellent design, Mojo Network has everything I need. It’s helped me build a trustworthy news platform for my neighborhood and build credibility in my community with verified reporting.",
+      "Running my own news page always seemed difficult, but Mojo Network made it possible. It offers strong tools, clean design, and freedom to tell stories that matter in my area—without needing technical knowledge.",
     image: "/images/user.jpg",
   },
   {
-    name: "Nilesh K.",
+    name: "Nilesh Kadam",
     location: "Pune, India",
     verified: false,
     message:
-      "Launching my local bulletin used to feel like a big task — but Mojo Network made it incredibly simple. It's a reliable, powerful tool for aspiring news creators, and I’m grateful to have found this platform.",
+      "Mojo Network is a blessing for local reporters. No complex setup—just my phone and voice. I built my own news identity within days. It's simple, powerful, and gives you real control over your content.",
+    image: "/images/user.jpg",
+  },
+  {
+    name: "Meera Lakhani",
+    location: "Bhopal, India",
+    verified: true,
+    message:
+      "I was tired of chasing ads and sponsors. Mojo Network lets me focus on stories. It’s built for creators who want visibility, ownership, and ease—all without needing a big team or a tech background.",
+    image: "/images/user.jpg",
+  },
+  {
+    name: "Siddharth Iyer",
+    location: "Chennai, India",
+    verified: true,
+    message:
+      "Before Mojo Network, I was lost under others’ platforms. Now I have a clean space of my own. I don’t worry about reach or design. I just report and publish—it’s as simple and effective as that.",
     image: "/images/user.jpg",
   },
 ];
-
 
 export default function Testimonials() {
   return (
@@ -61,14 +78,15 @@ export default function Testimonials() {
 
         <Swiper
           spaceBetween={20}
-          slidesPerView={1}
+          slidesPerView={3}
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
           }}
         >
           {testimonials.map((item, i) => (
@@ -100,7 +118,9 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-gray-700 text-sm text-justify">{item.message}</p>
+                <p className="text-gray-700 text-sm text-justify">
+                  {item.message}
+                </p>
               </div>
             </SwiperSlide>
           ))}
