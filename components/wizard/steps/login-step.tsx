@@ -221,7 +221,7 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
             <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">🎉 Welcome Back!</h2>
-          <p className="text-gray-600">Your news portal "{portalDetails.channel_name}" is ready to use!</p>
+          <p className="text-gray-600">Your Saas Portal "{portalDetails.channel_name}" is ready to use!</p>
         </div>
 
         {/* Portal URL Card */}
@@ -302,7 +302,7 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
               <div>
                 <h3 className="font-semibold mb-2">Download Mobile App</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Manage your news portal on the go with our mobile content management app.
+                  Manage your Saas Portal on the go with our mobile content management app.
                 </p>
                 <div className="flex gap-2">
                   <Button

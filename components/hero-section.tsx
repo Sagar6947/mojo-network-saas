@@ -2,29 +2,47 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  MonitorStop,
-  BookOpenCheck,
-  FileCog,
-  SquareBottomDashedScissors,
-} from "lucide-react";
 
 export function HeroSection() {
   const features = [
     {
-      icon: <MonitorStop size={20} className="text-white" />,
-      title: "Empowerci Journalism",
+      icon: (
+        <img
+          src="/images/journalism/1.png"
+          alt="Empowered Journalism"
+          className="w-6 h-6"
+        />
+      ),
+      title: "Empowered Journalism",
     },
     {
-      icon: <BookOpenCheck size={20} className="text-white" />,
+      icon: (
+        <img
+          src="/images/journalism/2.png"
+          alt="AI Content Engine"
+          className="w-6 h-6"
+        />
+      ),
       title: "AI Content Engine",
     },
     {
-      icon: <FileCog size={20} className="text-white" />,
+      icon: (
+        <img
+          src="/images/journalism/3.png"
+          alt="Mobile Journalism Made Easy"
+          className="w-6 h-6"
+        />
+      ),
       title: "Mobile Journalism Made Easy",
     },
     {
-      icon: <SquareBottomDashedScissors size={20} className="text-white" />,
+      icon: (
+        <img
+          src="/images/journalism/4.png"
+          alt="Empowered Journalism"
+          className="w-6 h-6"
+        />
+      ),
       title: "Bulletin and Monetization Tools",
     },
   ];
@@ -39,7 +57,7 @@ export function HeroSection() {
               <span className="text-red-600">News Channel Today</span>
             </h2>
             <p className="text-gray-700 mt-4 text-[15px]">
-              Turn your smartphone into a complete digital news studio. Whether
+              Turn your smartphone into a complete <b>digital news studio</b>. Whether
               you're a budding journalist or a passionate storyteller, our
               powerful platform gives you everything you need to{" "}
               <b>capture real stories</b>, publish them instantly, and{" "}
@@ -52,7 +70,7 @@ export function HeroSection() {
             <h2 className="md:text-3xl text-2xl font-bold text-black-600 mb-1">
               Hyperlocal Journalism
             </h2>
-            <hr className="w-16 border-red-400 mb-6" />
+            <hr className="w-80 border-red-400 mb-6" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {features.map((feature, index) => (
@@ -72,7 +90,7 @@ export function HeroSection() {
           </div>
 
           <Link href="/create-portal">
-            <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full transition text-sm md:text-base w-72 text-center">
+            <button className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full transition text-sm md:text-base w-72 text-center">
               Start Your Channel Today
             </button>
           </Link>

@@ -33,13 +33,13 @@ const Feature = () => {
       icon: "/images/solutions/4.png",
       title: "Built‑in Ads + Sponsor Tools",
       description:
-        " No pitching, no chasing. We connect you to local advertisers and help you monetize every view and click.",
+        "No pitching, no chasing. We connect you to local advertisers and help you monetize every view and click.",
     },
     {
       icon: "/images/solutions/5.png",
       title: "Prestige + Power Among Peers",
       description:
-        " While others run websites, you run a channel. That makes you the journalist they look up to",
+        "While others run websites, you run a channel. That makes you the journalist they look up to.",
     },
     {
       icon: "/images/solutions/6.png",
@@ -47,11 +47,48 @@ const Feature = () => {
       description:
         "Do Journalism. Everything else—tech, promotion, publishing, billing—is taken care of. You focus on breaking the story; we’ll break the barriers.",
     },
+    {
+      icon: "/images/solutions/7.png",
+      title: "24/7 Support",
+      description:
+        "We’ve got your back any time of day with expert technical and content support when you need it most.",
+    },
+    {
+      icon: "/images/solutions/8.png",
+      title: "Multi-Language Publishing",
+      description:
+        "Publish in English, Hindi, or any local language—expand your reach to every corner of your audience.",
+    },
+    {
+      icon: "/images/solutions/9.png",
+      title: "Mobile-First Experience",
+      description:
+        "Our platform is built mobile-first, ensuring your content looks great and works fast on all devices.",
+    },
+    {
+      icon: "/images/solutions/10.png",
+      title: "Secure Cloud Hosting",
+      description:
+        "Stay protected with fast, reliable cloud hosting—no downtime, no data loss, no worries.",
+    },
+    {
+      icon: "/images/solutions/11.png",
+      title: "Real-Time Analytics",
+      description:
+        "Track your audience, clicks, and engagement instantly so you can make smart decisions quickly.",
+    },
+    {
+      icon: "/images/solutions/12.png",
+      title: "Content Library Access",
+      description:
+        "Get access to ready-to-use visuals, videos, and stories to boost your channel’s output with ease.",
+    },
   ];
+
   return (
     <>
-      <section className="w-full h-[231px] bg-green-700 flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-white font-bold">
+      <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+        <h1 className="text-4xl md:text-5xl text-black font-bold">
           Our Features
         </h1>
       </section>

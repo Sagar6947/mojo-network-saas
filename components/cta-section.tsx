@@ -22,7 +22,7 @@ export function CtaSection() {
             <Link href="/create-portal">
               <Button
                 size="lg"
-                className="text-white font-semibold text-lg px-8 btn-red hover:bg-gray-900"
+                className="text-white font-semibold text-lg px-8 btn-red hover:bg-gray-900 w-full"
               >
                 Create Your Channel
               </Button>
@@ -31,7 +31,7 @@ export function CtaSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-[#ca0013] border-[#dc26263d] hover:bg-white/10 text-lg px-8"
+                className="text-[#ca0013] border-[#dc26263d] hover:bg-white/10 text-lg px-8 w-full"
               >
                 Book a Demo
               </Button>
