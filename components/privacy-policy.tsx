@@ -14,7 +14,7 @@ const PrivacyPolicyPage = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-6 text-gray-700 text-sm leading-relaxed">
             <p>
-              Mojo Network values your privacy. This policy outlines how we
+              Mojo India Network values your privacy. This policy outlines how we
               collect, use, and protect your information when you use our
               platform.
             </p>
@@ -32,7 +32,7 @@ const PrivacyPolicyPage = () => {
               2. How We Use Your Data
             </h3>
             <p>
-              We use your data to operate and improve Mojo Network, personalize
+              We use your data to operate and improve Mojo India Network, personalize
               your experience, send notifications, and ensure platform security.
             </p>
 
@@ -91,7 +91,7 @@ const PrivacyPolicyPage = () => {
             </p>
 
             <p className="mt-6">
-              By using Mojo Network, you agree to this privacy policy. If you
+              By using Mojo India Network, you agree to this privacy policy. If you
               have questions, please contact us anytime.
             </p>
           </div>

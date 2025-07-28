@@ -23,13 +23,7 @@ export default function AboutPage() {
               Empowering Every Voice to Become a News Channel
             </h2>
             <p className="text-gray-700 text-base leading-relaxed">
-              At Mojo Network, we empower everyday storytellers, citizen
-              reporters, and aspiring journalists to build their own digital
-              news channels—right from their smartphones. Whether you're
-              covering local events, community updates, or regional politics,
-              our all-in-one platform gives you the tools to publish instantly,
-              grow your brand, and earn revenue, without needing a technical
-              background.
+            At <b>Mojo India Network</b>, we empower everyday storytellers, citizen reporters, and aspiring journalists to build their own <b>hyperlocal</b> digital news channels—right from their smartphones. Whether you're covering local events, community updates, or regional politics, our all-in-one <b>SaaS</b> platform gives you the tools to publish instantly, grow your brand, and earn revenue—without needing a technical background.
             </p>
           </div>
         </div>
@@ -90,7 +84,7 @@ export default function AboutPage() {
                   Our Core Values
                 </h3>
                 <p className="text-gray-600 text-sm pt-0 p-3">
-                  At Mojo Network, we believe in empowerment—giving every
+                  At Mojo India Network, we believe in empowerment giving every
                   individual the voice and tools to become a news creator. With
                   a strong focus on innovation, we simplify journalism through
                   smart, accessible technology.

@@ -15,8 +15,7 @@ export function CtaSection() {
             Ready to Launch Your News Channel?
           </h2>
           <p className="text-xl opacity-90 text-black">
-            Book a live demo today and see how MoJo Network can transform your
-            media presence
+            Book a live demo today and see how MoJo Network’s <b>Hyperlocal <br /> SaaS</b> platform can transform your media presence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/create-portal">

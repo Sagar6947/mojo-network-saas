@@ -9,11 +9,11 @@ export function HeroSection() {
       icon: (
         <img
           src="/images/journalism/1.png"
-          alt="Empowered Journalism"
+          alt="Empowering Journalism"
           className="w-6 h-6"
         />
       ),
-      title: "Empowered Journalism",
+      title: "Empowering Journalism",
     },
     {
       icon: (
@@ -57,12 +57,7 @@ export function HeroSection() {
               <span className="text-red-600">News Channel Today</span>
             </h2>
             <p className="text-gray-700 mt-4 text-[15px]">
-              Turn your smartphone into a complete <b>digital news studio</b>. Whether
-              you're a budding journalist or a passionate storyteller, our
-              powerful platform gives you everything you need to{" "}
-              <b>capture real stories</b>, publish them instantly, and{" "}
-              <b>earn from your local content</b> all from one easy-to-use
-              dashboard.
+            Turn your smartphone into a digital news studio. <b>Capture real stories</b>, publish instantly, and earn all from one easy dashboard. <b>India’s first AI-driven SaaS platform empowering local journalists and media entrepreneurs.</b>
             </p>
           </div>
 

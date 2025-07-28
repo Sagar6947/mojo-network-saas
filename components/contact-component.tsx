@@ -175,7 +175,7 @@ const Contact = () => {
             </h2>
             <p className="text-black mb-2">
               We’d love to hear from you! Whether you have a question, need
-              support, or want to explore how Mojo Network can empower your
+              support, or want to explore how Mojo India Network can empower your
               journalism journey, our team is here to help.
             </p>
             <div className="space-y-4 pt-4">
@@ -189,18 +189,10 @@ const Contact = () => {
               </div>
               <div className="flex items-center gap-4">
                 <div className="bg-red-600 text-white rounded-full p-3">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <span className="text-black font-semibold">
-                  Phone: +91 XXXX XXXX XX
-                </span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-red-600 text-white rounded-full p-3">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <span className="text-black font-semibold">
-                  Address: New Delhi, India
+                Bhopal, Madhya Pradesh
                 </span>
               </div>
             </div>
@@ -208,7 +200,7 @@ const Contact = () => {
           <div className="w-full">
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-8"
+              className="flex flex-col md:grid md:grid-cols-2 gap-4 p-4 md:p-8"
               style={{
                 background: "#fef5fa",
                 boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",

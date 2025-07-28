@@ -5,8 +5,8 @@ import { Footer } from "@/components/footer";
 import Pricing from "@/components/pricing-component";
 
 export const metadata = {
-  title: "Pricing | Mojo Network",
-  description: "Learn more about Mojo Network’s mission and vision.",
+  title: "Pricing | Mojo India Network",
+  description: "Learn more about Mojo India Network mission and vision.",
 };
 
 export default function PricingPage() {

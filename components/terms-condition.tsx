@@ -15,7 +15,7 @@ const TermsConditionPage = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-6 text-gray-700 text-sm leading-relaxed">
             <p>
-              By accessing or using Mojo Network’s services, you agree to the
+              By accessing or using Mojo India Network’s services, you agree to the
               following terms and conditions. If you do not agree, please
               refrain from using our platform.
             </p>
@@ -34,7 +34,7 @@ const TermsConditionPage = () => {
             </h3>
             <p>
               You retain ownership of your original content. However, by posting
-              on Mojo Network, you grant us a non-exclusive, royalty-free
+              on Mojo India Network, you grant us a non-exclusive, royalty-free
               license to use, display, and distribute your content on our
               platform and promotional channels.
             </p>
@@ -51,7 +51,7 @@ const TermsConditionPage = () => {
               4. Platform Changes
             </h3>
             <p>
-              Mojo Network reserves the right to modify, suspend, or discontinue
+              Mojo India Network reserves the right to modify, suspend, or discontinue
               services at any time without prior notice.
             </p>
 
@@ -71,12 +71,12 @@ const TermsConditionPage = () => {
             </h3>
             <p>
               Users must comply with all local and international laws when using
-              Mojo Network, including but not limited to copyright, defamation,
+              Mojo India Network, including but not limited to copyright, defamation,
               and data protection laws.
             </p>
 
             <p className="mt-6">
-              By using Mojo Network, you agree to be bound by these terms. We
+              By using Mojo India Network, you agree to be bound by these terms. We
               encourage you to check this page regularly as terms may update
               without prior notice.
             </p>

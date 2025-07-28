@@ -28,11 +28,13 @@ export function AboutSection() {
     <section className="py-16 md:py-24 bg-white md:pt-10">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
-          The Problem{" "}
+          The Problem What Every{" "}
           <span className="gradient-text leading-tight">
-            What Every Journalist <br /> Feels
+             Hyperlocal <br />Journalist 
           </span>{" "}
-          But Won’t Admit
+        Faces   Solved by <span className="gradient-text leading-tight">
+            SaaS
+          </span>{" "} 
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -73,12 +75,14 @@ export function AboutSection() {
             ))}
           </div>
 
-          <div className="order-1 md:order-2 overflow-hidden block relative lg:absolute lg:right-0 h-full mt-0 lg:mt-[100px]">
-            <img
-              src="/images/problem-main.png"
-              alt="Phone Preview"
-              className="h-full lg:h-[80%] object-contain"
-            />
+          <div className="order-1 md:order-2 block relative lg:absolute lg:right-0 h-full max-h-full overflow-hidden">
+            <div className="w-full h-full flex items-center justify-end">
+              <img
+                src="/images/problem-main.png"
+                alt="Phone Preview"
+                className="max-w-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </div>

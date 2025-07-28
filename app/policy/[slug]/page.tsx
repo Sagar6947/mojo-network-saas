@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const content = await fetchContent(id);
 
   return {
-    title: `${content.title} | Mojo Network`,
+    title: `${content.title} | Mojo India Network`,
     description: `Read about ${content.title} in detail.`,
   };
 }
