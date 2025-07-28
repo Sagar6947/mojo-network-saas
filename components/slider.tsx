@@ -6,7 +6,7 @@ import "swiper/css";
 
 export default function ImageSlider() {
   const images = [
-    { src: "/images/steps/1.png", title: "Welcome to MojoNetwork" },
+    { src: "/images/steps/1.png", title: "Welcome to Mojo India Network" },
     { src: "/images/steps/2.png", title: "Verify Your Phone Number" },
     { src: "/images/steps/3.png", title: "Name Your News Channel" },
     { src: "/images/steps/4.png", title: "Domain for your news Channel" },

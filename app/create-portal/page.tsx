@@ -93,7 +93,7 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
   const totalSteps = 9
 
   const stepTitles = [
-    "Welcome to MojoNetwork",
+    "Welcome to Mojo India Network",
     "Verify Your Phone Number",
     "Name Your News Channel",
     "Create Your Brand Identity",

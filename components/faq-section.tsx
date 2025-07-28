@@ -9,9 +9,9 @@ import {
 
 const faqs = [
   {
-    question: "What is Mojo Network?",
+    question: "What is Mojo India Network?",
     answer:
-      "Mojo Network is a mobile journalism platform that enables reporters to create and manage their own hyperlocal news channels directly from their smartphones.",
+      "Mojo India Network is a mobile journalism platform that enables reporters to create and manage their own hyperlocal news channels directly from their smartphones.",
   },
   {
     question: "How does the content engine support hyperlocal news?",
@@ -20,25 +20,25 @@ const faqs = [
   },
   {
     question:
-      "Can I earn money through my hyperlocal news channel on Mojo Network?",
+      "Can I earn through my hyperlocal channel on Mojo India?",
     answer:
-      "Yes! Mojo Network offers easy-to-use tools to monetize your mobile journalism efforts with local advertisements, sponsored stories, and Google Ads",
+      "Yes! Mojo India Network offers easy-to-use tools to monetize your mobile journalism efforts with local advertisements, sponsored stories, and Google Ads",
   },
   {
     question:
-      "Do I need expensive equipment to practice mobile journalism on Mojo Network?",
+      "Do I need costly gear for Mojo mobile journalism?",
     answer:
       "No special or expensive equipment is needed. Reporters can run their full news channel and publish hyperlocal news using just a smartphone.",
   },
   {
     question:
-      "How does AI technology help with mobile journalism on Mojo Network?",
+      "How does AI support Mojo mobile journalism?",
     answer:
       "AI tools turn your voice notes and videos into publish-ready news articles, automatically create daily bulletins, and share your hyperlocal news content on social media—saving you time and effort.",
   },
   {
     question:
-      "Is Mojo Network available in regional languages for hyperlocal audiences?",
+      "Does Mojo support regional languages for hyperlocal reporting?",
     answer:
       "Yes, Mojo supports Hindi, Bundeli, Bagheli, and other regional languages, helping reporters connect deeply with their hyperlocal audience.",
   },
@@ -49,14 +49,14 @@ const faqs = [
   },
   {
     question:
-      "How Can I Find The Best News Channel Development Company In India?",
+      "How to Find the Best News Channel Development Company in India?",
     answer:
       "Look for a company with proven experience, full-featured offerings, client support, and a strong portfolio in digital news publishing.",
   },
   {
     question: "Which Is The Top News Channel Development Company In India?",
     answer:
-      "MoJo Network is among the top choices, known for AI-powered content engines, mobile-first design, and seamless publishing tools.",
+      "Mojo India Network is among the top choices, known for AI-powered content engines, mobile-first design, and seamless publishing tools.",
   },
   {
     question: "Why Should I Work With Your Company?",
@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     question:
-      "How Can I Schedule A Consultation With The Experts On The News Channel?",
+      "How to consult with experts on my news channel?",
     answer:
       "Simply use the 'Contact Us' form on our website or call our support number to schedule a free consultation.",
   },
@@ -84,7 +84,7 @@ export function FaqSection() {
     <section id="faq" className="py-12 bg-white">
       <div className="container max-w-[1200px] mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-black leading-tight">Have questions before reaching out? <br />
+          <h2 className="text-2xl md:text-4xl font-bold text-black leading-tight">Have questions before reaching out? <br />
             <span className="gradient-text">Frequently Asked Questions</span>
           </h2>
         </div>
@@ -106,7 +106,7 @@ export function FaqSection() {
           <Accordion type="multiple" className="w-full space-y-4">
             {rightFaqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-right-${index}`}>
-                <AccordionTrigger className="text-justify font-medium text-base">
+                <AccordionTrigger className="text-left font-medium text-base">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 text-sm mt-1">

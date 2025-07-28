@@ -3,8 +3,8 @@ import { Footer } from "@/components/footer";
 import Link from "next/link";
 
 export const metadata = {
-  title: "404 - Page Not Found | Mojo Network",
-  description: "The page you are looking for does not exist. Return to the Mojo Network homepage.",
+  title: "404 - Page Not Found | Mojo India Network",
+  description: "The page you are looking for does not exist. Return to the Mojo India Network homepage.",
 };
 
 export default function NotFoundPage() {
