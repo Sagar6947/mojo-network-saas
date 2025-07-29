@@ -23,11 +23,11 @@ export default function ImageSlider() {
   return (
     <div className="w-full max-w-[1200px] mx-auto py-12 px-4">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-black">
-        In simple steps, you can create{" "}
-        <span className="gradient-text">
-          your own Saas Portal <br />
+        In simple steps, you can create your
+        <br /> own <span className="gradient-text">
+          Hyperlocal Channel
         </span>{" "}
-        your own Saas Portal effortlessly.
+        effortlessly
       </h2>
 
       <Swiper

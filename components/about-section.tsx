@@ -65,7 +65,7 @@ export function AboutSection() {
                   </h3>
                   <p
                     className={`mt-1 text-sm ${
-                      idx % 2 === 0 ? "text-white/90" : "text-gray-600"
+                      idx % 2 === 0 ? "text-white/90" : "text-black"
                     }`}
                   >
                     {item.desc}

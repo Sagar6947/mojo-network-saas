@@ -56,7 +56,7 @@ export function HeroSection() {
               Start Your Own <br />
               <span className="text-red-600">News Channel Today</span>
             </h2>
-            <p className="text-gray-700 mt-4 text-[15px]">
+            <p className="text-black mt-4 text-[15px]">
             Turn your smartphone into a digital news studio. <b>Capture real stories</b>, publish instantly, and earn all from one easy dashboard. <b>India’s first AI-driven SaaS platform empowering local journalists and media entrepreneurs.</b>
             </p>
           </div>
@@ -76,7 +76,7 @@ export function HeroSection() {
                   <div className="p-2 btn-red rounded-full flex items-center justify-center w-10 h-10">
                     {feature.icon}
                   </div>
-                  <div className="text-2xs font-medium text-gray-800">
+                  <div className="text-2xs font-medium text-black">
                     {feature.title}
                   </div>
                 </div>
