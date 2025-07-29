@@ -22,7 +22,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
               Empowering Every Voice to Become a News Channel
             </h2>
-            <p className="text-gray-700 text-base leading-relaxed">
+            <p className="text-black text-base leading-relaxed">
             At <b>Mojo India Network</b>, we empower everyday storytellers, citizen reporters, and aspiring journalists to build their own <b>hyperlocal</b> digital news channels—right from their smartphones. Whether you're covering local events, community updates, or regional politics, our all-in-one <b>SaaS</b> platform gives you the tools to publish instantly, grow your brand, and earn revenue—without needing a technical background.
             </p>
           </div>
@@ -43,10 +43,10 @@ export default function AboutPage() {
                 className="w-full mx-auto mb-0 h-64"
               />
               <div className="pt-4 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-black mb-2">
                   Our Mission
                 </h3>
-                <p className="text-gray-600 text-sm pt-0 p-3">
+                <p className="text-black text-sm pt-0 p-3">
                   To empower individuals and communities to become storytellers
                   by providing easy-to-use, AI-powered mobile journalism tools
                   that make publishing hyperlocal news accessible to everyone.
@@ -61,10 +61,10 @@ export default function AboutPage() {
                 className="w-full mx-auto mb-0 h-64"
               />
               <div className="pt-4 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-black mb-2">
                   Our Vision
                 </h3>
-                <p className="text-gray-600 text-sm pt-0 p-3">
+                <p className="text-black text-sm pt-0 p-3">
                   To redefine journalism by enabling a decentralized network of
                   digital news creators who share real stories from real
                   people—building a more informed, connected, and democratic
@@ -80,10 +80,10 @@ export default function AboutPage() {
                 className="w-full mx-auto mb-0 h-64"
               />
               <div className="pt-4 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-black mb-2">
                   Our Core Values
                 </h3>
-                <p className="text-gray-600 text-sm pt-0 p-3">
+                <p className="text-black text-sm pt-0 p-3">
                   At Mojo India Network, we believe in empowerment giving every
                   individual the voice and tools to become a news creator. With
                   a strong focus on innovation, we simplify journalism through

@@ -106,7 +106,7 @@ const Faq = () => {
                   <AccordionTrigger className="text-left font-medium text-base">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 text-sm mt-1">
+                  <AccordionContent className="text-black text-sm mt-1">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -119,7 +119,7 @@ const Faq = () => {
                   <AccordionTrigger className="text-left font-medium text-base">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 text-sm mt-1">
+                  <AccordionContent className="text-black text-sm mt-1">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

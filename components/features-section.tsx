@@ -96,7 +96,7 @@ export function FeaturesSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-xs sm:text-sm md:text-base text-center">
+                <CardDescription className="text-xs text-black sm:text-sm md:text-base text-center">
                   {feature.description}
                 </CardDescription>
               </CardContent>

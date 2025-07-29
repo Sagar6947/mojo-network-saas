@@ -130,7 +130,7 @@ const Pricing = () => {
                     {plan.features.map((feature, idx) => (
                       <li
                         key={idx}
-                        className="flex items-center text-sm text-gray-700"
+                        className="flex items-center text-sm text-black"
                       >
                         <Check className="h-4 w-4 text-green-500 mr-2" />
                         {feature}
