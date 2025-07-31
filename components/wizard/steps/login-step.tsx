@@ -34,6 +34,13 @@ interface LoginStepProps {
     state: string
     city: string
   }) => void
+  updateUserSelections: (data: {
+    name: string;
+    email: string;
+    phone: string;
+    state: string;
+    city: string;
+  }) => void; // New prop to update userSelections
   goToStep: (step: number) => void
   loginstate: boolean
 }
@@ -61,6 +68,9 @@ interface SearchableDropdownProps {
 interface UserLoginData {
   name: string
   contact_no: number
+  email?: string,
+  state: string,
+  city: string,
   portal_id: string
   is_profile_complete: number
   token: string
@@ -99,7 +109,6 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
   const filteredOptions = options.filter((option) => option[labelKey].toLowerCase().includes(searchTerm.toLowerCase()))
 
   const handleSelect = (optionValue: string) => {
-    console.log("Selected option value:", optionValue)
     const selectedOption = options.find((option) => option[valueKey].toString() === optionValue)
     if (selectedOption) {
       setDisplayValue(selectedOption[labelKey])
@@ -697,7 +706,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onBack, onLoginSuccess }) => {
   )
 }
 
-export function LoginStep({ onNext, goToStep, loginstate }: LoginStepProps) {
+export function LoginStep({ onNext, goToStep, loginstate, updateUserSelections }: LoginStepProps) {
   const [isLoginMode, setIsLoginMode] = useState(loginstate)
   const [showPortalDetails, setShowPortalDetails] = useState(false)
   const [userData, setUserData] = useState<UserLoginData | null>(null)
@@ -802,17 +811,26 @@ export function LoginStep({ onNext, goToStep, loginstate }: LoginStepProps) {
   }
 
   const handleLoginSuccess = (loginData: UserLoginData) => {
-    setUserData(loginData)
+    setUserData(loginData);
+
+    // Update userSelections with data from the API response
+    updateUserSelections({
+      name: loginData.name || "",
+      email: loginData.email || "", // Fallback if email is not provided
+      phone: loginData.contact_no.toString(),
+      state: loginData.state || "",
+      city: loginData.city || "",
+    });
 
     // Check if profile is complete
     if (loginData.is_profile_complete === 1) {
       // Show portal details
-      setShowPortalDetails(true)
+      setShowPortalDetails(true);
     } else {
       // Redirect to PortalNameStep (step 3) for incomplete profiles
-      goToStep(3)
+      goToStep(3);
     }
-  }
+  };
 
   const handleNext = async () => {
     const newErrors = {

@@ -14,10 +14,12 @@ interface OtpStepProps {
   personName: string
   emailId: string
   phoneNumber: string
+  state: string,
+  city: string,
   onEditPhone: () => void
 }
 
-export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber, onEditPhone }: OtpStepProps) {
+export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber,state, city, onEditPhone }: OtpStepProps) {
   const [otp, setOtp] = useState(["", "", "", "", ""])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -90,6 +92,8 @@ export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber, onEd
       formData.append("contact_no", phoneNumber)
       formData.append("email_id", emailId)
       formData.append("name", personName)
+      formData.append("state", state)
+      formData.append("city", city)
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/userRegisterOTPVerify`, {
         method: "POST",
