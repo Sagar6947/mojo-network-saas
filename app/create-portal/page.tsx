@@ -98,7 +98,7 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
     "Welcome to Mojo India Network",
     "Verify Your Phone Number",
     "Name Your News Channel",
-    "Create Your Brand Identity",
+    "Add Your Brand Identity",
     "Choose Your Color Theme",
     "Select a Layout Template",
     "Pick News Categories",

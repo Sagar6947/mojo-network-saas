@@ -108,9 +108,8 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
             filteredOptions.map((option) => (
               <li
                 key={option[valueKey]}
-                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                  value === option[valueKey] ? "bg-gray-200" : ""
-                }`}
+                className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${value === option[valueKey] ? "bg-gray-200" : ""
+                  }`}
                 onClick={() => handleSelect(option[valueKey])}
               >
                 {option[labelKey]}
@@ -134,6 +133,12 @@ export function PortalNameStep({ onBack, onNext, nativeLanguage }: PortalNameSte
   const [checkingDomains, setCheckingDomains] = useState(false);
   const [channelLanguage, setChannelLanguage] = useState("");
   const platformDomain = "mojonetwork.in";
+
+  useEffect(() => {
+    if (channelName.trim()) {
+      setPortalName(channelName);
+    }
+  }, [channelName])
 
   useEffect(() => {
     if (!portalName.trim()) {
@@ -247,11 +252,11 @@ export function PortalNameStep({ onBack, onNext, nativeLanguage }: PortalNameSte
   };
 
   return (
-    <StepContainer subtitle="Choose a memorable name and domain for your news portal">
+    <StepContainer subtitle="Choose a memorable name and domain for your news channel">
       <div className="space-y-8">
         <div className="space-y-2">
           <Label htmlFor="language" className="text-sm font-medium">
-            Native Language
+            Channel Language
           </Label>
           <SearchableDropdown
             options={nativeLanguage}
@@ -259,7 +264,7 @@ export function PortalNameStep({ onBack, onNext, nativeLanguage }: PortalNameSte
             onChange={setChannelLanguage}
             labelKey="language_name"
             valueKey="language_slug"
-            placeholder="Search languages..."
+            placeholder="Choose language"
           />
         </div>
         <div className="space-y-2">
@@ -369,7 +374,7 @@ export function PortalNameStep({ onBack, onNext, nativeLanguage }: PortalNameSte
                   <div>
                     <p className="text-sm font-medium text-green-900">Domain Available!</p>
                     <p className="text-sm text-green-800 mt-1">
-                      Your portal will be available at: <strong>https://{selectedDomain}</strong>
+                      Your channel will be available at: <strong>https://{selectedDomain}</strong>
                     </p>
                   </div>
                 </div>
