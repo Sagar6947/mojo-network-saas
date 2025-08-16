@@ -6,7 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Mojo Network - Launch Your Own News Channel in Minutes",
+  title: "Mojo India Network - Launch your own hyper local news channel in minutes",
   description:
     "AI-powered, multilingual, and fully customizable news portal platform built for India's local reporters, news entrepreneurs, and digital media pioneers.",
   icons: {

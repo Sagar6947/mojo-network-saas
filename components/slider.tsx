@@ -6,7 +6,7 @@ import "swiper/css";
 
 export default function ImageSlider() {
   const images = [
-    { src: "/images/steps/1.png", title: "Welcome to MojoNetwork" },
+    { src: "/images/steps/1.png", title: "Welcome to Mojo India Network" },
     { src: "/images/steps/2.png", title: "Verify Your Phone Number" },
     { src: "/images/steps/3.png", title: "Name Your News Channel" },
     { src: "/images/steps/4.png", title: "Domain for your news Channel" },
@@ -23,11 +23,11 @@ export default function ImageSlider() {
   return (
     <div className="w-full max-w-[1200px] mx-auto py-12 px-4">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-black">
-        In simple steps, you can create{" "}
-        <span className="gradient-text">
-          your own Saas Portal <br />
+        In simple steps, you can create your
+        <br /> own <span className="gradient-text">
+          Hyperlocal Channel
         </span>{" "}
-        your own Saas Portal effortlessly.
+        effortlessly
       </h2>
 
       <Swiper

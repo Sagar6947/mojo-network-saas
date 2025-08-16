@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const policies = [
@@ -24,27 +23,13 @@ export function Footer() {
               className="w-32"
             />
 
-            <p className="text-white pt-0">
+            <p className="text-white pt-0 pb-10">
               India's first AI-driven Saas Platform empowering local
               journalists and media entrepreneurs.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-white hover:text-red-600 text-[15px]">
-                <Facebook size={20} />
-              </Link>
-              <Link href="#" className="text-white hover:text-red-600 text-[15px]">
-                <Twitter size={20} />
-              </Link>
-              <Link href="#" className="text-white hover:text-red-600 text-[15px]">
-                <Instagram size={20} />
-              </Link>
-              <Link href="#" className="text-white hover:text-red-600 text-[15px]">
-                <Youtube size={20} />
-              </Link>
-            </div>
           </div>
 
-          <div>
+          <div className="pb-10">
             <h4 className="font-semibold text-lg mb-4 text-white">
               Quick Links
             </h4>
@@ -72,17 +57,17 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="pb-10">
             <h4 className="font-semibold text-lg mb-4 text-white">Usefull Links</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/faq" className="text-white hover:text-red-600">
-                  FAQ
+                  FAQ's
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-white hover:text-red-600 text-[15px]">
-                  contact
+                  Contact
                 </Link>
               </li>
               <li>
@@ -93,7 +78,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="pb-10">
             <h4 className="font-semibold text-lg mb-4 text-white">Our Policies</h4>
             <ul className="space-y-2 fs-sm">
                {policies.map(({ title, href }) => (
@@ -114,10 +99,8 @@ export function Footer() {
                 <Mail size={16} /> Email: info@mojonetwork.in
               </li>
               <li className="text-white flex items-center gap-2">
-                <Phone size={16} /> Phone: +91 XXXX XXXX XX
-              </li>
-              <li className="text-white flex items-center gap-2">
-               Address: 1st floor, Plot no-9, Rohit Nagar, Bawadiya Kalan, Gulmohar Colony, Bhopal, Madhya Pradesh 462039
+                <MapPin size={16} /> 
+               Bhopal, Madhya Pradesh
               </li>
             </ul>
           </div>
@@ -125,7 +108,7 @@ export function Footer() {
 
         <div className="border-t mt-8 pt-5 flex flex-col md:flex-row justify-center items-center">
           <p className="text-white text-sm">
-            © {new Date().getFullYear()} Mojo Network. All rights reserved.
+            © {new Date().getFullYear()} Mojo India Network. All rights reserved.
           </p>
         </div>
       </div>
