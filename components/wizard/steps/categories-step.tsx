@@ -63,7 +63,7 @@ export function CategoriesStep({ onBack, onNext, categories, imagePath }: Catego
   }
 
   return (
-    <StepContainer subtitle="Select the news categories you want to cover in your portal">
+    <StepContainer subtitle="Select the news categories you want to cover in your channel">
       <div className="space-y-6">
         <div className="text-center">
           <p className="text-gray-600 mb-4">Choose at least 3 categories to provide diverse content for your readers</p>

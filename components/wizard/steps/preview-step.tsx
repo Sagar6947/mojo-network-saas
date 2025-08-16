@@ -119,11 +119,11 @@ export function PreviewStep({ onBack, onNext, userSelections, commonData }: Prev
   }
 
   return (
-    <StepContainer subtitle="Review your portal configuration before launching">
+    <StepContainer subtitle="Review your channel configuration before launching">
       <div className="space-y-8">
         {/* Portal Preview */}
         <Card className="p-6 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
-          <h3 className="text-xl font-bold text-center mb-6">Portal Preview</h3>
+          <h3 className="text-xl font-bold text-center mb-6">Channel Preview</h3>
 
           {/* Mock browser window */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -287,7 +287,7 @@ export function PreviewStep({ onBack, onNext, userSelections, commonData }: Prev
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <h4 className="font-medium text-green-900 mb-2">🎉 Ready to Launch!</h4>
           <p className="text-sm text-green-800">
-            Your portal configuration looks great! Click "Continue" to proceed to the final launch step.
+            Your channel configuration looks great! Click "Continue" to proceed to the final launch step.
           </p>
         </div>
 
