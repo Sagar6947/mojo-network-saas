@@ -211,7 +211,6 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
             <li>• Favicon should be small and simple for clarity</li>
           </ul>
         </div>
-
         <NavigationButtons onBack={onBack} onNext={handleNext} nextLabel={selectedFavicon || selectedLogo ? 'Continue' : 'Skip'} nextDisabled={false} />
       </div>
     </StepContainer>

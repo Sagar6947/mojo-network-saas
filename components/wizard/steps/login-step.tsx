@@ -213,7 +213,7 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
   }
 
   return (
-    <StepContainer subtitle="Welcome back! Your portal is ready to use.">
+    <StepContainer subtitle="Welcome back! Your channel is ready to use.">
       <div className="space-y-8">
         <Button
           variant="ghost"
@@ -230,14 +230,14 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
             <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">🎉 Welcome Back!</h2>
-          <p className="text-gray-600">Your Saas Portal "{portalDetails.channel_name}" is ready to use!</p>
+          <p className="text-gray-600">Your Saas Channel "{portalDetails.channel_name}" is ready to use!</p>
         </div>
 
         {/* Portal URL Card */}
         <Card className="p-6 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
           <div className="text-center space-y-4">
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Your Portal URL:</p>
+              <p className="text-sm font-medium text-gray-700 mb-2">Your Channel URL:</p>
               <div className="flex items-center justify-center gap-2 bg-white rounded-lg p-3 border">
                 <span className="font-mono text-lg text-purple-600 break-all">{displayUrl}</span>
                 <Button variant="outline" size="sm" onClick={handleCopyUrl} className="flex-shrink-0 bg-transparent">
@@ -261,7 +261,7 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button onClick={handleVisitPortal} className="flex items-center gap-2">
                 <ExternalLink className="h-4 w-4" />
-                Visit Your Portal
+                Visit Your Channel
               </Button>
               <Button variant="outline" onClick={() => window.open(displayAdminUrl, "_blank")}>
                 Go to Dashboard
@@ -358,7 +358,7 @@ const PortalDetails: React.FC<PortalDetailsProps> = ({ userData, onBack }) => {
 
         {/* Portal Details */}
         <Card className="p-6 bg-gray-50">
-          <h3 className="font-semibold mb-4">Portal Details</h3>
+          <h3 className="font-semibold mb-4">Channel Details</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div>
               <span className="text-gray-600">Portal ID:</span>
