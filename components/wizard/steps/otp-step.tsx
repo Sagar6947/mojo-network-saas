@@ -19,7 +19,7 @@ interface OtpStepProps {
   onEditPhone: () => void
 }
 
-export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber,state, city, onEditPhone }: OtpStepProps) {
+export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber, state, city, onEditPhone }: OtpStepProps) {
   const [otp, setOtp] = useState(["", "", "", "", ""])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -125,16 +125,29 @@ export function OtpStep({ onBack, onNext, personName, emailId, phoneNumber,state
     }
   }
 
-  const handleResendOtp = () => {
+  const handleResendOtp = async () => {
     setCountdown(30)
     setOtp(["", "", "", "", ""])
     setError("")
     inputRefs[0]?.current?.focus()
 
-    // Simulate resend
-    setTimeout(() => {
-      alert("New OTP sent! For testing, use 12345.")
-    }, 500)
+    try {
+      const formData = new FormData()
+      formData.append("contact_no", phoneNumber)
+      formData.append("email_id", emailId)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkUserForRegistration`, {
+        method: "POST",
+        body: formData,
+      })
+      const result = await response.json()
+      if (!response.ok || result.status === 400) {
+        alert("OTP Server is down, please try again later");
+        return
+      }
+      alert(`New OTP sent to your phone: ${phoneNumber}`)
+    } catch (error) {
+      console.error("Error creating portal:", error)
+    }
   }
 
   return (
