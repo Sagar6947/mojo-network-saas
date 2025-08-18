@@ -9,47 +9,47 @@ export function HeroSection() {
       icon: (
         <img
           src="/images/journalism/1.png"
-          alt="Empowering Journalism"
+          alt="Start your News Channel"
           className="w-6 h-6"
         />
       ),
-      title: "Empowering Journalism",
+      title: "Start your News Channel",
     },
     {
       icon: (
         <img
           src="/images/journalism/2.png"
-          alt="AI Content Engine"
+          alt="AI Powered Solutions"
           className="w-6 h-6"
         />
       ),
-      title: "AI Content Engine",
+      title: "AI Powered Solutions",
     },
     {
       icon: (
         <img
           src="/images/journalism/3.png"
-          alt="Mobile Journalism Made Easy"
+          alt="Advertisement Assistance"
           className="w-6 h-6"
         />
       ),
-      title: "Mobile Journalism Made Easy",
+      title: "Advertisement Assistance",
     },
     {
       icon: (
         <img
           src="/images/journalism/4.png"
-          alt="Empowered Journalism"
+          alt="Centralized Studio Support"
           className="w-6 h-6"
         />
       ),
-      title: "Bulletin and Monetization Tools",
+      title: "Centralized Studio Support",
     },
   ];
 
   return (
     <section className="bg-[#fef5f9] py-10 px-4 pt-0 md:pt-10">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-0 md:p-10 md:pt-3">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center p-0 md:p-10 md:pt-3">
         <div className="flex flex-col gap-6 order-2 md:order-1">
           <div className="p-0">
             <h2 className="text-[28px] leading-[36px] md:text-[51px] md:leading-[59px] font-bold text-black-900">
@@ -92,7 +92,7 @@ export function HeroSection() {
         </div>
         <div className="order-1 md:order-2 overflow-hidden mt-0 md:-mt-10 lg:-mt-16">
           <video
-            src="/images/mojo-1.mp4"
+            src="/images/mojo-final.mp4"
             autoPlay
             loop
             muted
