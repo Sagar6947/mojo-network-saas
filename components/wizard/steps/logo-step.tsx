@@ -93,7 +93,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
       <div className="space-y-8">
         {/* Logo Section */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Website Logo (Optional)</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Channel Logo (Optional)</h3>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             {/* <TabsList className="grid grid-cols-1 mb-6">
               <TabsTrigger value="upload" className="flex items-center gap-2">
@@ -188,7 +188,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
                   <Upload className="w-6 h-6 text-purple-500" />
                 </div>
                 <p className="text-gray-600 mb-1 font-medium">Upload Favicon</p>
-                <p className="text-xs text-gray-400">16x16 or 32x32 pixels recommended</p>
+                <p className="text-xs text-gray-400">32x32 pixels recommended</p>
                 <input
                   type="file"
                   id="favicon-upload"
@@ -206,6 +206,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
           <h4 className="font-medium text-blue-900 mb-2">Upload Tips:</h4>
           <ul className="text-sm text-blue-800 space-y-1">
             <li>• Use high-resolution images for best quality</li>
+            <li>• Please upload an image smaller than 5 MB</li>
             <li>• Square images work best for logos</li>
             <li>• Transparent backgrounds (PNG) are recommended</li>
             <li>• Favicon should be small and simple for clarity</li>
