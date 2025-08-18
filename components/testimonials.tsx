@@ -12,7 +12,7 @@ const testimonials = [
     location: "Delhi, India",
     verified: true,
     message:
-      "Mojo Network changed how I share news. I can now report, edit, and publish updates quickly with just my phone. It’s perfect for people like me who want to cover local news without needing a full media setup.",
+      "Mojo India Network changed how I share news. I can now report, edit, and publish updates quickly with just my phone. It’s perfect for people like me who want to cover local news without needing a full media setup.",
     image: "/images/user.jpg",
   },
   {
@@ -20,7 +20,7 @@ const testimonials = [
     location: "Nagpur, India",
     verified: true,
     message:
-      "I started using Mojo Network without any confusion. It’s clean, easy to use, and helps me share real stories. The monetization tools make it easier for creators like me to grow without chasing sponsors every time.",
+      "I started using Mojo India Network without any confusion. It’s clean, easy to use, and helps me share real stories. The monetization tools make it easier for creators like me to grow without chasing sponsors every time.",
     image: "/images/user.jpg",
   },
   {
@@ -28,7 +28,7 @@ const testimonials = [
     location: "Lucknow, India",
     verified: false,
     message:
-      "Posting local updates on social media was easy, but not serious. Mojo Network gave me a real platform to build my own identity. It’s user-friendly, powerful, and lets me publish news my way—anytime, anywhere.",
+      "Posting local updates on social media was easy, but not serious. Mojo India Network gave me a real platform to build my own identity. It’s user-friendly, powerful, and lets me publish news my way—anytime, anywhere.",
     image: "/images/user.jpg",
   },
   {
@@ -36,7 +36,7 @@ const testimonials = [
     location: "Kolkata, India",
     verified: true,
     message:
-      "Running my own news page always seemed difficult, but Mojo Network made it possible. It offers strong tools, clean design, and freedom to tell stories that matter in my area—without needing technical knowledge.",
+      "Running my own news page always seemed difficult, but Mojo India Network made it possible. It offers strong tools, clean design, and freedom to tell stories that matter in my area—without needing technical knowledge.",
     image: "/images/user.jpg",
   },
   {
@@ -44,7 +44,7 @@ const testimonials = [
     location: "Pune, India",
     verified: false,
     message:
-      "Mojo Network is a blessing for local reporters. No complex setup—just my phone and voice. I built my own news identity within days. It's simple, powerful, and gives you real control over your content.",
+      "Mojo India Network is a blessing for local reporters. No complex setup—just my phone and voice. I built my own news identity within days. It's simple, powerful, and gives you real control over your content.",
     image: "/images/user.jpg",
   },
   {
@@ -52,7 +52,7 @@ const testimonials = [
     location: "Bhopal, India",
     verified: true,
     message:
-      "I was tired of chasing ads and sponsors. Mojo Network lets me focus on stories. It’s built for creators who want visibility, ownership, and ease—all without needing a big team or a tech background.",
+      "I was tired of chasing ads and sponsors. Mojo India Network lets me focus on stories. It’s built for creators who want visibility, ownership, and ease—all without needing a big team or a tech background.",
     image: "/images/user.jpg",
   },
   {
@@ -60,7 +60,7 @@ const testimonials = [
     location: "Chennai, India",
     verified: true,
     message:
-      "Before Mojo Network, I was lost under others’ platforms. Now I have a clean space of my own. I don’t worry about reach or design. I just report and publish—it’s as simple and effective as that.",
+      "Before Mojo India Network, I was lost under others’ platforms. Now I have a clean space of my own. I don’t worry about reach or design. I just report and publish—it’s as simple and effective as that.",
     image: "/images/user.jpg",
   },
 ];
@@ -118,7 +118,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-gray-700 text-sm text-justify">
+                <p className="text-black text-sm text-justify">
                   {item.message}
                 </p>
               </div>

@@ -90,7 +90,7 @@ export function PricingSection() {
           <h2 className="text-4xl font-bold mb-4">
             Simple, Transparent Pricing
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-black">
             Choose the plan that fits your needs and start building your news
             portal today
           </p>
@@ -122,7 +122,7 @@ export function PricingSection() {
                   {plan.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center text-sm text-gray-700"
+                      className="flex items-center text-sm text-black"
                     >
                       <Check className="h-4 w-4 text-green-500 mr-2" />
                       {feature}

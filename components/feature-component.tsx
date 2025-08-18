@@ -12,17 +12,56 @@ import {
 const Feature = () => {
   const features = [
     {
-      icon: "/images/solutions/1.png",
-      title: "Your Brand",
+      icon: "/images/solutions/19.png",
+      title: "Automated News Engine",
       description:
-        "Your Brand. Be the face of your news—not just a name buried inside a portal. Mojo Network gives you your own branded channel that puts you in front.",
+        "Stay ahead with real-time automated news sourcing and publishing powered by AI.",
     },
     {
-      icon: "/images/solutions/2.png",
-      title: "Automatic Fame Engine",
+      icon: "/images/solutions/13.png",
+      title: "Categorised News",
       description:
-        "Whatever you publish turns into a daily bulletin, social media push, and mass visibility—no extra work, only more recognition.",
+        "Automatically organize your content into categories like politics, sports, entertainment, and more.",
     },
+    {
+      icon: "/images/solutions/14.png",
+      title: "Bulletin",
+      description:
+        "Generate daily or weekly bulletins automatically to keep your audience updated.",
+    },
+    {
+      icon: "/images/solutions/15.png",
+      title: "Local Stories",
+      description:
+        "Highlight hyperlocal content that connects deeply with your community.",
+    },
+    {
+      icon: "/images/solutions/16.png",
+      title: "WhatsApp & Social Media Integration",
+      description:
+        "Distribute stories instantly via WhatsApp and other social media platforms to reach a wider audience.",
+    },
+
+    {
+      icon: "/images/solutions/18.png",
+      title: "Task Manager",
+      description:
+        "Task Manager helps you plan content strategically to grow your channel’s audience.",
+    },
+
+    {
+      icon: "/images/solutions/20.png",
+      title: "Analytics Dashboard",
+      description:
+        "Measure the reach and response of your content across platforms. Get deep insights into trending issues and the demographics they influence.",
+    },
+    {
+      icon: "/images/solutions/1.png",
+      title: "your brand your news",
+      description:
+        "your brand your news be the face of your news—not just a name buried inside a portal. Mojo India Network gives you your own branded channel that puts you in front.",
+    },
+
     {
       icon: "/images/solutions/3.png",
       title: "Automated Sharing Tools",
@@ -100,7 +139,7 @@ const Feature = () => {
         <div className="absolute inset-0 bg-white pointer-events-none"></div>
         <div className="relative container z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
-            <span className="gradient-text">Mojo Network</span> is the Solution
+            <span className="gradient-text">Mojo India Network</span> is the Solution
             You’ve Been Waiting For
           </h2>
 
@@ -130,7 +169,7 @@ const Feature = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-xs sm:text-sm md:text-base text-center">
+                  <CardDescription className="text-xs text-black sm:text-sm md:text-base text-center">
                     {feature.description}
                   </CardDescription>
                 </CardContent>

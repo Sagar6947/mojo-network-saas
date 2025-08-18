@@ -1,5 +1,6 @@
 "use client";
-
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 // import {
 //   Newspaper,
 //   Video,
@@ -21,40 +22,41 @@ import {
 
 const features = [
   {
-    icon: "/images/solutions/1.png",
-    title: "Your Brand",
+    icon: "/images/solutions/19.png",
+    title: "Automated News Engine",
     description:
-      "Your Brand. Be the face of your news—not just a name buried inside a portal. Mojo Network gives you your own branded channel that puts you in front.",
+      "Stay ahead with real-time automated news sourcing and publishing powered by AI.",
   },
   {
-    icon: "/images/solutions/2.png",
-    title: "Automatic Fame Engine",
+    icon: "/images/solutions/13.png",
+    title: "Categorised News",
     description:
-      "Whatever you publish turns into a daily bulletin, social media push, and mass visibility—no extra work, only more recognition.",
+      "Automatically organize your content into categories like politics, sports, entertainment, and more.",
   },
   {
-    icon: "/images/solutions/3.png",
-    title: "Automated Sharing Tools",
+    icon: "/images/solutions/14.png",
+    title: "Bulletin",
     description:
-      "Our engine gives you daily national, local, political, cricket, and even astrology content—so you never run dry.",
+      "Generate daily or weekly bulletins automatically to keep your audience updated.",
   },
   {
-    icon: "/images/solutions/4.png",
-    title: "Built‑in Ads + Sponsor Tools",
+    icon: "/images/solutions/15.png",
+    title: "Local Stories",
     description:
-      " No pitching, no chasing. We connect you to local advertisers and help you monetize every view and click.",
+      "Highlight hyperlocal content that connects deeply with your community.",
   },
   {
-    icon: "/images/solutions/5.png",
-    title: "Prestige + Power Among Peers",
+    icon: "/images/solutions/16.png",
+    title: "WhatsApp & Social Media Integration",
     description:
-      " While others run websites, you run a channel. That makes you the journalist they look up to",
+      "Distribute stories instantly via WhatsApp and other social media platforms to reach a wider audience.",
   },
+
   {
-    icon: "/images/solutions/6.png",
-    title: "Only One Job",
+    icon: "/images/solutions/18.png",
+    title: "Task Manager",
     description:
-      "Do Journalism. Everything else—tech, promotion, publishing, billing—is taken care of. You focus on breaking the story; we’ll break the barriers.",
+      "Task Manager helps you plan content strategically to grow your channel’s audience.",
   },
 ];
 
@@ -68,11 +70,11 @@ export function FeaturesSection() {
       <div className="absolute inset-0 bg-pink-100/40 pointer-events-none"></div>
       <div className="relative container z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
-          <span className="gradient-text">Mojo Network</span> is the Solution
-          You’ve Been Waiting For
+          <span className="gradient-text">Mojo India Network</span> is the
+          Solution You’ve Been Waiting For
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
           {features.map((feature, index) => (
             <Card
               key={index}
@@ -94,12 +96,19 @@ export function FeaturesSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-xs sm:text-sm md:text-base text-center">
+                <CardDescription className="text-xs text-black sm:text-sm md:text-base text-center">
                   {feature.description}
                 </CardDescription>
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="flex justify-center">
+          <Link href="/feature">
+            <button className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-full transition text-sm md:text-base w-72 text-center">
+              Explore the Platform
+            </button>
+          </Link>
         </div>
       </div>
     </section>

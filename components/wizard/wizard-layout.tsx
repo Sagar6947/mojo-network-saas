@@ -58,7 +58,7 @@ export function WizardLayout({
       </div>
 
       {/* Content */}
-      <main className="container mx-auto px-4 md:pt-[150px] pt-[210px] pb-16 w-full lg:w-[700px] ">
+      <main className="container mx-auto px-4 md:pt-[150px] pt-32 pb-16 w-full lg:w-[700px] ">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
