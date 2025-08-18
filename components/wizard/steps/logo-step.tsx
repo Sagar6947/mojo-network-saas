@@ -89,18 +89,18 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
   }
 
   return (
-    <StepContainer subtitle="Your logo will appear on your news portal header and all branding materials">
+    <StepContainer subtitle="Your logo will appear on your news channel header and all branding materials">
       <div className="space-y-8">
         {/* Logo Section */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Website Logo</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Website Logo (Optional)</h3>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid grid-cols-1 mb-6">
+            {/* <TabsList className="grid grid-cols-1 mb-6">
               <TabsTrigger value="upload" className="flex items-center gap-2">
                 <ImageIcon size={16} />
                 <span>Upload Logo</span>
               </TabsTrigger>
-            </TabsList>
+            </TabsList> */}
 
             <TabsContent value="upload" className="mt-0">
               <div className="space-y-4">
@@ -153,7 +153,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
 
         {/* Favicon Section */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Favicon (Optional)</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Favicon (Optional)</h3>
           <p className="text-sm text-gray-600 mb-4">Small icon that appears in browser tabs and bookmarks</p>
 
           <div className="space-y-4">
@@ -211,8 +211,7 @@ export function LogoStep({ onBack, onNext, portalName }: LogoStepProps) {
             <li>• Favicon should be small and simple for clarity</li>
           </ul>
         </div>
-
-        <NavigationButtons onBack={onBack} onNext={handleNext} nextDisabled={false} />
+        <NavigationButtons onBack={onBack} onNext={handleNext} nextLabel={selectedFavicon || selectedLogo ? 'Continue' : 'Skip'} nextDisabled={false} />
       </div>
     </StepContainer>
   )

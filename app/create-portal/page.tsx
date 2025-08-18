@@ -42,6 +42,8 @@ interface ThemeSelectionData {
   textColor?: string;
 }
 
+
+
 type WizardState = "form" | "creating" | "success" | "error"
 
 export default function CreatePortalPage({ searchParams }: { searchParams: { login?: string } }) {
@@ -96,7 +98,7 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
     "Welcome to Mojo India Network",
     "Verify Your Phone Number",
     "Name Your News Channel",
-    "Create Your Brand Identity",
+    "Add Your Brand Identity",
     "Choose Your Color Theme",
     "Select a Layout Template",
     "Pick News Categories",
@@ -156,6 +158,16 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
   const handlePreviewNext = () => {
     nextStep()
   }
+
+  const updateUserSelections = (data: {
+    name: string;
+    email: string;
+    phone: string;
+    state: string;
+    city: string;
+  }) => {
+    setUserSelections((prev) => ({ ...prev, ...data }));
+  };
 
   const handleCreatePortal = async () => {
     setWizardState("creating")
@@ -319,7 +331,12 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
     // Render form steps with common data
     switch (currentStep) {
       case 1:
-        return <LoginStep onNext={handleLoginNext} goToStep={() => goToStep(3)} loginstate={login} />
+        return <LoginStep
+          onNext={handleLoginNext}
+          updateUserSelections={updateUserSelections} // Pass the new prop
+          goToStep={goToStep}
+          loginstate={!!login} // Convert to boolean
+        />
       case 2:
         return (
           <OtpStep
@@ -328,6 +345,8 @@ export default function CreatePortalPage({ searchParams }: { searchParams: { log
             personName={userSelections.name}
             emailId={userSelections.email}
             phoneNumber={userSelections.phone}
+            state={userSelections.state}
+            city={userSelections.city}
             onEditPhone={() => goToStep(1)}
           />
         )
