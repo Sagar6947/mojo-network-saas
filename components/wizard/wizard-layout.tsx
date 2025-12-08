@@ -49,27 +49,17 @@ export function WizardLayout({
 
       {/* Progress bar */}
       <div className="fixed top-16 left-0 right-0 z-40 h-1 bg-gray-100">
-        <motion.div
-          className="h-full bg-gradient-to-r from-purple-500 to-purple-700"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.3 }}
-        />
+      
       </div>
 
       {/* Content */}
       <main className="container mx-auto px-4 md:pt-[150px] pt-32 pb-16 w-full lg:w-[700px] ">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full"
-        >
+     
           <h1 className="text-2xl md:text-3xl font-bold mb-8 text-center">
             {title}
           </h1>
           {children}
-        </motion.div>
+        
       </main>
     </div>
   );
