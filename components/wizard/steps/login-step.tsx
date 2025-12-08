@@ -982,148 +982,148 @@ export function LoginStep({ onNext, goToStep, loginstate, updateUserSelections }
   }
 
   return (
-    <StepContainer subtitle="We'll use this information to create your account and send verification">
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium">
-            Full Name
-          </Label>
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`pl-10 h-12 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}`}
-            />
-          </div>
-          {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium">
-            Email Address
-          </Label>
-          <div className="relative">
-            <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-            <Input
-              id="email"
-              type="email"
-              placeholder="your.email@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`pl-10 h-12 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
-            />
-          </div>
-          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="phone" className="text-sm font-medium">
-            Phone Number
-          </Label>
-          <div className="relative">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-            <Input
-              id="phone"
-              type="tel"
-              placeholder="12345 67890"
-              value={phone}
-              onChange={handlePhoneChange}
-              className={`pl-10 h-12 ${errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}`}
-            />
-          </div>
-          {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <StepContainer subtitle="We'll use this information to create your account and send verification">
+        <div className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="state" className="text-sm font-medium">
-              State
+            <Label htmlFor="name" className="text-sm font-medium">
+              Full Name
             </Label>
-            <SearchableDropdown
-              options={states}
-              value={state}
-              onChange={handleStateSelect}
-              labelKey="state_name"
-              valueKey="id"
-              placeholder="Select a state..."
-            />
-            {errors.state && <p className="text-sm text-red-500 mt-1">{errors.state}</p>}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="city" className="text-sm font-medium">
-              City
-            </Label>
-            <SearchableDropdown
-              options={cities}
-              value={city}
-              onChange={handleCitySelect}
-              labelKey="city_name"
-              valueKey="city_id"
-              placeholder="Select a city..."
-              disabled={!stateId}
-            />
-            {errors.city && <p className="text-sm text-red-500 mt-1">{errors.city}</p>}
-          </div>
-        </div>
-        <div className="space-y-4">
-          {[
-            {
-              id: "serviceAgreement",
-              label: "SaaS Service Agreement",
-              link: "policy/saas-service-agreement",
-            },
-            {
-              id: "advertisingPolicy",
-              label: "Advertising & Monetization Policy",
-              link: "policy/advertising-and-monetization-policy",
-            },
-            {
-              id: "grievanceRedressalPolicy",
-              label: "Grievance Redressal Policy (as per IT Rules, 2021)",
-              link: "policy/grievance-redressal-policy",
-            },
-            {
-              id: "contentLicensingPolicy",
-              label: "Content Responsibility & Licensing Policy",
-              link: "policy/content-responsibility-and-licensing-policy",
-            },
-          ].map((policy) => (
-            <div key={policy.id} className="flex items-start space-x-2">
-              <div className="flex items-center h-5">
-                <input
-                  id={policy.id}
-                  type="checkbox"
-                  checked={policies[policy.id as keyof typeof policies]}
-                  onChange={() => handlePolicyChange(policy.id)}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-              </div>
-              <Label htmlFor={policy.id} className="text-sm">
-                I accept the{" "}
-                <a
-                  href={policy.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  {policy.label}
-                </a>
-              </Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={`pl-10 h-12 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+              />
             </div>
-          ))}
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-sm font-medium">
+              Email Address
+            </Label>
+            <div className="relative">
+              <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="your.email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`pl-10 h-12 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+              />
+            </div>
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-sm font-medium">
+              Phone Number
+            </Label>
+            <div className="relative">
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="12345 67890"
+                value={phone}
+                onChange={handlePhoneChange}
+                className={`pl-10 h-12 ${errors.phone ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+              />
+            </div>
+            {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="state" className="text-sm font-medium">
+                State
+              </Label>
+              <SearchableDropdown
+                options={states}
+                value={state}
+                onChange={handleStateSelect}
+                labelKey="state_name"
+                valueKey="id"
+                placeholder="Select a state..."
+              />
+              {errors.state && <p className="text-sm text-red-500 mt-1">{errors.state}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="city" className="text-sm font-medium">
+                City
+              </Label>
+              <SearchableDropdown
+                options={cities}
+                value={city}
+                onChange={handleCitySelect}
+                labelKey="city_name"
+                valueKey="city_id"
+                placeholder="Select a city..."
+                disabled={!stateId}
+              />
+              {errors.city && <p className="text-sm text-red-500 mt-1">{errors.city}</p>}
+            </div>
+          </div>
+          <div className="space-y-4">
+            {[
+              {
+                id: "serviceAgreement",
+                label: "SaaS Service Agreement",
+                link: "policy/saas-service-agreement",
+              },
+              {
+                id: "advertisingPolicy",
+                label: "Advertising & Monetization Policy",
+                link: "policy/advertising-and-monetization-policy",
+              },
+              {
+                id: "grievanceRedressalPolicy",
+                label: "Grievance Redressal Policy (as per IT Rules, 2021)",
+                link: "policy/grievance-redressal-policy",
+              },
+              {
+                id: "contentLicensingPolicy",
+                label: "Content Responsibility & Licensing Policy",
+                link: "policy/content-responsibility-and-licensing-policy",
+              },
+            ].map((policy) => (
+              <div key={policy.id} className="flex items-start space-x-2">
+                <div className="flex items-center h-5">
+                  <input
+                    id={policy.id}
+                    type="checkbox"
+                    checked={policies[policy.id as keyof typeof policies]}
+                    onChange={() => handlePolicyChange(policy.id)}
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  />
+                </div>
+                <Label htmlFor={policy.id} className="text-sm">
+                  I accept the{" "}
+                  <a
+                    href={policy.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {policy.label}
+                  </a>
+                </Label>
+              </div>
+            ))}
+          </div>
+          {errors.general && (
+            <div className="p-4 bg-red-50 border border-red-400 text-red-700 rounded">{errors.general}</div>
+          )}
+          <NavigationButtons onNext={handleNext} nextLabel="Send OTP" loading={loading} />
+          <div className="text-center">
+            <span className="text-gray-600">Already registered? </span>
+            <button onClick={() => setIsLoginMode(true)} className="text-[#cb0015] hover:underline font-medium">
+              Login Here
+            </button>
+          </div>
         </div>
-        {errors.general && (
-          <div className="p-4 bg-red-50 border border-red-400 text-red-700 rounded">{errors.general}</div>
-        )}
-        <NavigationButtons onNext={handleNext} nextLabel="Send OTP" loading={loading} />
-        <div className="text-center">
-          <span className="text-gray-600">Already registered? </span>
-          <button onClick={() => setIsLoginMode(true)} className="text-[#cb0015] hover:underline font-medium">
-            Login Here
-          </button>
-        </div>
-      </div>
-    </StepContainer>
+      </StepContainer>
   )
 }
