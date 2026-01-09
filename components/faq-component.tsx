@@ -1,6 +1,4 @@
 
-"use client";
-
 import React from "react";
 import {
   Accordion,
@@ -8,79 +6,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Faq as FaqType } from "@/lib/api";
 
-const faqs = [
-  {
-    question: "What is Mojo India Network?",
-    answer:
-      "Mojo India Network is a mobile journalism platform that enables reporters to create and manage their own hyperlocal news channels directly from their smartphones.",
-  },
-  {
-    question: "How does the content engine support hyperlocal news?",
-    answer:
-      "The content engine provides daily, ready-to-publish updates including national, state, cricket, weather, and hyperlocal news—helping reporters maintain a steady stream of relevant content.",
-  },
-  {
-    question:
-      "Can I earn through my hyperlocal channel on Mojo India?",
-    answer:
-      "Yes! Mojo India Network offers easy-to-use tools to monetize your mobile journalism efforts with local advertisements, sponsored stories, and Google Ads",
-  },
-  {
-    question:
-      "Do I need costly gear for Mojo mobile journalism?",
-    answer:
-      "No special or expensive equipment is needed. Reporters can run their full news channel and publish hyperlocal news using just a smartphone.",
-  },
-  {
-    question:
-      "How does AI support Mojo mobile journalism?",
-    answer:
-      "AI tools turn your voice notes and videos into publish-ready news articles, automatically create daily bulletins, and share your hyperlocal news content on social media—saving you time and effort.",
-  },
-  {
-    question:
-      "Does Mojo support regional languages for hyperlocal reporting?",
-    answer:
-      "Yes, Mojo supports Hindi, Bundeli, Bagheli, and other regional languages, helping reporters connect deeply with their hyperlocal audience.",
-  },
-  {
-    question: "What Is The Revenue Stream For Web Publishers?",
-    answer:
-      "Ad placements, sponsored posts, affiliate marketing, subscription models, and syndication services are common revenue sources.",
-  },
-  {
-    question:
-      "How to Find the Best News Channel Development Company in India?",
-    answer:
-      "Look for a company with proven experience, full-featured offerings, client support, and a strong portfolio in digital news publishing.",
-  },
-  {
-    question: "Which Is The Top News Channel Development Company In India?",
-    answer:
-      "Mojo India Network is among the top choices, known for AI-powered content engines, mobile-first design, and seamless publishing tools.",
-  },
-  {
-    question: "Why Should I Work With Your Company?",
-    answer:
-      "We offer full support, AI tools, scalable infrastructure, compliance assistance, and affordable plans tailored for Indian publishers.",
-  },
-  {
-    question: "What's Your Payment Process?",
-    answer:
-      "We support yearly and custom payment plans via bank transfer, UPI, or credit card. Invoicing and GST billing available for businesses.",
-  },
-  {
-    question:
-      "How to consult with experts on my news channel?",
-    answer:
-      "Simply use the 'Contact Us' form on our website or call our support number to schedule a free consultation.",
-  },
-];
+interface FaqComponentProps {
+  faqs: FaqType[];
+}
 
-const leftFaqs = faqs.slice(0, Math.ceil(faqs.length / 2));
-const rightFaqs = faqs.slice(Math.ceil(faqs.length / 2));
-const Faq = () => {
+const FaqComponent = ({ faqs }: FaqComponentProps) => {
+  const leftFaqs = faqs.slice(0, Math.ceil(faqs.length / 2));
+  const rightFaqs = faqs.slice(Math.ceil(faqs.length / 2));
   return (
     <>
       <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
@@ -132,4 +66,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default FaqComponent;

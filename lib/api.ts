@@ -40,6 +40,18 @@ interface LogoCategory {
   status: number
 }
 
+export interface Faq {
+  id: number
+  question: string
+  answer: string
+}
+
+export interface FaqApiResponse {
+  status: number
+  message: string
+  data: Faq[]
+}
+
 export interface CommonApiResponse {
   status: number
   message: string
@@ -50,6 +62,36 @@ export interface CommonApiResponse {
     channel_language: NativeLanguage[]
     news_category: NewsCategory[]
     image_path: string
+  }
+}
+
+// Fetch FAQs from API
+export async function fetchFaqs(): Promise<Faq[]> {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://api.mojonetwork.in"}/faqList`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "force-cache", // Cache for performance
+      next: { revalidate: 300 }, // Revalidate every hour (ISR)
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const result: FaqApiResponse = await response.json()
+
+    if (result.status !== 200) {
+      throw new Error(result.message || "Failed to fetch FAQs")
+    }
+
+    return result.data || []
+  } catch (error) {
+    console.error("Error fetching FAQs:", error)
+    // Return empty array as fallback
+    return []
   }
 }
 
