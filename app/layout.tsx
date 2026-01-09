@@ -23,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Analytics */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-L7SJ36VTVQ"
-          strategy="afterInteractive"
+        {/* Google Tag Manager */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-L7SJ36VTVQ"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
