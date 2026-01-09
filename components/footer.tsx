@@ -61,6 +61,11 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-4 text-white">Usefull Links</h4>
             <ul className="space-y-2">
               <li>
+                <Link href="/socials/index.html" className="text-white hover:text-red-600">
+                  Social Links
+                </Link>
+              </li>
+              <li>
                 <Link href="/faq" className="text-white hover:text-red-600">
                   FAQ's
                 </Link>
