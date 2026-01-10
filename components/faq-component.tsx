@@ -16,7 +16,7 @@ const FaqComponent = ({ faqs, pageHeading = true }: FaqComponentProps) => {
   return (
     <>
       {/* Banner */}
-      {header && (
+      {pageHeading && (
         <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
           <h1 className="text-4xl md:text-5xl text-black font-bold">
             FAQ&apos;s
