@@ -73,8 +73,8 @@ export async function fetchFaqs(): Promise<Faq[]> {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "force-cache", // Cache for performance
-      next: { revalidate: 300 }, // Revalidate every hour (ISR)
+      cache: "no-store", // Ensure fresh data on every request
+
     })
 
     if (!response.ok) {
