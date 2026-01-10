@@ -9,17 +9,20 @@ import { Faq as FaqType } from "@/lib/api";
 
 interface FaqComponentProps {
   faqs: FaqType[];
+  pageHeading?: boolean;
 }
 
-const FaqComponent = ({ faqs }: FaqComponentProps) => {
+const FaqComponent = ({ faqs, pageHeading = true }: FaqComponentProps) => {
   return (
     <>
       {/* Banner */}
-      <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
-        <h1 className="text-4xl md:text-5xl text-black font-bold">
-          FAQ&apos;s
-        </h1>
-      </section>
+      {pageHeading && (
+        <section className="w-full h-[231px] bg-[#fef5f9] flex items-center justify-center pages-banner-other">
+          <h1 className="text-4xl md:text-5xl text-black font-bold">
+            FAQ&apos;s
+          </h1>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section id="faq" className="py-16 bg-white">

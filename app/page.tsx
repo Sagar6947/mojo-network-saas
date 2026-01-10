@@ -8,8 +8,11 @@ import { FaqSection } from "@/components/faq-section"
 import { CtaSection } from "@/components/cta-section"
 import Slider from "@/components/slider"
 import Testimonials from "@/components/testimonials"
+import { fetchFaqs } from "@/lib/api"
+import FaqComponent from "@/components/faq-component"
 
-export default function Home() {
+export default async function Home() {
+  const faqs = await fetchFaqs();
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -20,7 +23,8 @@ export default function Home() {
         <Slider />
         <PricingSection />
         <Testimonials />
-        <FaqSection />
+        {/* <FaqSection faqs={faqs} /> */}
+        <FaqComponent faqs={faqs} pageHeading={false}/>
         <CtaSection />
       </main>
       <Footer />
