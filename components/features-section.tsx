@@ -39,11 +39,17 @@ const features = [
     description:
       "Generate daily or weekly bulletins automatically to keep your audience updated.",
   },
+  // {
+  //   icon: "/images/solutions/15.png",
+  //   title: "Local Stories",
+  //   description:
+  //     "Highlight hyperlocal content that connects deeply with your community.",
+  // },
   {
     icon: "/images/solutions/15.png",
-    title: "Local Stories",
+    title: "Advertisement Assistance & Phygital Connectivity",
     description:
-      "Highlight hyperlocal content that connects deeply with your community.",
+      "Mojo connects hyperlocal news channels with a growing advertiser network, enabling end-to-end ad support and seamless physical + digital (phygital) campaign execution for real local impact.",
   },
   {
     icon: "/images/solutions/16.png",
