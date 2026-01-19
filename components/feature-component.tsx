@@ -31,9 +31,9 @@ const Feature = () => {
     },
     {
       icon: "/images/solutions/15.png",
-      title: "Local Stories",
+      title: "Advertisement Assistance & Phygital Connectivity",
       description:
-        "Highlight hyperlocal content that connects deeply with your community.",
+        "Mojo connects hyperlocal news channels with a growing advertiser network, enabling end-to-end ad support and seamless physical + digital (phygital) campaign execution for real local impact.",
     },
     {
       icon: "/images/solutions/16.png",
@@ -139,8 +139,8 @@ const Feature = () => {
         <div className="absolute inset-0 bg-white pointer-events-none"></div>
         <div className="relative container z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
-            <span className="gradient-text">Mojo India Network</span> is the Solution
-            You’ve Been Waiting For
+            <span className="gradient-text">Mojo India Network</span> is the
+            Solution You’ve Been Waiting For
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
