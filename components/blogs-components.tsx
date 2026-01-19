@@ -20,11 +20,11 @@ export default function BlogsPage() {
               >
                 <img
                   src="https://img.youtube.com/vi/gDdtGj1nVxY/hqdefault.jpg"
-                  alt="How to Start Your Own News Channel"
+                  alt="How to Start Your Own News Channel on Mojo Network"
                   className="w-24 h-16 object-cover rounded"
                 />
                 <p className="text-black font-medium">
-                  How to Start Your Own News Channel
+                  How to Start Your Own News Channel on Mojo Network
                 </p>
               </a>
 
@@ -36,11 +36,11 @@ export default function BlogsPage() {
               >
                 <img
                   src="https://img.youtube.com/vi/nxWel9WiTgA/hqdefault.jpg"
-                  alt="Mojo Dashboard Walkthrough"
+                  alt="How to Post News on Mojo Network"
                   className="w-24 h-16 object-cover rounded"
                 />
                 <p className="text-black font-medium">
-                  Mojo Dashboard Walkthrough
+                  How to Post News on Mojo Network
                 </p>
               </a>
 
@@ -52,40 +52,12 @@ export default function BlogsPage() {
               >
                 <img
                   src="https://img.youtube.com/vi/qmuwGWziRMc/hqdefault.jpg"
-                  alt="Monetisation & Ads on Mojo"
+                  alt="How to Upload Soft Stories on Mojo Network"
                   className="w-24 h-16 object-cover rounded"
                 />
                 <p className="text-black font-medium">
-                  Monetisation & Ads on Mojo
+                  How to Upload Soft Stories on Mojo Network
                 </p>
-              </a>
-
-              <a
-                href="https://youtu.be/VLwDwhEL568"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
-              >
-                <img
-                  src="https://img.youtube.com/vi/VLwDwhEL568/hqdefault.jpg"
-                  alt="Live Streaming Your Mojo Projects"
-                  className="w-24 h-16 object-cover rounded"
-                />
-                <p className="text-black font-medium">Live Streaming Your Mojo Projects</p>
-              </a>
-
-              <a
-                href="https://youtu.be/25p53M0IT-4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
-              >
-                <img
-                  src="https://img.youtube.com/vi/25p53M0IT-4/hqdefault.jpg"
-                  alt="Tips to Grow Your Mojo Channel"
-                  className="w-24 h-16 object-cover rounded"
-                />
-                <p className="text-black font-medium">Tips to Grow Your Mojo Channel</p>
               </a>
 
               <a
@@ -96,10 +68,44 @@ export default function BlogsPage() {
               >
                 <img
                   src="https://img.youtube.com/vi/Ni7LhXZF3ok/hqdefault.jpg"
-                  alt="Advanced Mojo Features & Tricks"
+                  alt="How to Post a Bulletin on Mojo Network"
                   className="w-24 h-16 object-cover rounded"
                 />
-                <p className="text-black font-medium">Advanced Mojo Features & Tricks</p>
+                <p className="text-black font-medium">
+                  How to Post a Bulletin on Mojo Network
+                </p>
+              </a>
+
+              <a
+                href="https://www.youtube.com/watch?v=VLwDwhEL568"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
+              >
+                <img
+                  src="https://img.youtube.com/vi/VLwDwhEL568/hqdefault.jpg"
+                  alt="How to Create and Share a WhatsApp Group on Mojo Network"
+                  className="w-24 h-16 object-cover rounded"
+                />
+                <p className="text-black font-medium">
+                  How to Create and Share a WhatsApp Group on Mojo Network
+                </p>
+              </a>
+
+              <a
+                href="https://youtu.be/25p53M0IT-4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
+              >
+                <img
+                  src="https://img.youtube.com/vi/25p53M0IT-4/hqdefault.jpg"
+                  alt="How to Use Pull News on Mojo Network"
+                  className="w-24 h-16 object-cover rounded"
+                />
+                <p className="text-black font-medium">
+                  How to Use Pull News on Mojo Network
+                </p>
               </a>
             </div>
 
@@ -112,7 +118,7 @@ export default function BlogsPage() {
             <img
               src="/images/mojo-blogs.png"
               alt="Mojo Platform Dashboard"
-              className="w-full max-w-lg rounded-xl shadow-lg"
+              className="w-full max-w-lg rounded-xl"
             />
           </div>
         </div>
