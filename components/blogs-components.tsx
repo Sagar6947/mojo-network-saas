@@ -109,9 +109,16 @@ export default function BlogsPage() {
               </a>
             </div>
 
-            <button className="mt-6 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
-              Subscribe to Our YouTube Channel
-            </button>
+          <a
+  href="https://www.youtube.com/@mojo_network"  
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <button className="mt-6 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+    Subscribe to Our YouTube Channel
+  </button>
+</a>
+
           </div>
 
           <div className="lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
