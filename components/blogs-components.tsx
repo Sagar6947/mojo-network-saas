@@ -13,112 +13,117 @@ export default function BlogsPage() {
 
             <div className="space-y-4">
               <a
-                href="https://youtu.be/gDdtGj1nVxY"
+                href="https://youtu.be/zElO4imjvoE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/gDdtGj1nVxY/hqdefault.jpg"
-                  alt="How to Start Your Own News Channel on Mojo Network"
+                  src="https://img.youtube.com/vi/zElO4imjvoE/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
-                  How to Start Your Own News Channel on Mojo Network
+                  How to create channel on Mojo Network
                 </p>
               </a>
 
               <a
-                href="https://youtu.be/nxWel9WiTgA"
+                href="https://youtu.be/8dvirqA49hM"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/nxWel9WiTgA/hqdefault.jpg"
-                  alt="How to Post News on Mojo Network"
+                  src="https://img.youtube.com/vi/8dvirqA49hM/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
                   How to Post News on Mojo Network
                 </p>
               </a>
 
               <a
-                href="https://youtu.be/qmuwGWziRMc"
+                href=" https://youtu.be/DewXfLcOzXY"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/qmuwGWziRMc/hqdefault.jpg"
-                  alt="How to Upload Soft Stories on Mojo Network"
+                  src="https://img.youtube.com/vi/DewXfLcOzXY/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
                   How to Upload Soft Stories on Mojo Network
                 </p>
               </a>
 
               <a
-                href="https://youtu.be/Ni7LhXZF3ok"
+                href=" https://youtu.be/FMZwQWYziSw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/Ni7LhXZF3ok/hqdefault.jpg"
-                  alt="How to Post a Bulletin on Mojo Network"
+                  src="https://img.youtube.com/vi/FMZwQWYziSw/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
-                  How to Post a Bulletin on Mojo Network
+                  How to upload Bulletin on Mojo Network
                 </p>
               </a>
 
               <a
-                href="https://www.youtube.com/watch?v=VLwDwhEL568"
+                href="https://youtu.be/5u8-6PGZa3k"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/VLwDwhEL568/hqdefault.jpg"
-                  alt="How to Create and Share a WhatsApp Group on Mojo Network"
+                  src="https://img.youtube.com/vi/5u8-6PGZa3k/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
-                  How to Create and Share a WhatsApp Group on Mojo Network
+                  How to connect whatsapp on Mojo Network
                 </p>
               </a>
 
               <a
-                href="https://youtu.be/25p53M0IT-4"
+                href="https://youtu.be/Tqy6DYNI1_8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 bg-white p-3 rounded-lg shadow hover:bg-gray-100 transition"
               >
                 <img
-                  src="https://img.youtube.com/vi/25p53M0IT-4/hqdefault.jpg"
-                  alt="How to Use Pull News on Mojo Network"
+                  src="https://img.youtube.com/vi/Tqy6DYNI1_8/hqdefault.jpg"
+                  alt="YouTube Video Thumbnail"
                   className="w-24 h-16 object-cover rounded"
                 />
+
                 <p className="text-black font-medium">
-                  How to Use Pull News on Mojo Network
+                  How to use pull news on Mojo Network
                 </p>
               </a>
             </div>
 
-          <a
-  href="https://www.youtube.com/@mojo_network"  
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <button className="mt-6 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
-    Subscribe to Our YouTube Channel
-  </button>
-</a>
-
+            <a
+              href="https://www.youtube.com/@mojo_network"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="mt-6 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                Subscribe to Our YouTube Channel
+              </button>
+            </a>
           </div>
 
           <div className="lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
